@@ -1,0 +1,3913 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Lexanalytics Ontology Draft 0.1</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+
+  <style type="text/css" media="screen">
+
+
+  body {
+	  margin-left: 6em;
+	  margin-right: 12em;
+	  text-align: justify;
+    padding: 2em 1em 2em 70px;
+    margin: 0;
+    font-family: sans-serif;
+    color: black;
+    background: white;
+    background-position: top left;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  :link { color: #00C; background: transparent }
+  :visited { color: #00C; background: transparent }
+  a:active { color: #C00; background: transparent }
+
+  a:link img, a:visited img { border-style: none } /* no border on img links */
+
+  a:hover {color: white; background: #00C; }
+  a.backlink:hover {color: white; background: grey; }
+  a.greylink:hover {color: white; background: grey; }
+
+  .margintop {
+  	 margin-top: 40px;
+  }
+
+
+  dt, dd { margin-top: 10px; margin-bottom: 0 } /* opera 3.50 */
+  dt { font-weight: bold }
+
+
+  h1, h2, h3, h4, h5, h6 { text-align: left }
+  /* background should be transparent, but WebTV has a bug */
+  h1, h2, h3, h4, h5 { color: #005A9C; background: white }
+  h1.title { font: 200% sans-serif }
+  h1 { font: 170% sans-serif }
+  h2 { font: 140% sans-serif }
+  h3 { font: 120% sans-serif }
+  h4 { font: bold 100% sans-serif }
+  h5 { font: italic 100% sans-serif }
+  h6 { font: small-caps 100% sans-serif }
+
+  .hide { display: none }
+
+
+  pre { margin-left: 2em }
+
+  pre, code { font-family: monospace } /* navigator 4 requires this */
+
+
+  .implementation {
+  	background: aliceblue;
+	padding: 10px;
+	margin-top: 5px;
+  }
+
+  fieldset {
+	  margin-top: 20px;
+	  padding: 13px;
+      text-align: left;
+  }
+
+  legend {
+	  text-transform: uppercase;
+  }
+
+  .entity-div {
+	  margin: 55px 10px 30px 10px;
+  }
+
+  .entity-section {
+	  margin-bottom: 0px;
+  }
+
+
+  a.backlink {
+	  font-size: 80%;
+	  color: grey;
+  }
+
+  a.greylink {
+	  color: grey;
+  }
+
+
+   .implementation_title {
+
+       font-weight: bold;
+       font-size: 100%;
+   }
+
+.section-desc {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+
+
+        .tree-container {
+            width: 3000em;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+		.tree {margin: 10px 0px 30px -20px; padding: 0; display: inline-block;}
+
+		.tree ul {
+			padding-top: 20px; position: relative;
+
+			transition: all 0.5s;
+			-webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+		}
+
+		.tree li {
+			float: left; text-align: center;
+			list-style-type: none;
+			position: relative;
+			padding: 20px 5px 0 5px;
+
+			transition: all 0.5s;
+			-webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+		}
+
+		/*We will use ::before and ::after to draw the connectors*/
+
+		.tree li::before, .tree li::after{
+			content: '';
+			position: absolute; top: 0; right: 50%;
+			border-top: 1px solid #ccc;
+			width: 50%; height: 20px;
+		}
+		.tree li::after{
+			right: auto; left: 50%;
+			border-left: 1px solid #ccc;
+		}
+
+		/*We need to remove left-right connectors from elements without
+		any siblings*/
+		.tree li:only-child::after, .tree li:only-child::before {
+			display: none;
+		}
+
+		/*Remove space from the top of single children*/
+		.tree li:only-child{ padding-top: 0;}
+
+		/*Remove left connector from first child and
+		right connector from last child*/
+		.tree li:first-child::before, .tree li:last-child::after{
+			border: 0 none;
+		}
+		/*Adding back the vertical connector to the last nodes*/
+		.tree li:last-child::before{
+			border-right: 1px solid #ccc;
+			border-radius: 0 5px 0 0;
+			-webkit-border-radius: 0 5px 0 0;
+			-moz-border-radius: 0 5px 0 0;
+		}
+		.tree li:first-child::after{
+			border-radius: 5px 0 0 0;
+			-webkit-border-radius: 5px 0 0 0;
+			-moz-border-radius: 5px 0 0 0;
+		}
+
+		/*Time to add downward connectors from parents*/
+		.tree ul ul::before{
+			content: '';
+			position: absolute; top: 0; left: 50%;
+			border-left: 1px solid #ccc;
+			width: 0; height: 20px;
+		}
+
+		.tree li a{
+			border: 1px solid #ccc;
+			padding: 5px 10px;
+			text-decoration: none;
+			color: #666;
+			font-family: arial, verdana, tahoma;
+			font-size: 11px;
+			display: inline-block;
+
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+
+			transition: all 0.5s;
+			-webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+		}
+
+		/*Time for some hover effects*/
+		/*We will apply the hover effect the the lineage of the element also*/
+		.tree li a:hover, .tree li a:hover+ul li a {
+			background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+		}
+		/*Connector styles on hover*/
+		.tree li a:hover+ul li::after,
+		.tree li a:hover+ul li::before,
+		.tree li a:hover+ul::before,
+		.tree li a:hover+ul ul::before{
+			border-color:  #94a0b4;
+		}
+
+		/*Thats all. I hope you enjoyed it.
+		Thanks :)*/
+
+
+  </style>
+
+
+</head>
+
+
+<body>
+
+
+    
+	<h1 class="title">Graph:&nbsp;<a href="http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl" target="_blank">http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl</a></h1>
+	<h3>Lexanalytics Ontology. This is an evolving spec.</h3>
+
+
+
+
+	
+
+
+	<hr class="margintop">
+
+	<h1><a name="toc">&nbsp;</a>Table of Content</h1>
+
+	<ul>
+		
+		<li><a href="#a-z">A-Z of Terms</a></li>
+		<li><a href="#classes">Classes</a></li>
+		<li><a href="#objproperties">Object Properties</a></li>
+		<li><a href="#dataproperties">Datatype properties</a></li>
+		
+		
+
+		
+
+	</ul>
+
+
+
+
+	
+
+	
+
+
+
+
+	
+
+	<hr class="margintop">
+	<h1><a  name="a-z">&nbsp;</a>A-Z of terms</h1>
+
+	<div id="azterms">
+
+	This is a complete alphabetical A-Z index of all terms, by main logical type.
+
+	
+		<fieldset> <legend>Classes (21)</legend>
+			<span><a href="#foaf:Document">foaf:Document</a></span>
+			|
+			<span><a href="#foaf:Organization">foaf:Organization</a></span>
+			|
+			<span><a href="#foaf:Person">foaf:Person</a></span>
+			|
+			<span><a href="#lexlegal:Annotation">lexlegal:Annotation</a></span>
+			|
+			<span><a href="#lexlegal:Article">lexlegal:Article</a></span>
+			|
+			<span><a href="#lexlegal:Bookmark">lexlegal:Bookmark</a></span>
+			|
+			<span><a href="#lexlegal:Case">lexlegal:Case</a></span>
+			|
+			<span><a href="#lexlegal:Constitution">lexlegal:Constitution</a></span>
+			|
+			<span><a href="#lexlegal:Document">lexlegal:Document</a></span>
+			|
+			<span><a href="#lexlegal:Event">lexlegal:Event</a></span>
+			|
+			<span><a href="#lexlegal:ItemData">lexlegal:ItemData</a></span>
+			|
+			<span><a href="#lexlegal:Judge">lexlegal:Judge</a></span>
+			|
+			<span><a href="#lexlegal:Legislation">lexlegal:Legislation</a></span>
+			|
+			<span><a href="#lexlegal:Object">lexlegal:Object</a></span>
+			|
+			<span><a href="#lexlegal:Organization">lexlegal:Organization</a></span>
+			|
+			<span><a href="#lexlegal:Person">lexlegal:Person</a></span>
+			|
+			<span><a href="#lexlegal:Subscription">lexlegal:Subscription</a></span>
+			|
+			<span><a href="#lexlegal:User">lexlegal:User</a></span>
+			|
+			<span><a href="#schema:DataFeed">schema:DataFeed</a></span>
+			|
+			<span><a href="#schema:Event">schema:Event</a></span>
+			|
+			<span><a href="#schema:Person">schema:Person</a></span>
+			
+			
+		</fieldset>
+	
+
+	
+
+	<fieldset> <legend>Object Properties (25)</legend>
+		&nbsp;<a href="#lexlegal:hasAppelant">lexlegal:hasAppelant</a>
+		|  <a href="#lexlegal:hasAreaOfLaw">lexlegal:hasAreaOfLaw</a>
+		|  <a href="#lexlegal:hasAuthor">lexlegal:hasAuthor</a>
+		|  <a href="#lexlegal:hasCaseHistory">lexlegal:hasCaseHistory</a>
+		|  <a href="#lexlegal:hasCauseOfAction">lexlegal:hasCauseOfAction</a>
+		|  <a href="#lexlegal:hasCounsel">lexlegal:hasCounsel</a>
+		|  <a href="#lexlegal:hasDateDecided">lexlegal:hasDateDecided</a>
+		|  <a href="#lexlegal:hasDeliveredJudgement">lexlegal:hasDeliveredJudgement</a>
+		|  <a href="#lexlegal:hasEmail">lexlegal:hasEmail</a>
+		|  <a href="#lexlegal:hasFact">lexlegal:hasFact</a>
+		|  <a href="#lexlegal:hasIssue">lexlegal:hasIssue</a>
+		|  <a href="#lexlegal:hasLocation">lexlegal:hasLocation</a>
+		|  <a href="#lexlegal:hasMotionType">lexlegal:hasMotionType</a>
+		|  <a href="#lexlegal:hasPartyType">lexlegal:hasPartyType</a>
+		|  <a href="#lexlegal:hasPhone">lexlegal:hasPhone</a>
+		|  <a href="#lexlegal:hasPresidingJudge">lexlegal:hasPresidingJudge</a>
+		|  <a href="#lexlegal:hasPrinciples">lexlegal:hasPrinciples</a>
+		|  <a href="#lexlegal:hasReferredCase">lexlegal:hasReferredCase</a>
+		|  <a href="#lexlegal:hasReferredStatute">lexlegal:hasReferredStatute</a>
+		|  <a href="#lexlegal:hasRespondent">lexlegal:hasRespondent</a>
+		|  <a href="#lexlegal:hasSubjectMatter">lexlegal:hasSubjectMatter</a>
+		|  <a href="#lexlegal:hasTitle">lexlegal:hasTitle</a>
+		|  <a href="#lexlegal:hasURL">lexlegal:hasURL</a>
+		|  <a href="#lexlegal:hasVerdict">lexlegal:hasVerdict</a>
+		|  <a href="#lexlegal:isSector">lexlegal:isSector</a>
+		  
+	</fieldset>
+
+	
+
+	
+	<fieldset> <legend>Datatype Properties (12)</legend>
+		&nbsp;<a href="#lexlegal:hasContent">lexlegal:hasContent</a>
+		|  <a href="#lexlegal:hasCount">lexlegal:hasCount</a>
+		|  <a href="#lexlegal:hasDate">lexlegal:hasDate</a>
+		|  <a href="#lexlegal:hasDocumentType">lexlegal:hasDocumentType</a>
+		|  <a href="#lexlegal:hasDuration">lexlegal:hasDuration</a>
+		|  <a href="#lexlegal:hasEndDate">lexlegal:hasEndDate</a>
+		|  <a href="#lexlegal:hasFirstName">lexlegal:hasFirstName</a>
+		|  <a href="#lexlegal:hasID">lexlegal:hasID</a>
+		|  <a href="#lexlegal:hasLastName">lexlegal:hasLastName</a>
+		|  <a href="#lexlegal:hasName">lexlegal:hasName</a>
+		|  <a href="#lexlegal:hasRef">lexlegal:hasRef</a>
+		|  <a href="#lexlegal:hasStartDate">lexlegal:hasStartDate</a>
+		  
+	</fieldset>
+	
+
+	
+
+	
+
+
+	</div>
+
+
+
+	
+
+
+	
+
+		<hr class="margintop">
+		<h1 class="margintop" ><a name="classes">&nbsp;</a>Classes</h1>
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="foaf:Document" href="#foaf:Document">foaf:Document</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">foaf:Document</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Document">lexlegal:Document</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>None</p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="foaf:Organization" href="#foaf:Organization">foaf:Organization</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">foaf:Organization</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Organization">lexlegal:Organization</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>None</p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="foaf:Person" href="#foaf:Person">foaf:Person</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">foaf:Person</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Person">lexlegal:Person</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>None</p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Annotation" href="#lexlegal:Annotation">lexlegal:Annotation</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Object">lexlegal:Object</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Annotation</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Annotation is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing an Annotation
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(1)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Object">lexlegal:Object</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Annotation a owl:Class ;<br>    rdfs:label &quot;Annotation&quot; ;<br>    rdfs:comment &quot;A class representing an Annotation&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Object .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Article" href="#lexlegal:Article">lexlegal:Article</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Document">lexlegal:Document</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Article</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Article is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Article
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(2)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Document">lexlegal:Document</a> | <a href="#foaf:Document">foaf:Document</a>  
+                    </p>
+				
+
+
+
+				
+					<p class="section-desc"><b>Property Domain of:</b>
+                        <br>
+                        <a href="#lexlegal:hasAreaOfLaw">lexlegal:hasAreaOfLaw</a>  
+                    </p>
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Article a owl:Class ;<br>    rdfs:label &quot;Article&quot; ;<br>    rdfs:comment &quot;A class representing a Article&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Document .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Bookmark" href="#lexlegal:Bookmark">lexlegal:Bookmark</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Object">lexlegal:Object</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Bookmark</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Bookmark is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Bookmark
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(1)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Object">lexlegal:Object</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Bookmark a owl:Class ;<br>    rdfs:label &quot;Bookmark&quot; ;<br>    rdfs:comment &quot;A class representing a Bookmark&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Object .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Case" href="#lexlegal:Case">lexlegal:Case</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Document">lexlegal:Document</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Case</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Case is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Case
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(2)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Document">lexlegal:Document</a> | <a href="#foaf:Document">foaf:Document</a>  
+                    </p>
+				
+
+
+
+				
+					<p class="section-desc"><b>Property Domain of:</b>
+                        <br>
+                        <a href="#lexlegal:hasAppelant">lexlegal:hasAppelant</a> | <a href="#lexlegal:hasCaseHistory">lexlegal:hasCaseHistory</a> | <a href="#lexlegal:hasCauseOfAction">lexlegal:hasCauseOfAction</a> | <a href="#lexlegal:hasCounsel">lexlegal:hasCounsel</a> | <a href="#lexlegal:hasDateDecided">lexlegal:hasDateDecided</a> | <a href="#lexlegal:hasDeliveredJudgement">lexlegal:hasDeliveredJudgement</a> | <a href="#lexlegal:hasFact">lexlegal:hasFact</a> | <a href="#lexlegal:hasIssue">lexlegal:hasIssue</a> | <a href="#lexlegal:hasMotionType">lexlegal:hasMotionType</a> | <a href="#lexlegal:hasPartyType">lexlegal:hasPartyType</a> | <a href="#lexlegal:hasPresidingJudge">lexlegal:hasPresidingJudge</a> | <a href="#lexlegal:hasPrinciples">lexlegal:hasPrinciples</a> | <a href="#lexlegal:hasReferredCase">lexlegal:hasReferredCase</a> | <a href="#lexlegal:hasReferredStatute">lexlegal:hasReferredStatute</a> | <a href="#lexlegal:hasRespondent">lexlegal:hasRespondent</a> | <a href="#lexlegal:hasSubjectMatter">lexlegal:hasSubjectMatter</a> | <a href="#lexlegal:hasVerdict">lexlegal:hasVerdict</a>  
+                    </p>
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Case a owl:Class ;<br>    rdfs:label &quot;Case&quot; ;<br>    rdfs:comment &quot;A class representing a Case&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Document .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Constitution" href="#lexlegal:Constitution">lexlegal:Constitution</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Document">lexlegal:Document</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Constitution</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Constitution is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing the Constitution
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(2)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Document">lexlegal:Document</a> | <a href="#foaf:Document">foaf:Document</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Constitution a owl:Class ;<br>    rdfs:label &quot;Constitution&quot; ;<br>    rdfs:comment &quot;A class representing the Constitution&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Document .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Document" href="#lexlegal:Document">lexlegal:Document</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#foaf:Document">foaf:Document</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Document</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Article">lexlegal:Article</a></li><li><a href="#lexlegal:Case">lexlegal:Case</a></li><li><a href="#lexlegal:Constitution">lexlegal:Constitution</a></li><li><a href="#lexlegal:Legislation">lexlegal:Legislation</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Document
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(1)</small>:</b>
+                        <br />
+                        <a href="#foaf:Document">foaf:Document</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Document a owl:Class ;<br>    rdfs:label &quot;Document&quot; ;<br>    rdfs:comment &quot;A class representing a Document&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf foaf:Document .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Event" href="#lexlegal:Event">lexlegal:Event</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#schema:Event">schema:Event</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Event</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Event is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing an Event
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(1)</small>:</b>
+                        <br />
+                        <a href="#schema:Event">schema:Event</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Event a owl:Class ;<br>    rdfs:label &quot;Event&quot; ;<br>    rdfs:comment &quot;A class representing an Event&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf schema:Event .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:ItemData" href="#lexlegal:ItemData">lexlegal:ItemData</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Object">lexlegal:Object</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:ItemData</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            <li> <a href="#schema:DataFeed">schema:DataFeed</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:ItemData</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:ItemData is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    Item Data
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(2)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Object">lexlegal:Object</a> | <a href="#schema:DataFeed">schema:DataFeed</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:ItemData a owl:Class ;<br>    rdfs:label &quot;ItemData&quot; ;<br>    rdfs:comment &quot;Item Data&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Object,<br>        schema:DataFeed .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Judge" href="#lexlegal:Judge">lexlegal:Judge</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Person">lexlegal:Person</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Judge</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Judge is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Judge
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(4)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Person">lexlegal:Person</a> | <a href="#lexlegal:Object">lexlegal:Object</a> | <a href="#schema:Person">schema:Person</a> | <a href="#foaf:Person">foaf:Person</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+					<p class="section-desc"><b>Property Range of:</b>
+                        <br>
+                        <a href="#lexlegal:hasPresidingJudge">lexlegal:hasPresidingJudge</a>  
+                    </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Judge a owl:Class ;<br>    rdfs:label &quot;Judge&quot; ;<br>    rdfs:comment &quot;A class representing a Judge&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Person .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Legislation" href="#lexlegal:Legislation">lexlegal:Legislation</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Document">lexlegal:Document</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Legislation</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Legislation is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Legislation
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(2)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Document">lexlegal:Document</a> | <a href="#foaf:Document">foaf:Document</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Legislation a owl:Class ;<br>    rdfs:label &quot;Legislation&quot; ;<br>    rdfs:comment &quot;A class representing a Legislation&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Document .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Object" href="#lexlegal:Object">lexlegal:Object</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">lexlegal:Object</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Annotation">lexlegal:Annotation</a></li><li><a href="#lexlegal:Bookmark">lexlegal:Bookmark</a></li><li><a href="#lexlegal:ItemData">lexlegal:ItemData</a></li><li><a href="#lexlegal:Person">lexlegal:Person</a></li><li><a href="#lexlegal:Subscription">lexlegal:Subscription</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A base class representing all Lexanalytics objects
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Object a owl:Class ;<br>    rdfs:label &quot;LexanalyticsObject&quot; ;<br>    dc:identifier &quot;Object&quot; ;<br>    rdfs:comment &quot;A base class representing all Lexanalytics objects&quot; ;<br>    rdfs:isDefinedBy lexlegal: .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Organization" href="#lexlegal:Organization">lexlegal:Organization</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#foaf:Organization">foaf:Organization</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Organization</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Organization is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing an Organization
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(1)</small>:</b>
+                        <br />
+                        <a href="#foaf:Organization">foaf:Organization</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Organization a owl:Class ;<br>    rdfs:label &quot;Organization&quot; ;<br>    rdfs:comment &quot;A class representing an Organization&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf foaf:Organization .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Person" href="#lexlegal:Person">lexlegal:Person</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Object">lexlegal:Object</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Person</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Judge">lexlegal:Judge</a></li><li><a href="#lexlegal:User">lexlegal:User</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            <li> <a href="#schema:Person">schema:Person</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Person</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Judge">lexlegal:Judge</a></li><li><a href="#lexlegal:User">lexlegal:User</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            <li> <a href="#foaf:Person">foaf:Person</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Person</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Judge">lexlegal:Judge</a></li><li><a href="#lexlegal:User">lexlegal:User</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Person
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(3)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Object">lexlegal:Object</a> | <a href="#schema:Person">schema:Person</a> | <a href="#foaf:Person">foaf:Person</a>  
+                    </p>
+				
+
+
+
+				
+					<p class="section-desc"><b>Property Domain of:</b>
+                        <br>
+                        <a href="#lexlegal:hasFirstName">lexlegal:hasFirstName</a> | <a href="#lexlegal:hasLastName">lexlegal:hasLastName</a>  
+                    </p>
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Person a owl:Class ;<br>    rdfs:label &quot;Person&quot; ;<br>    rdfs:comment &quot;A class representing a Person&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Object,<br>        schema:Person,<br>        foaf:Person .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:Subscription" href="#lexlegal:Subscription">lexlegal:Subscription</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Object">lexlegal:Object</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:Subscription</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:Subscription is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a Subscription
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(1)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Object">lexlegal:Object</a>  
+                    </p>
+				
+
+
+
+				
+					<p class="section-desc"><b>Property Domain of:</b>
+                        <br>
+                        <a href="#lexlegal:hasDuration">lexlegal:hasDuration</a> | <a href="#lexlegal:hasEndDate">lexlegal:hasEndDate</a> | <a href="#lexlegal:hasStartDate">lexlegal:hasStartDate</a>  
+                    </p>
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:Subscription a owl:Class ;<br>    rdfs:label &quot;Subscription&quot; ;<br>    rdfs:comment &quot;A class representing a Subscription&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Object .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="lexlegal:User" href="#lexlegal:User">lexlegal:User</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+                            <li> <a href="#lexlegal:Person">lexlegal:Person</a>
+
+                            <ul>
+
+                              <li><a style="font-weight: bold;">lexlegal:User</a>
+
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                            
+
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:User is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    A class representing a User
+                </p>
+
+                
+					<p class="section-desc"><b>Inherits from <small>(4)</small>:</b>
+                        <br />
+                        <a href="#lexlegal:Person">lexlegal:Person</a> | <a href="#lexlegal:Object">lexlegal:Object</a> | <a href="#schema:Person">schema:Person</a> | <a href="#foaf:Person">foaf:Person</a>  
+                    </p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:User a owl:Class ;<br>    rdfs:label &quot;User&quot; ;<br>    rdfs:comment &quot;A class representing a User&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:subClassOf lexlegal:Person .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="schema:DataFeed" href="#schema:DataFeed">schema:DataFeed</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">schema:DataFeed</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:ItemData">lexlegal:ItemData</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>None</p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="schema:Event" href="#schema:Event">schema:Event</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">schema:Event</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Event">lexlegal:Event</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>None</p></code>
+				</div>
+
+			</div>
+
+
+			
+
+			<div class="entity-div">
+
+
+
+				<h3 class="entity-section">Class: <a name="schema:Person" href="#schema:Person">schema:Person</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+
+                <div class="tree-container">
+                <div class="tree">
+                    <ul>
+                        
+
+                            <li href="#"><a>owl:Thing</a>
+
+                            <ul>
+                              <li><a style="font-weight: bold;">schema:Person</a>
+
+                              
+                                  <ul>
+                                    <li><a href="#lexlegal:Person">lexlegal:Person</a></li>
+                                  </ul>
+                              
+                                </li>
+
+                            </ul>
+
+                            </li>
+                        
+
+                    </ul>
+                </div>
+                </div>
+
+
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    
+                </p>
+
+                
+                    <p class="section-desc"><b>Inherits from:</b> <br />owl:Thing</p>
+				
+
+
+
+				
+
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>None</p></code>
+				</div>
+
+			</div>
+
+
+			
+
+	
+
+
+
+	
+
+	
+
+		<hr class="margintop">
+		<h1 class="margintop"><a name="objproperties">&nbsp;</a>Object Properties</h1>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasAppelant" href="#lexlegal:hasAppelant">lexlegal:hasAppelant</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasAppelant is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with who is appealing the judgement before the court
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasAppelant a owl:ObjectProperty ;<br>    rdfs:label &quot;hasAppelant&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with who is appealing the judgement before the court&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasAreaOfLaw" href="#lexlegal:hasAreaOfLaw">lexlegal:hasAreaOfLaw</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasAreaOfLaw is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Article with an Area of Law
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Article">lexlegal:Article</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasAreaOfLaw a owl:ObjectProperty ;<br>    rdfs:label &quot;hasAreaOfLaw&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Article with an Area of Law&quot; ;<br>    rdfs:domain lexlegal:Article ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasAuthor" href="#lexlegal:hasAuthor">lexlegal:hasAuthor</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasAuthor is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with an Author
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasAuthor a owl:ObjectProperty ;<br>    rdfs:label &quot;hasAuthor&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with an Author&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasCaseHistory" href="#lexlegal:hasCaseHistory">lexlegal:hasCaseHistory</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasCaseHistory is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a case history
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasCaseHistory a owl:ObjectProperty ;<br>    rdfs:label &quot;hasCaseHistory&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a case history&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasCauseOfAction" href="#lexlegal:hasCauseOfAction">lexlegal:hasCauseOfAction</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasCauseOfAction is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a Cause of Action eg fraud breach of contract etc
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasCauseOfAction a owl:ObjectProperty ;<br>    rdfs:label &quot;hasCauseOfAction&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a Cause of Action eg fraud breach of contract etc&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasCounsel" href="#lexlegal:hasCounsel">lexlegal:hasCounsel</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasCounsel is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a Counsel
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasCounsel a owl:ObjectProperty ;<br>    rdfs:label &quot;hasCounsel&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a Counsel&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasDateDecided" href="#lexlegal:hasDateDecided">lexlegal:hasDateDecided</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasDateDecided is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with the date it was decided
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasDateDecided a owl:ObjectProperty ;<br>    rdfs:label &quot;hasDateDecided&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with the date it was decided&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasDeliveredJudgement" href="#lexlegal:hasDeliveredJudgement">lexlegal:hasDeliveredJudgement</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasDeliveredJudgement is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a Delivered Judgement
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasDeliveredJudgement a owl:ObjectProperty ;<br>    rdfs:label &quot;hasDeliveredJudgement&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a Delivered Judgement&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasEmail" href="#lexlegal:hasEmail">lexlegal:hasEmail</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasEmail is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with an Email
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasEmail a owl:ObjectProperty ;<br>    rdfs:label &quot;hasEmail&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with an Email&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    rdfs:subPropertyOf schema:email .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasFact" href="#lexlegal:hasFact">lexlegal:hasFact</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasFact is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a fact
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasFact a owl:ObjectProperty ;<br>    rdfs:label &quot;hasFact&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a fact&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasIssue" href="#lexlegal:hasIssue">lexlegal:hasIssue</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasIssue is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Case with an issue
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasIssue a owl:ObjectProperty ;<br>    rdfs:label &quot;hasIssue&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Case with an issue&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasLocation" href="#lexlegal:hasLocation">lexlegal:hasLocation</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasLocation is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with an Address
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasLocation a owl:ObjectProperty ;<br>    rdfs:label &quot;hasLocation&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with an Address&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasMotionType" href="#lexlegal:hasMotionType">lexlegal:hasMotionType</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasMotionType is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a motion type
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasMotionType a owl:ObjectProperty ;<br>    rdfs:label &quot;hasMotionType&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a motion type&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasPartyType" href="#lexlegal:hasPartyType">lexlegal:hasPartyType</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasPartyType is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a party type
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasPartyType a owl:ObjectProperty ;<br>    rdfs:label &quot;hasPartyType&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a party type&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasPhone" href="#lexlegal:hasPhone">lexlegal:hasPhone</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasPhone is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with an Phone
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasPhone a owl:ObjectProperty ;<br>    rdfs:label &quot;hasPhone&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with an Phone&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    rdfs:subPropertyOf schema:telephone .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasPresidingJudge" href="#lexlegal:hasPresidingJudge">lexlegal:hasPresidingJudge</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasPresidingJudge is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case The with the judge that presided over the case
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#lexlegal:Judge">lexlegal:Judge</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasPresidingJudge a owl:ObjectProperty ;<br>    rdfs:label &quot;hasPresidingJudge&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case The with the judge that presided over the case&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range lexlegal:Judge .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasPrinciples" href="#lexlegal:hasPrinciples">lexlegal:hasPrinciples</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasPrinciples is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with principles
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasPrinciples a owl:ObjectProperty ;<br>    rdfs:label &quot;hasPrinciples&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with principles&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasReferredCase" href="#lexlegal:hasReferredCase">lexlegal:hasReferredCase</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasReferredCase is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a case that were referred to or cited in the judgement
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasReferredCase a owl:ObjectProperty ;<br>    rdfs:label &quot;hasReferredCase&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a case that were referred to or cited in the judgement&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasReferredStatute" href="#lexlegal:hasReferredStatute">lexlegal:hasReferredStatute</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasReferredStatute is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a case that were referred to or cited in the judgement
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasReferredStatute a owl:ObjectProperty ;<br>    rdfs:label &quot;hasReferredStatute&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a case that were referred to or cited in the judgement&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasRespondent" href="#lexlegal:hasRespondent">lexlegal:hasRespondent</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasRespondent is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with who is required to answer for a petition brought before the court
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasRespondent a owl:ObjectProperty ;<br>    rdfs:label &quot;hasRespondent&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with who is required to answer for a petition brought before the court&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasSubjectMatter" href="#lexlegal:hasSubjectMatter">lexlegal:hasSubjectMatter</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasSubjectMatter is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Case with a subject matter of law treated in the case
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasSubjectMatter a owl:ObjectProperty ;<br>    rdfs:label &quot;hasSubjectMatter&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Case with a subject matter of law treated in the case&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasTitle" href="#lexlegal:hasTitle">lexlegal:hasTitle</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasTitle is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a Title
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasTitle a owl:ObjectProperty ;<br>    rdfs:label &quot;hasTitle&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a Title&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasURL" href="#lexlegal:hasURL">lexlegal:hasURL</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasURL is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a URL
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:anyURI">xsd:anyURI</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasURL a owl:ObjectProperty ;<br>    rdfs:label &quot;hasURL&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a URL&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:anyURI ;<br>    rdfs:subPropertyOf schema:url,<br>        vcard:url .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:hasVerdict" href="#lexlegal:hasVerdict">lexlegal:hasVerdict</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasVerdict is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a verdict
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Case">lexlegal:Case</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasVerdict a owl:ObjectProperty ;<br>    rdfs:label &quot;hasVerdict&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a verdict&quot; ;<br>    rdfs:domain lexlegal:Case ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Object Property: <a name="lexlegal:isSector" href="#lexlegal:isSector">lexlegal:isSector</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:isSector is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a Sector
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:isSector a owl:ObjectProperty ;<br>    rdfs:label &quot;isSector&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a Sector&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+			</div>
+
+			
+
+	
+
+
+
+
+
+
+
+	
+
+	
+
+		<hr class="margintop">
+		<h1 class="margintop"><a name="dataproperties">&nbsp;</a>Datatype Properties</h1>
+
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasContent" href="#lexlegal:hasContent">lexlegal:hasContent</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasContent is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a Content
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasContent a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasContent&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a Content&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasCount" href="#lexlegal:hasCount">lexlegal:hasCount</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasCount is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a number
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:double">xsd:double</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasCount a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasCount&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a number&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:double .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasDate" href="#lexlegal:hasDate">lexlegal:hasDate</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasDate is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Event with a Date
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:date">xsd:date</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasDate a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasDate&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Event with a Date&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:date ;<br>    owl:equivalentProperty dbo:eventDate .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasDocumentType" href="#lexlegal:hasDocumentType">lexlegal:hasDocumentType</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasDocumentType is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a Document Type
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasDocumentType a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasDocumentType&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a Document Type&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasDuration" href="#lexlegal:hasDuration">lexlegal:hasDuration</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasDuration is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Subscription Event with a Duration
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Subscription">lexlegal:Subscription</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasDuration a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasDuration&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Subscription Event with a Duration&quot; ;<br>    rdfs:domain lexlegal:Subscription ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasEndDate" href="#lexlegal:hasEndDate">lexlegal:hasEndDate</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasEndDate is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Subscription Event with a Date
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Subscription">lexlegal:Subscription</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:date">xsd:date</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasEndDate a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasEndDate&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Subscription Event with a Date&quot; ;<br>    rdfs:domain lexlegal:Subscription ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:date ;<br>    owl:equivalentProperty dbo:eventDate .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasFirstName" href="#lexlegal:hasFirstName">lexlegal:hasFirstName</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasFirstName is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Person Object with a First Name
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Person">lexlegal:Person</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasFirstName a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasFirstName&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Person Object with a First Name&quot; ;<br>    rdfs:domain lexlegal:Person ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    rdfs:subPropertyOf dbo:name,<br>        schema:name,<br>        foaf:name .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasID" href="#lexlegal:hasID">lexlegal:hasID</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasID is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with an Identity code
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasID a owl:DatatypeProperty,<br>        owl:InverseFunctionalProperty ;<br>    rdfs:label &quot;hasID&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with an Identity code&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    owl:equivalentProperty schema:identifier .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasLastName" href="#lexlegal:hasLastName">lexlegal:hasLastName</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasLastName is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of a Person Object with a Last Name
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Person">lexlegal:Person</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasLastName a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasLastName&quot; ;<br>    rdfs:comment &quot;This property associates an instance of a Person Object with a Last Name&quot; ;<br>    rdfs:domain lexlegal:Person ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    rdfs:subPropertyOf dbo:name,<br>        schema:name,<br>        foaf:name .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasName" href="#lexlegal:hasName">lexlegal:hasName</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasName is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a Name
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasName a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasName&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a Name&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    rdfs:subPropertyOf dbo:name,<br>        schema:name .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasRef" href="#lexlegal:hasRef">lexlegal:hasRef</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasRef is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Object with a Reference code
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:string">xsd:string</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasRef a owl:DatatypeProperty,<br>        owl:InverseFunctionalProperty ;<br>    rdfs:label &quot;hasRef&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Object with a Reference code&quot; ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:string ;<br>    owl:equivalentProperty schema:identifier .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+			<div class="entity-div">
+
+				<h3 class="entity-section">Datatype Property: <a name="lexlegal:hasStartDate" href="#lexlegal:hasStartDate">lexlegal:hasStartDate</a>
+					<small>&nbsp;&nbsp;<a href="#a-z" class="backlink">back to top</a></small>
+				</h3>
+				<hr>
+
+                
+                <p class="section-desc">
+                    <small>NOTE</small> lexlegal:hasStartDate is a leaf node.</p>
+                
+
+				<p class="section-desc"><b>Description</b>
+                    <br>
+                    This property associates an instance of an Subscription Event with a Date
+                </p>
+
+                
+
+				
+
+
+
+				
+
+				
+
+				
+					<p class="section-desc"><b>Class Domain for:</b>
+                        <br>
+                        <a href="#lexlegal:Subscription">lexlegal:Subscription</a>  </p>
+				
+
+				
+					<p class="section-desc"><b>Class Range for:</b>
+                        <br>
+                        <a href="#xsd:date">xsd:date</a>  </p>
+				
+
+
+                <small class="implementation_title">Implementation:</small>
+				<div class="implementation">
+					<code><p>@prefix cc: &lt;http://creativecommons.org/ns#&gt; .<br>@prefix dbo: &lt;http://dbpedia.org/ontology/&gt; .<br>@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .<br>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .<br>@prefix kb: &lt;http://kbpedia.org/kko/rc/&gt; .<br>@prefix lexcat: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-skos.ttl#&gt; .<br>@prefix lexlegal: &lt;http://linkedopendatang.com/schemas/lexanalytics/lexanalytics-owl.ttl#&gt; .<br>@prefix obo: &lt;http://purl.obolibrary.org/obo/&gt; .<br>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .<br>@prefix p: &lt;http://dbpedia.org/resource/&gt; .<br>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .<br>@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .<br>@prefix schema: &lt;http://schema.org/&gt; .<br>@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .<br>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .<br>@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .<br>@prefix vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt; .<br>@prefix void: &lt;http://rdfs.org/ns/void#&gt; .<br>@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .<br>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</p>
+
+<p>lexlegal:hasStartDate a owl:DatatypeProperty ;<br>    rdfs:label &quot;hasStartDate&quot; ;<br>    rdfs:comment &quot;This property associates an instance of an Subscription Event with a Date&quot; ;<br>    rdfs:domain lexlegal:Subscription ;<br>    rdfs:isDefinedBy lexlegal: ;<br>    rdfs:range xsd:date ;<br>    owl:equivalentProperty dbo:eventDate .</p>
+
+<p></p></code>
+				</div>
+
+
+			</div>
+			
+
+	
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+	
+
+
+	
+
+
+
+
+
+
+	<hr>
+	<small>Ontology documentation created by <a href="http://twitter.com/emekaokoye">Emeka Okoye</a></small>
+
+
+</body>
+</html>
