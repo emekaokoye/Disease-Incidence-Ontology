@@ -1,0 +1,455 @@
+@prefix cv: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence-vocab.ttl#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix di: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence.ttl#> .
+@prefix ncdc: <http://ncdc.gov.ng/covid19/data/> .
+@prefix ngr: <http://linkedopendatang.com/schemas/nigeria/states.ttl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ncdc:communityTransmission a di:UnknownSource ;
+    rdfs:label "CommunityTransmission" ;
+    di:hasStatus cv:Infectious ;
+    rdfs:comment "Community Transmission" .
+
+ncdc:covid19 a di:InfectiousDisease ;
+    rdfs:label "COVID-19" ;
+    di:hasAuthority ncdc:ngrcdc ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasName "COVID19" ;
+    di:hasPopulationAtRisk 200000000 ;
+    di:hasTransmissionRoute cv:DirectTransmission ;
+    rdfs:comment "severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)" ;
+    rdfs:seeAlso dbr:Coronavirus,
+        dbr:SARS_coronavirus,
+        <https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nigeria> ;
+    skos:altLabel "Coronavirus" ;
+    skos:prefLabel "COVID-19" .
+
+ncdc:covid19NGSituationReportDetail-2020-08-03 a di:SituationReport ;
+    rdfs:label "covid19SituationReport" ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasRef "127" ;
+    di:hasRowItem ncdc:covidReport-20200804-cmNqstnL1pf9xKoOepbITTNAdmx1WrbTS70EavOL7E,
+        ncdc:covidReport-20200804-lYS0AwPxNVAuaKUYff2PpJvi7rK5ylAIJGk6WAscwc,
+        ncdc:covidReport-202008040_3DYK0VXBOeALSckc9r7DBEMl_TYmIHZH0i9FM3m6U,
+        ncdc:covidReport-2020080444llhd_wr3tnBJ_bUFFXkrtAvXbwhjAUFaIYYZkjIQk,
+        ncdc:covidReport-2020080450iZPygKrANsmP3vTeyPpvphjB1PaDAm5_uDmbZyC-0,
+        ncdc:covidReport-202008046ORpqmd8uwLiYL0I7Xelv-z7JXYoZ9VzQS_vXcMBGHQ,
+        ncdc:covidReport-202008047Y68HiWrFmLdHvMrAu5LGSlPK9gPD8J0RKMb5oYrdgI,
+        ncdc:covidReport-202008048O1gtEsngTBVpe0i8sVINlmoX5KOqZwTH_7k99LITnM,
+        ncdc:covidReport-202008049LHcJDbTM3A0UoyUgYtELvebIfA_BuQo3W-N437XXGw,
+        ncdc:covidReport-202008049ruAPmCKj78wPrvcMIs1g9kz195U-_Y-YG9638QCTGo,
+        ncdc:covidReport-20200804AduUxj_oSAkTJLwrYjsNNAcbcuZFeHBARZtxPimXtFs,
+        ncdc:covidReport-20200804CAYuqvXas9qL1qcaXVQWPEjXzfu7uZrSZatw6Gsi-Yk,
+        ncdc:covidReport-20200804Czi1BitVmxkVS5fbr6A5hQ--ftrGxuwdN6_v_e2zxQA,
+        ncdc:covidReport-20200804D3UcxJGkxDz8RcqpTmSdWzLzmajob2UsVyqOgy4KLMM,
+        ncdc:covidReport-20200804DfL3CU-QywFsHQCFMjW-6GSs9wnVJbZOrI2hVH0w22s,
+        ncdc:covidReport-20200804FTJD0Q-58aPnokkByAiZ2wziVdT70eX4B7QqCTM1Ves,
+        ncdc:covidReport-20200804FaCL5Z2IojaGQx1MQaND2WBHhRB1cDIj9_6TApVq-SE,
+        ncdc:covidReport-20200804Iqea0ilHpPZ5s-PYpJpANg5SwyemdJwGKu1lzY7qakI,
+        ncdc:covidReport-20200804IzqHwgouNZv7AolOjnB5McWFXYx4SwG4TELGZh2xqPs,
+        ncdc:covidReport-20200804K6CAHRorPrNrAMbHvs4ERKCyQSiXSYeLZzkCqstbRAQ,
+        ncdc:covidReport-20200804K8ey3ChQrF8h9VMjwk0N-Q2-n1sjLkf3mBuTLrOaDbc,
+        ncdc:covidReport-20200804L_UBfKyKFcpU4iT1RP_m7vRDWmXvzpj7-Hm4r612mFE,
+        ncdc:covidReport-20200804P7-mBR9p8wjAZpPRoyCwzrJbLAAysgLjt5TNXBpmJO4,
+        ncdc:covidReport-20200804R6JRjC2mNt1TYIdjp5rIoGmpkFx23XWfA7ecaQZSMxA,
+        ncdc:covidReport-20200804SC_aBUzGY42ANr3jk-voExNUrTr0jfMbac2D4Lghj6U,
+        ncdc:covidReport-20200804TY3ofL-cmMvpPNJOvSi7e6z1pY94KNjIHYoOtAreS4o,
+        ncdc:covidReport-20200804d30HBzF4aJzxPeEp2lWCQmMbN4vps_lLHbnMOq9elKM,
+        ncdc:covidReport-20200804gVeFXLc9V5V6fXDGQhzlm17FyyJuhFS0issn_8pA6Pk,
+        ncdc:covidReport-20200804hLxiXyEyVu0YGzQ_nlBR4mwyxtIymTjPSRP3iPNINRM,
+        ncdc:covidReport-20200804k_w9B7ZSibfSe5XURV5e0gxVxACwKcTQbgXDtePjoCw,
+        ncdc:covidReport-20200804oPr8ELrQnd9X-50eDJ4X74MquHW5v9dKXmyA1rA4uoY,
+        ncdc:covidReport-20200804rJBV7KoHmPgMJfnJTC0_bY2VKkOIdGXb8OAusSlE0rI,
+        ncdc:covidReport-20200804rX77IZeRe62kOZfhAkT3aXFpXzLlOm3_bzLtQoDgKxE,
+        ncdc:covidReport-20200804uenClp2I6vk0yeFPln_2JuM9DftaKn2G777b2I7f6AU,
+        ncdc:covidReport-20200804um4XE7IeSLKvDeC82DgE906qm7CBl1qYI_cY6AJEAFY,
+        ncdc:covidReport-20200804vSO8UG8Z4VMZ7VzevlKeWCin6Up8-vJMa0405PVSgso,
+        ncdc:covidReport-20200804y1mQa_8_DReicadPo_K3h-uR_HV7b2WmZNo_w834MTk ;
+    di:hasURL <https://covid19.ncdc.gov.ng/> ;
+    rdfs:comment "Nigeria Covid-19 Situation Report Detail 04-08-2020" ;
+    rdfs:seeAlso <https://covid19.ncdc.gov.ng/> .
+
+ncdc:covidReport-20200804-cmNqstnL1pf9xKoOepbITTNAdmx1WrbTS70EavOL7E a di:ItemData ;
+    rdfs:label "Cross River State Covid-19 Report" ;
+    di:hasConfirmedCases 35 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 4 ;
+    di:hasGeoLocation ngr:cross_river ;
+    di:hasRecoveredCases 19 ;
+    di:hasTotalCases 58 ;
+    rdfs:comment "Cross River State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804-lYS0AwPxNVAuaKUYff2PpJvi7rK5ylAIJGk6WAscwc a di:ItemData ;
+    rdfs:label "Kwara State Covid-19 Report" ;
+    di:hasConfirmedCases 507 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 21 ;
+    di:hasGeoLocation ngr:kwara ;
+    di:hasRecoveredCases 258 ;
+    di:hasTotalCases 786 ;
+    rdfs:comment "Kwara State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-202008040_3DYK0VXBOeALSckc9r7DBEMl_TYmIHZH0i9FM3m6U a di:ItemData ;
+    rdfs:label "Ekiti State Covid-19 Report" ;
+    di:hasConfirmedCases 83 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 2 ;
+    di:hasGeoLocation ngr:ekiti ;
+    di:hasRecoveredCases 67 ;
+    di:hasTotalCases 152 ;
+    rdfs:comment "Ekiti State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-2020080444llhd_wr3tnBJ_bUFFXkrtAvXbwhjAUFaIYYZkjIQk a di:ItemData ;
+    rdfs:label "Jigawa State Covid-19 Report" ;
+    di:hasConfirmedCases 3 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 11 ;
+    di:hasGeoLocation ngr:jigawa ;
+    di:hasRecoveredCases 308 ;
+    di:hasTotalCases 322 ;
+    rdfs:comment "Jigawa State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-2020080450iZPygKrANsmP3vTeyPpvphjB1PaDAm5_uDmbZyC-0 a di:ItemData ;
+    rdfs:label "Rivers State Covid-19 Report" ;
+    di:hasConfirmedCases 308 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 53 ;
+    di:hasGeoLocation ngr:rivers ;
+    di:hasRecoveredCases 1481 ;
+    di:hasTotalCases 1842 ;
+    rdfs:comment "Rivers State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-202008046ORpqmd8uwLiYL0I7Xelv-z7JXYoZ9VzQS_vXcMBGHQ a di:ItemData ;
+    rdfs:label "Kogi State Covid-19 Report" ;
+    di:hasConfirmedCases 0 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 2 ;
+    di:hasGeoLocation ngr:kogi ;
+    di:hasRecoveredCases 3 ;
+    di:hasTotalCases 5 ;
+    rdfs:comment "Kogi State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-202008047Y68HiWrFmLdHvMrAu5LGSlPK9gPD8J0RKMb5oYrdgI a di:ItemData ;
+    rdfs:label "Enugu State Covid-19 Report" ;
+    di:hasConfirmedCases 343 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 18 ;
+    di:hasGeoLocation ngr:enugu ;
+    di:hasRecoveredCases 485 ;
+    di:hasTotalCases 846 ;
+    rdfs:comment "Enugu State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-202008048O1gtEsngTBVpe0i8sVINlmoX5KOqZwTH_7k99LITnM a di:ItemData ;
+    rdfs:label "Kebbi State Covid-19 Report" ;
+    di:hasConfirmedCases 4 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 7 ;
+    di:hasGeoLocation ngr:kebbi ;
+    di:hasRecoveredCases 79 ;
+    di:hasTotalCases 90 ;
+    rdfs:comment "Kebbi State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-202008049LHcJDbTM3A0UoyUgYtELvebIfA_BuQo3W-N437XXGw a di:ItemData ;
+    rdfs:label "Borno State Covid-19 Report" ;
+    di:hasConfirmedCases 9 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 35 ;
+    di:hasGeoLocation ngr:borno ;
+    di:hasRecoveredCases 569 ;
+    di:hasTotalCases 613 ;
+    rdfs:comment "Borno State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-202008049ruAPmCKj78wPrvcMIs1g9kz195U-_Y-YG9638QCTGo a di:ItemData ;
+    rdfs:label "Ebonyi State Covid-19 Report" ;
+    di:hasConfirmedCases 49 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 26 ;
+    di:hasGeoLocation ngr:ebonyi ;
+    di:hasRecoveredCases 733 ;
+    di:hasTotalCases 808 ;
+    rdfs:comment "Ebonyi State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804AduUxj_oSAkTJLwrYjsNNAcbcuZFeHBARZtxPimXtFs a di:ItemData ;
+    rdfs:label "Abia State Covid-19 Report" ;
+    di:hasConfirmedCases 126 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 5 ;
+    di:hasGeoLocation ngr:abia ;
+    di:hasRecoveredCases 471 ;
+    di:hasTotalCases 602 ;
+    rdfs:comment "Abia State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804CAYuqvXas9qL1qcaXVQWPEjXzfu7uZrSZatw6Gsi-Yk a di:ItemData ;
+    rdfs:label "Sokoto State Covid-19 Report" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 16 ;
+    di:hasGeoLocation ngr:sokoto ;
+    di:hasRecoveredCases 137 ;
+    di:hasTotalCases 154 ;
+    rdfs:comment "Sokoto State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804Czi1BitVmxkVS5fbr6A5hQ--ftrGxuwdN6_v_e2zxQA a di:ItemData ;
+    rdfs:label "Kaduna State Covid-19 Report" ;
+    di:hasConfirmedCases 238 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 12 ;
+    di:hasGeoLocation ngr:kaduna ;
+    di:hasRecoveredCases 1248 ;
+    di:hasTotalCases 1498 ;
+    rdfs:comment "Kaduna State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804D3UcxJGkxDz8RcqpTmSdWzLzmajob2UsVyqOgy4KLMM a di:ItemData ;
+    rdfs:label "Gombe State Covid-19 Report" ;
+    di:hasConfirmedCases 68 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 23 ;
+    di:hasGeoLocation ngr:gombe ;
+    di:hasRecoveredCases 529 ;
+    di:hasTotalCases 620 ;
+    rdfs:comment "Gombe State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804DfL3CU-QywFsHQCFMjW-6GSs9wnVJbZOrI2hVH0w22s a di:ItemData ;
+    rdfs:label "Fct State Covid-19 Report" ;
+    di:hasConfirmedCases 2767 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 42 ;
+    di:hasGeoLocation ngr:fct ;
+    di:hasRecoveredCases 1188 ;
+    di:hasTotalCases 3997 ;
+    rdfs:comment "Fct State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804FTJD0Q-58aPnokkByAiZ2wziVdT70eX4B7QqCTM1Ves a di:ItemData ;
+    rdfs:label "Katsina State Covid-19 Report" ;
+    di:hasConfirmedCases 265 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 24 ;
+    di:hasGeoLocation ngr:katsina ;
+    di:hasRecoveredCases 457 ;
+    di:hasTotalCases 746 ;
+    rdfs:comment "Katsina State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804FaCL5Z2IojaGQx1MQaND2WBHhRB1cDIj9_6TApVq-SE a di:ItemData ;
+    rdfs:label "Osun State Covid-19 Report" ;
+    di:hasConfirmedCases 274 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 12 ;
+    di:hasGeoLocation ngr:osun ;
+    di:hasRecoveredCases 294 ;
+    di:hasTotalCases 580 ;
+    rdfs:comment "Osun State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804Iqea0ilHpPZ5s-PYpJpANg5SwyemdJwGKu1lzY7qakI a di:ItemData ;
+    rdfs:label "Delta State Covid-19 Report" ;
+    di:hasConfirmedCases 118 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 43 ;
+    di:hasGeoLocation ngr:delta ;
+    di:hasRecoveredCases 1359 ;
+    di:hasTotalCases 1520 ;
+    rdfs:comment "Delta State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804IzqHwgouNZv7AolOjnB5McWFXYx4SwG4TELGZh2xqPs a di:ItemData ;
+    rdfs:label "Anambra State Covid-19 Report" ;
+    di:hasConfirmedCases 48 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 12 ;
+    di:hasGeoLocation ngr:anambra ;
+    di:hasRecoveredCases 75 ;
+    di:hasTotalCases 135 ;
+    rdfs:comment "Anambra State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804K6CAHRorPrNrAMbHvs4ERKCyQSiXSYeLZzkCqstbRAQ a di:ItemData ;
+    rdfs:label "Oyo State Covid-19 Report" ;
+    di:hasConfirmedCases 1347 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 28 ;
+    di:hasGeoLocation ngr:oyo ;
+    di:hasRecoveredCases 1396 ;
+    di:hasTotalCases 2771 ;
+    rdfs:comment "Oyo State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804K8ey3ChQrF8h9VMjwk0N-Q2-n1sjLkf3mBuTLrOaDbc a di:ItemData ;
+    rdfs:label "Ogun State Covid-19 Report" ;
+    di:hasConfirmedCases 207 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 24 ;
+    di:hasGeoLocation ngr:ogun ;
+    di:hasRecoveredCases 1176 ;
+    di:hasTotalCases 1407 ;
+    rdfs:comment "Ogun State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804L_UBfKyKFcpU4iT1RP_m7vRDWmXvzpj7-Hm4r612mFE a di:ItemData ;
+    rdfs:label "Bayelsa State Covid-19 Report" ;
+    di:hasConfirmedCases 34 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 21 ;
+    di:hasGeoLocation ngr:bayelsa ;
+    di:hasRecoveredCases 284 ;
+    di:hasTotalCases 339 ;
+    rdfs:comment "Bayelsa State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804P7-mBR9p8wjAZpPRoyCwzrJbLAAysgLjt5TNXBpmJO4 a di:ItemData ;
+    rdfs:label "Edo State Covid-19 Report" ;
+    di:hasConfirmedCases 240 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 87 ;
+    di:hasGeoLocation ngr:edo ;
+    di:hasRecoveredCases 1984 ;
+    di:hasTotalCases 2311 ;
+    rdfs:comment "Edo State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804R6JRjC2mNt1TYIdjp5rIoGmpkFx23XWfA7ecaQZSMxA a di:ItemData ;
+    rdfs:label "Nasarawa State Covid-19 Report" ;
+    di:hasConfirmedCases 108 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 8 ;
+    di:hasGeoLocation ngr:nasarawa ;
+    di:hasRecoveredCases 223 ;
+    di:hasTotalCases 339 ;
+    rdfs:comment "Nasarawa State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804SC_aBUzGY42ANr3jk-voExNUrTr0jfMbac2D4Lghj6U a di:ItemData ;
+    rdfs:label "Taraba State Covid-19 Report" ;
+    di:hasConfirmedCases 43 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:taraba ;
+    di:hasRecoveredCases 11 ;
+    di:hasTotalCases 54 ;
+    rdfs:comment "Taraba State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804TY3ofL-cmMvpPNJOvSi7e6z1pY94KNjIHYoOtAreS4o a di:ItemData ;
+    rdfs:label "Kano State Covid-19 Report" ;
+    di:hasConfirmedCases 274 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 53 ;
+    di:hasGeoLocation ngr:kano ;
+    di:hasRecoveredCases 1270 ;
+    di:hasTotalCases 1597 ;
+    rdfs:comment "Kano State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804d30HBzF4aJzxPeEp2lWCQmMbN4vps_lLHbnMOq9elKM a di:ItemData ;
+    rdfs:label "Imo State Covid-19 Report" ;
+    di:hasConfirmedCases 321 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 9 ;
+    di:hasGeoLocation ngr:imo ;
+    di:hasRecoveredCases 139 ;
+    di:hasTotalCases 469 ;
+    rdfs:comment "Imo State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804gVeFXLc9V5V6fXDGQhzlm17FyyJuhFS0issn_8pA6Pk a di:ItemData ;
+    rdfs:label "Adamawa State Covid-19 Report" ;
+    di:hasConfirmedCases 69 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 10 ;
+    di:hasGeoLocation ngr:adamawa ;
+    di:hasRecoveredCases 85 ;
+    di:hasTotalCases 164 ;
+    rdfs:comment "Adamawa State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804hLxiXyEyVu0YGzQ_nlBR4mwyxtIymTjPSRP3iPNINRM a di:ItemData ;
+    rdfs:label "Ondo State Covid-19 Report" ;
+    di:hasConfirmedCases 531 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 25 ;
+    di:hasGeoLocation ngr:ondo ;
+    di:hasRecoveredCases 648 ;
+    di:hasTotalCases 1204 ;
+    rdfs:comment "Ondo State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804k_w9B7ZSibfSe5XURV5e0gxVxACwKcTQbgXDtePjoCw a di:ItemData ;
+    rdfs:label "Bauchi State Covid-19 Report" ;
+    di:hasConfirmedCases 28 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 13 ;
+    di:hasGeoLocation ngr:bauchi ;
+    di:hasRecoveredCases 520 ;
+    di:hasTotalCases 561 ;
+    rdfs:comment "Bauchi State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804oPr8ELrQnd9X-50eDJ4X74MquHW5v9dKXmyA1rA4uoY a di:ItemData ;
+    rdfs:label "Lagos State Covid-19 Report" ;
+    di:hasConfirmedCases 13003 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 192 ;
+    di:hasGeoLocation ngr:lagos ;
+    di:hasRecoveredCases 2160 ;
+    di:hasTotalCases 15355 ;
+    rdfs:comment "Lagos State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804rJBV7KoHmPgMJfnJTC0_bY2VKkOIdGXb8OAusSlE0rI a di:ItemData ;
+    rdfs:label "Zamfara State Covid-19 Report" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 5 ;
+    di:hasGeoLocation ngr:zamfara ;
+    di:hasRecoveredCases 71 ;
+    di:hasTotalCases 77 ;
+    rdfs:comment "Zamfara State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804rX77IZeRe62kOZfhAkT3aXFpXzLlOm3_bzLtQoDgKxE a di:ItemData ;
+    rdfs:label "Benue State Covid-19 Report" ;
+    di:hasConfirmedCases 285 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 7 ;
+    di:hasGeoLocation ngr:benue ;
+    di:hasRecoveredCases 64 ;
+    di:hasTotalCases 356 ;
+    rdfs:comment "Benue State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804uenClp2I6vk0yeFPln_2JuM9DftaKn2G777b2I7f6AU a di:ItemData ;
+    rdfs:label "Yobe State Covid-19 Report" ;
+    di:hasConfirmedCases 5 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 8 ;
+    di:hasGeoLocation ngr:yobe ;
+    di:hasRecoveredCases 54 ;
+    di:hasTotalCases 67 ;
+    rdfs:comment "Yobe State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804um4XE7IeSLKvDeC82DgE906qm7CBl1qYI_cY6AJEAFY a di:ItemData ;
+    rdfs:label "Plateau State Covid-19 Report" ;
+    di:hasConfirmedCases 686 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 19 ;
+    di:hasGeoLocation ngr:plateau ;
+    di:hasRecoveredCases 535 ;
+    di:hasTotalCases 1240 ;
+    rdfs:comment "Plateau State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804vSO8UG8Z4VMZ7VzevlKeWCin6Up8-vJMa0405PVSgso a di:ItemData ;
+    rdfs:label "Niger State Covid-19 Report" ;
+    di:hasConfirmedCases 78 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 12 ;
+    di:hasGeoLocation ngr:niger ;
+    di:hasRecoveredCases 133 ;
+    di:hasTotalCases 223 ;
+    rdfs:comment "Niger State Covid-19 Report for 2020-08-03" .
+
+ncdc:covidReport-20200804y1mQa_8_DReicadPo_K3h-uR_HV7b2WmZNo_w834MTk a di:ItemData ;
+    rdfs:label "Akwa Ibom State Covid-19 Report" ;
+    di:hasConfirmedCases 64 ;
+    di:hasDate "2020-08-03"^^xsd:date ;
+    di:hasDeathCases 7 ;
+    di:hasGeoLocation ngr:akwa_ibom ;
+    di:hasRecoveredCases 150 ;
+    di:hasTotalCases 221 ;
+    rdfs:comment "Akwa Ibom State Covid-19 Report for 2020-08-03" .
+
+ncdc:ngrcdc a di:Organization ;
+    rdfs:label "NCDC" ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasName "NCDC" ;
+    di:hasURL <http://ncdc.gov.ng> ;
+    rdfs:comment "Nigeria Centre for Disease Control (NCDC)" ;
+    rdfs:seeAlso <http://ncdc.gov.ng>,
+        <https://www.cdc.gov/globalhealth/countries/nigeria/default.htm> ;
+    skos:altLabel "Nigeria Centre for Disease Control" ;
+    skos:prefLabel "NCDC" .
+

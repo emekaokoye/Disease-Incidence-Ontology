@@ -1,0 +1,200 @@
+@prefix cv: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence-vocab.ttl#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix di: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence.ttl#> .
+@prefix ngr: <http://linkedopendatang.com/schemas/nigeria/states.ttl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> . 
+@prefix cdc: <http://localhost:8891/covid19/data/> .
+
+
+
+cdc:ngrcdc a di:Organization ;
+    rdfs:label "NCDC" ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasName "NCDC" ;
+    di:hasURL <http://ncdc.gov.ng> ;
+    rdfs:comment "Nigeria Centre for Disease Control (NCDC)" ;
+    rdfs:seeAlso <http://ncdc.gov.ng>,
+        <https://www.cdc.gov/globalhealth/countries/nigeria/default.htm> ;
+    skos:altLabel "Nigeria Centre for Disease Control" ;
+    skos:prefLabel "NCDC" .
+
+	
+	
+cdc:covid19 a di:InfectiousDisease ;
+    rdfs:label "COVID-19" ;
+    di:hasAuthority cdc:ngrcdc ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasName "COVID19" ;
+    di:hasPopulationAtRisk 200000000 ;
+    di:hasTransmissionRoute cv:DirectTransmission ;
+    rdfs:comment "severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)" ;
+    rdfs:seeAlso dbr:Coronavirus,
+        dbr:SARS_coronavirus,
+        <https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nigeria> ;
+    skos:altLabel "Coronavirus" ;
+    skos:prefLabel "COVID-19" .
+
+cdc:communityTransmission a di:UnknownSource ;
+    rdfs:label "CommunityTransmission" ;
+    di:hasStatus cv:Infectious ;
+    rdfs:comment "Community Transmission" .
+	
+# define patient	
+cdc:index1 a di:IndexPatient ;
+	di:hasDate "2020-02-24"^^xsd:date;
+	rdfs:label "index1" ;
+	rdfs:comment "index1 is an IndexPatient" ;
+	di:hasSource dbr:Italy ;
+	di:hasGender "male" ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:ogun ;
+	schema:nationality dbr:Italy .
+	
+# define a susceptible individual	
+cdc:individual2 a di:Individual ;
+	rdfs:label "individual2" ;
+	rdfs:comment "individual2 is a susceptible Individual" ;
+	di:hasGender "male" ;
+	schema:nationality ngr:Nigeria .
+	
+# Infection event
+cdc:infection202003090000 a di:InfectingEvent ;
+	rdfs:label "infection202003090000" ;
+	rdfs:comment "infection202003090000 is an infection event" ;
+	di:hasDate "2020-03-09"^^xsd:date;
+	di:hasPerson cdc:individual2 ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease cdc:covid19 ; 
+	di:hasGeoLocation ngr:ogun .
+
+cdc:index1 di:hasInfected cdc:infection202003090000 . 
+cdc:individual2 di:hasStatus cv:Infectious . 
+
+
+
+
+cdc:index3 a di:IndexPatient ;
+	di:hasDate "2020-03-16"^^xsd:date;
+	rdfs:label "index3" ;
+	rdfs:comment "index3 is an IndexPatient" ;
+	di:hasSource dbr:United_Kingdom ;
+	di:hasGender "female" ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:lagos ;
+	schema:nationality ngr:Nigeria .
+
+
+
+cdc:index4 a di:IndexPatient ;
+	rdfs:label "index4" ;
+	rdfs:comment "index4 is an IndexPatient" ;
+	di:hasDate "2020-03-18"^^xsd:date;
+	di:hasGender "male" ;
+	di:hasSource dbr:United_Kingdom ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:lagos ;
+	schema:nationality ngr:Nigeria .
+	
+cdc:index5 a di:IndexPatient ;
+	rdfs:label "index5" ;
+	rdfs:comment "index5 is an IndexPatient" ;
+	di:hasDate "2020-03-18"^^xsd:date;
+	di:hasSource dbr:Benin ;
+	di:hasGender "male" ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:lagos ;
+	schema:nationality dbr:United_States  .
+	
+cdc:index6 a di:IndexPatient ;
+	rdfs:label "index6" ;
+	rdfs:comment "index6 is an IndexPatient" ;
+	di:hasDate "2020-03-18"^^xsd:date;
+	di:hasSource dbr:United_States ;
+	di:hasGender "female" ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:lagos ;
+	schema:nationality ngr:Nigeria .
+	
+cdc:index7 a di:IndexPatient ;
+	rdfs:label "index7" ;
+	rdfs:comment "index7 is an IndexPatient" ;
+	di:hasDate "2020-03-18"^^xsd:date;
+	di:hasSource dbr:United_States ;
+	di:hasGender "female" ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:lagos ;
+	schema:nationality ngr:Nigeria .
+	
+cdc:index8 a di:IndexPatient ;
+	rdfs:label "index8" ;
+	rdfs:comment "index8 is an IndexPatient" ;
+	di:hasDate "2020-03-18"^^xsd:date;
+	di:hasSource dbr:United_States ;
+	di:hasGender "male" ;
+	di:hasStatus cv:Infectious ; 
+	di:hasGeoLocation ngr:ekiti ;
+	schema:nationality ngr:Nigeria .
+	
+	
+cdc:individual19 a di:Individual ;
+	rdfs:label "individual19" ;
+	rdfs:comment "individual19 is a susceptible Individual" ;
+	di:hasGender "male" ;
+	schema:nationality ngr:Nigeria .
+
+	
+cdc:infection202003220001 a di:InfectingEvent ;
+	rdfs:label "infection202003220001" ;
+	rdfs:comment "infection202003220001 is an infection event" ;
+	di:hasDate "2020-03-10"^^xsd:date;
+	di:hasPerson cdc:individual19 ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease cdc:covid19 ; 
+	di:hasGeoLocation ngr:ogun .
+
+cdc:individual2 di:hasInfected cdc:infection202003220001 . 
+cdc:individual19 di:hasStatus cv:Infectious . 
+
+
+
+
+# recovery	
+cdc:individual2 di:hasStatus cv:Recovered ;
+	di:recoveredDate "2020-03-13"^^xsd:date .
+	
+
+cdc:individual12 a di:Individual ;
+	rdfs:label "individual12" ;
+	rdfs:comment "individual12 is an Individual" ;
+	di:hasDate "2020-03-19"^^xsd:date;
+	di:hasGender "male"  .
+	
+cdc:infection202003190001 a di:InfectingEvent ;
+	rdfs:label "infection202003190001" ;
+	rdfs:comment "infection202003190001 is an infection event" ;
+	di:hasDate "2020-03-19"^^xsd:date;
+	di:hasPerson cdc:individual12 ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease cdc:covid19 ; 
+	di:hasGeoLocation ngr:lagos .
+
+cdc:communityTransmission di:hasInfected cdc:infection202003190001 . 
+cdc:individual12 di:hasStatus cv:Infectious . 
+
+
+# death
+cdc:death202003230001> a di:DeathEvent ;
+	rdfs:label "death202003230001" ;
+	rdfs:comment "death202003230001 is a death event" ;
+	di:hasRef "S024" ;
+	di:hasDate "2020-03-23"^^xsd:date;
+	di:hasIndividuals 1 ;
+	di:hasDisease cdc:covid19 ; 
+	di:hasGeoLocation ngr:lagos .
+
+cdc:index3 di:hasDied cdc:death202003230001 . 
+
+

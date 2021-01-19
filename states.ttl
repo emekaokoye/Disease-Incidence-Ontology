@@ -1,0 +1,235 @@
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix di: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence.ttl#> .
+@prefix ngr: <http://linkedopendatang.com/schemas/nigeria/states.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ngr:abia a dbo:PopulatedPlace ;
+    rdfs:label "Abia State" ;
+    di:hasPopulationAtRisk 3727347 ;
+    rdfs:comment "Abia State" ;
+    owl:sameAs dbr:Abia_State .
+
+ngr:adamawa a dbo:PopulatedPlace ;
+    rdfs:label "Adamawa State" ;
+    di:hasPopulationAtRisk 4248436 ;
+    rdfs:comment "Adamawa State" ;
+    owl:sameAs dbr:Adamawa_State .
+
+ngr:akwa_ibom a dbo:PopulatedPlace ;
+    rdfs:label "Akwa Ibom State" ;
+    di:hasPopulationAtRisk 5482177 ;
+    rdfs:comment "Akwa Ibom State" ;
+    owl:sameAs dbr:Akwa_Ibom_State .
+
+ngr:anambra a dbo:PopulatedPlace ;
+    rdfs:label "Anambra State" ;
+    di:hasPopulationAtRisk 5527809 ;
+    rdfs:comment "Anambra State" ;
+    owl:sameAs dbr:Anambra_State .
+
+ngr:bauchi a dbo:PopulatedPlace ;
+    rdfs:label "Bauchi State" ;
+    di:hasPopulationAtRisk 6537314 ;
+    rdfs:comment "Bauchi State" ;
+    owl:sameAs dbr:Bauchi_State .
+
+ngr:bayelsa a dbo:PopulatedPlace ;
+    rdfs:label "Bayelsa State" ;
+    di:hasPopulationAtRisk 2277961 ;
+    rdfs:comment "Bayelsa State" ;
+    owl:sameAs dbr:Bayelsa_State .
+
+ngr:benue a dbo:PopulatedPlace ;
+    rdfs:label "Benue State" ;
+    di:hasPopulationAtRisk 5741815 ;
+    rdfs:comment "Benue State" ;
+    owl:sameAs dbr:Benue_State .
+
+ngr:borno a dbo:PopulatedPlace ;
+    rdfs:label "Borno State" ;
+    di:hasPopulationAtRisk 5860183 ;
+    rdfs:comment "Borno State" ;
+    owl:sameAs dbr:Borno_State .
+
+ngr:cross_river a dbo:PopulatedPlace ;
+    rdfs:label "Cross River State" ;
+    di:hasPopulationAtRisk 3866269 ;
+    rdfs:comment "Cross River State" ;
+    owl:sameAs dbr:Cross_River_State .
+
+ngr:delta a dbo:PopulatedPlace ;
+    rdfs:label "Delta State" ;
+    di:hasPopulationAtRisk 5663362 ;
+    rdfs:comment "Delta State" ;
+    owl:sameAs dbr:Delta_State .
+
+ngr:ebonyi a dbo:PopulatedPlace ;
+    rdfs:label "Ebonyi State" ;
+    di:hasPopulationAtRisk 2880383 ;
+    rdfs:comment "Ebonyi State" ;
+    owl:sameAs dbr:Ebonyi_State .
+
+ngr:edo a dbo:PopulatedPlace ;
+    rdfs:label "Edo State" ;
+    di:hasPopulationAtRisk 4235595 ;
+    rdfs:comment "Edo State" ;
+    owl:sameAs dbr:Edo_State .
+
+ngr:ekiti a dbo:PopulatedPlace ;
+    rdfs:label "Ekiti State" ;
+    di:hasPopulationAtRisk 3270798 ;
+    rdfs:comment "Ekiti State" ;
+    owl:sameAs dbr:Ekiti_State .
+
+ngr:enugu a dbo:PopulatedPlace ;
+    rdfs:label "Enugu State" ;
+    di:hasPopulationAtRisk 4411119 ;
+    rdfs:comment "Enugu State" ;
+    owl:sameAs dbr:Enugu_State .
+
+ngr:fct a dbo:PopulatedPlace ;
+    rdfs:label "Federal Capital Territory" ;
+    di:hasPopulationAtRisk 3564126 ;
+    rdfs:comment "Federal Capital Territory" ;
+    owl:sameAs dbr:Abuja .
+
+ngr:gombe a dbo:PopulatedPlace ;
+    rdfs:label "Gombe State" ;
+    di:hasPopulationAtRisk 3256962 ;
+    rdfs:comment "Gombe State" ;
+    owl:sameAs dbr:Gombe_State .
+
+ngr:imo a dbo:PopulatedPlace ;
+    rdfs:label "Imo State" ;
+    di:hasPopulationAtRisk 5408756 ;
+    rdfs:comment "Imo State" ;
+    owl:sameAs dbr:Imo_State .
+
+ngr:jigawa a dbo:PopulatedPlace ;
+    rdfs:label "Jigawa State" ;
+    di:hasPopulationAtRisk 5828163 ;
+    rdfs:comment "Jigawa State" ;
+    owl:sameAs dbr:Jigawa_State .
+
+ngr:kaduna a dbo:PopulatedPlace ;
+    rdfs:label "Kaduna State" ;
+    di:hasPopulationAtRisk 8252366 ;
+    rdfs:comment "Kaduna State" ;
+    owl:sameAs dbr:Kaduna_State .
+
+ngr:kano a dbo:PopulatedPlace ;
+    rdfs:label "Kano State" ;
+    di:hasPopulationAtRisk 13076892 ;
+    rdfs:comment "Kano State" ;
+    owl:sameAs dbr:Kano_State .
+
+ngr:katsina a dbo:PopulatedPlace ;
+    rdfs:label "Katsina State" ;
+    di:hasPopulationAtRisk 7831319 ;
+    rdfs:comment "Katsina State" ;
+    owl:sameAs dbr:Katsina_State .
+
+ngr:kebbi a dbo:PopulatedPlace ;
+    rdfs:label "Kebbi State" ;
+    di:hasPopulationAtRisk 4440050 ;
+    rdfs:comment "Kebbi State" ;
+    owl:sameAs dbr:Kebbi_State .
+
+ngr:kogi a dbo:PopulatedPlace ;
+    rdfs:label "Kogi State" ;
+    di:hasPopulationAtRisk 4473490 ;
+    rdfs:comment "Kogi State" ;
+    owl:sameAs dbr:Kogi_State .
+
+ngr:kwara a dbo:PopulatedPlace ;
+    rdfs:label "Kwara State" ;
+    di:hasPopulationAtRisk 3192893 ;
+    rdfs:comment "Kwara State" ;
+    owl:sameAs dbr:Kwara_State .
+
+ngr:lagos a dbo:PopulatedPlace ;
+    rdfs:label "Lagos State" ;
+    di:hasPopulationAtRisk 12550598 ;
+    rdfs:comment "Lagos State" ;
+    owl:sameAs dbr:Lagos_State .
+
+ngr:nasarawa a dbo:PopulatedPlace ;
+    rdfs:label "Nasarawa State" ;
+    di:hasPopulationAtRisk 2523395 ;
+    rdfs:comment "Nasarawa State" ;
+    owl:sameAs dbr:Nasarawa_State .
+
+ngr:niger a dbo:PopulatedPlace ;
+    rdfs:label "Niger State" ;
+    di:hasPopulationAtRisk 5556247 ;
+    rdfs:comment "Niger State" ;
+    owl:sameAs dbr:Niger_State .
+
+ngr:nigeria a dbo:Country ;
+    rdfs:label "Nigeria" ;
+    rdfs:comment "Nigeria" ;
+    owl:sameAs dbo:Nigeria .
+
+ngr:ogun a dbo:PopulatedPlace ;
+    rdfs:label "Ogun State" ;
+    di:hasPopulationAtRisk 5217716 ;
+    rdfs:comment "Ogun State" ;
+    owl:sameAs dbr:Ogun_State .
+
+ngr:ondo a dbo:PopulatedPlace ;
+    rdfs:label "Ondo State" ;
+    di:hasPopulationAtRisk 4671695 ;
+    rdfs:comment "Ondo State" ;
+    owl:sameAs dbr:Ondo_State .
+
+ngr:osun a dbo:PopulatedPlace ;
+    rdfs:label "Osun State" ;
+    di:hasPopulationAtRisk 4705589 ;
+    rdfs:comment "Osun State" ;
+    owl:sameAs dbr:Osun_State .
+
+ngr:oyo a dbo:PopulatedPlace ;
+    rdfs:label "Oyo State" ;
+    di:hasPopulationAtRisk 7840864 ;
+    rdfs:comment "Oyo State" ;
+    owl:sameAs dbr:Oyo_State .
+
+ngr:plateau a dbo:PopulatedPlace ;
+    rdfs:label "Plateau State" ;
+    di:hasPopulationAtRisk 4200442 ;
+    rdfs:comment "Plateau State" ;
+    owl:sameAs dbr:Plateau_State .
+
+ngr:rivers a dbo:PopulatedPlace ;
+    rdfs:label "Rivers State" ;
+    di:hasPopulationAtRisk 7303924 ;
+    rdfs:comment "Rivers State" ;
+    owl:sameAs dbr:Rivers_State .
+
+ngr:sokoto a dbo:PopulatedPlace ;
+    rdfs:label "Sokoto State" ;
+    di:hasPopulationAtRisk 4998090 ;
+    rdfs:comment "Sokoto State" ;
+    owl:sameAs dbr:Sokoto_State .
+
+ngr:taraba a dbo:PopulatedPlace ;
+    rdfs:label "Taraba State" ;
+    di:hasPopulationAtRisk 3066834 ;
+    rdfs:comment "Taraba State" ;
+    owl:sameAs dbr:Taraba_State .
+
+ngr:yobe a dbo:PopulatedPlace ;
+    rdfs:label "Yobe State" ;
+    di:hasPopulationAtRisk 3294137 ;
+    rdfs:comment "Yobe State" ;
+    owl:sameAs dbr:Yobe_State .
+
+ngr:zamfara a dbo:PopulatedPlace ;
+    rdfs:label "Zamfara State" ;
+    di:hasPopulationAtRisk 4515427 ;
+    rdfs:comment "Zamfara State" ;
+    owl:sameAs dbr:Zamfara_State .
+

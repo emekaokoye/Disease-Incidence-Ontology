@@ -1,0 +1,337 @@
+@base <http://covid19.ncdc.gov.ng/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> . 
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix p: <http://dbpedia.org/resource/> .
+@prefix di: <http://linkedopendatang.com/schemas/disease-incidence#> .
+@prefix cv: <http://linkedopendatang.com/schemas/disease-incidence-vocab.ttl#> .
+
+
+<>
+	a schema:DigitalDocument, foaf:Document ;
+	schema:name "COVID-19 Nigeria" ;
+	dcterms:description "a description of COVID-19 in Nigeria" .
+
+
+<#nigerianCDC> a di:Organization ;
+	schema:name "Nigerian Centre For Disease Control"^^xsd:string ;
+	schema:url <http://ncdc.gov.ng> ;
+	schema:alternateName  "NCDC" .
+
+<#covid19NG> a di:InfectiousDisease ;
+	schema:name "COVID-19"^^xsd:string ;
+	di:hasPopulationAtRisk 200000000  ;
+	di:hasGeoLocation p:Nigeria  ;
+	di:hasTransmissionRoute cv:DirectTransmission ;
+	schema:alternateName  "Corona Virus" .
+
+<#communityTransmission> a di:UnknownSource ;
+	di:hasStatus cv:Infectious . 
+
+
+<#index1> a di:IndexPatient ;
+	di:eventDate "2020-02-24"^^xsd:date;
+	di:hasSource p:Italy ;
+	schema:gender "male" ;
+	schema:Location "Ogun" ;
+	schema:nationality p:Italy .
+
+<#individual2> a di:Individual ;
+	di:eventDate "2020-03-09"^^xsd:date;
+	schema:gender "male" ;
+	schema:nationality p:Nigeria .
+
+
+# Infection 
+<#infection202003090000> a di:InfectingEvent ;
+	schema:identifier "" ;
+	di:eventDate "2020-03-09"^^xsd:date;
+	di:hasPerson <#individual2> ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Ogun" .
+
+<#index1> di:hasInfected <#infection202003090000> . 
+<#index1> di:hasStatus cv:Infectious . 
+<#individual2> di:hasStatus cv:Infectious . 
+
+
+
+# Infection 
+
+<#index3> a di:IndexPatient ;
+	di:eventDate "2020-03-16"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:gender "female" ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+
+
+
+<#index4> a di:IndexPatient ;
+	di:eventDate "2020-03-18"^^xsd:date;
+	schema:gender "male" ;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index5> a di:IndexPatient ;
+	di:eventDate "2020-03-18"^^xsd:date;
+	di:hasSource p:Benin ;
+	schema:gender "male" ;
+	schema:Location "Lagos" ;
+	schema:nationality p:United_States  .
+	
+<#index6> a di:IndexPatient ;
+	di:eventDate "2020-03-18"^^xsd:date;
+	di:hasSource p:United_States ;
+	schema:gender "female" ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index7> a di:IndexPatient ;
+	di:eventDate "2020-03-18"^^xsd:date;
+	di:hasSource p:United_States ;
+	schema:gender "female" ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index8> a di:IndexPatient ;
+	di:eventDate "2020-03-18"^^xsd:date;
+	di:hasSource p:United_States ;
+	schema:gender "male" ;
+	schema:Location "Ekiti" ;
+	schema:nationality p:Nigeria .
+
+# recovery	
+<#individual2> di:hasStatus cv:Recovered ;
+	di:recoveredDate "2020-03-13"^^xsd:date .
+	
+
+<#index9> a di:IndexPatient ;
+	di:eventDate "2020-03-19"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index10> a di:IndexPatient ;
+	di:eventDate "2020-03-19"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Lagos" ;
+	schema:gender "male"  ;
+	schema:nationality p:Nigeria .
+	
+<#individual11> a di:Individual ;
+	di:eventDate "2020-03-19"^^xsd:date;
+	di:hasSource p:France ;
+	schema:gender "female" ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#individual12> a di:Individual ;
+	di:eventDate "2020-03-19"^^xsd:date;
+	schema:gender "male"  .
+	
+<#infection202003190001> a di:InfectingEvent ;
+	schema:identifier "" ;
+	di:eventDate "2020-03-19"^^xsd:date;
+	di:hasPerson <#individual12> ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Lagos" .
+
+<#communityTransmission> di:hasInfected <#infection202003190001> . 
+<#individual12> di:hasStatus cv:Infectious . 
+
+
+
+
+
+
+<#infection202003190002> a di:InfectingEvent ;
+	schema:identifier "S/N: 020 " ;
+	di:eventDate "2020-03-19"^^xsd:date;
+	di:hasPerson <#individual11> ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Lagos" .
+
+<#index3> di:hasInfected <#infection202003190002> . 
+<#individual11> di:hasStatus cv:Infectious . 
+
+
+
+<#index13> a di:IndexPatient ;
+	di:eventDate "2020-03-21"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index14> a di:IndexPatient ;
+	di:eventDate "2020-03-21"^^xsd:date;
+	di:hasSource p:United_States ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#individual15> a di:Individual ;
+	di:eventDate "2020-03-21"^^xsd:date;
+	schema:nationality p:United_States .
+	
+<#infection202003210001> a di:InfectingEvent ;
+	schema:identifier "S/N: 022" ;
+	di:eventDate "2020-03-21"^^xsd:date;
+	di:hasPerson <#individual15> ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Lagos" .
+
+<#index5> di:hasInfected <#infection202003210001> . 
+<#individual15> di:hasStatus cv:Infectious . 
+
+
+
+
+
+<#index16> a di:IndexPatient ;
+	di:eventDate "2020-03-22"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index17> a di:IndexPatient ;
+	di:eventDate "2020-03-22"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Abuja" ;
+	schema:nationality p:Nigeria .
+	
+<#index18> a di:IndexPatient ;
+	di:eventDate "2020-03-22"^^xsd:date;
+	di:hasSource p:United_Arab_Emirates ;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#individual19> a di:Individual ;
+	di:eventDate "2020-03-22"^^xsd:date;
+	schema:nationality p:Nigeria .
+	
+<#index20> a di:IndexPatient ;
+	di:eventDate "2020-03-22"^^xsd:date;
+	di:hasSource p:United_Kingdom ;
+	schema:Location "Oyo" ;
+	schema:nationality p:Nigeria .
+	
+<#infection202003220001> a di:InfectingEvent ;
+	schema:identifier "S/N: 023" ;
+	di:eventDate "2020-03-22"^^xsd:date;
+	di:hasPerson <#individual19> ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Lagos" .
+
+<#index6> di:hasInfected <#infection202003220001> . 
+<#individual19> di:hasStatus cv:Infectious . 
+
+
+
+
+<#individual21> a di:Individual ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#individual22> a di:Individual ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index23> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index24> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index25> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index26> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+	
+<#index27> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Abuja" ;
+	schema:nationality p:Nigeria .
+	
+<#index28> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Abuja" ;
+	schema:nationality p:Nigeria .
+	
+<#index29> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Abuja" ;
+	schema:nationality p:Nigeria .
+	
+<#index30> a di:IndexPatient ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	schema:Location "Oyo" ;
+	schema:nationality p:Nigeria .
+
+	
+<#infection202003230001> a di:InfectingEvent ;
+	schema:identifier "S/N: 024" ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	di:hasPerson <#individual21> ; 
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Lagos" .
+
+<#index9> di:hasInfected <#infection202003230001> . 
+<#individual21> di:hasStatus cv:Infectious . 
+
+
+# death
+<#death202003230001> a di:DeathEvent ;
+	schema:identifier "S/N: 024" ;
+	di:eventDate "2020-03-23"^^xsd:date;
+	di:hasIndividuals 1 ;
+	di:hasDisease <#covid19NG> ; 
+	schema:Location "Lagos" .
+
+<#index3> di:hasDied <#death202003230001> . 
+
+
+
+<#index31> a di:IndexPatient ;
+	di:eventDate "2020-03-24"^^xsd:date;
+	schema:Location "Oyo" ;
+	schema:nationality p:Nigeria .
+
+<#index32> a di:IndexPatient ;
+	di:eventDate "2020-03-24"^^xsd:date;
+	schema:Location "Abuja" ;
+	schema:nationality p:Nigeria .
+
+<#index33> a di:IndexPatient ;
+	di:eventDate "2020-03-24"^^xsd:date;
+	schema:Location "Lagos" ;
+	schema:nationality p:Nigeria .
+
+<#index34> a di:IndexPatient ;
+	di:eventDate "2020-03-24"^^xsd:date;
+	schema:Location "Bauchi" ;
+	schema:nationality p:Nigeria .
+

@@ -1,0 +1,2036 @@
+@prefix cv: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence-vocab.ttl#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix di: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence.ttl#> .
+@prefix ncdc: <http://ncdc.gov.ng/covid19/data/> .
+@prefix ngr: <http://linkedopendatang.com/schemas/nigeria/states.ttl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ncdc:communityTransmission a di:UnknownSource ;
+    rdfs:label "CommunityTransmission" ;
+    di:hasStatus cv:Infectious ;
+    rdfs:comment "Community Transmission" .
+
+ncdc:covid19 a di:InfectiousDisease ;
+    rdfs:label "COVID-19" ;
+    di:hasAuthority ncdc:ngrcdc ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasName "COVID19" ;
+    di:hasPopulationAtRisk 200000000 ;
+    di:hasTransmissionRoute cv:DirectTransmission ;
+    rdfs:comment "severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)" ;
+    rdfs:seeAlso dbr:Coronavirus,
+        dbr:SARS_coronavirus,
+        <https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Nigeria> ;
+    skos:altLabel "Coronavirus" ;
+    skos:prefLabel "COVID-19" .
+
+ncdc:covid19NGDailySummaryReport a di:SituationReport ;
+    rdfs:label "covid19DailySummaryReport" ;
+    di:eventDate "2020-07-30"^^xsd:date ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasRowItem ncdc:covid19DailyStatus-S1cQpX54jEzD2dvU32WL4r5QPxCalr1L10BgUJWqI8,
+        ncdc:covid19DailyStatus-_WpnQZTbaPDdvPAXEGR8kRWJYn7ntapLtNG7ncn9Xw,
+        ncdc:covid19DailyStatus-lQeiUbqAN5Vaos7HeGNXyLe33g6iUxEjhMMlUCjwFQ,
+        ncdc:covid19DailyStatus0A2zD2SNhdXkOEYzSChqnwIVovKNecIpuwB3UBAjpUk,
+        ncdc:covid19DailyStatus1-2UnyITYp9ubbRrYv5dgcfZ2BinXnHdqle7w8qePOk,
+        ncdc:covid19DailyStatus1OmwPtFQ55l92cWqyt7Myu3G6O9MuWhb-17Hw5qaps0,
+        ncdc:covid19DailyStatus1jT4gAvCjgi6q5CcUfllDz1PxzCbWEXBY_xDgZbprKI,
+        ncdc:covid19DailyStatus3cZHfaiYHvIR5fKq5cKZ4uv8yTwbLrBPkbli0tUYvDw,
+        ncdc:covid19DailyStatus43Lq_6XT8uXHoY7WTNfke-hM5HwJlSsEpxrDbI1_fUQ,
+        ncdc:covid19DailyStatus43hYLWpTqYOH6WVNAM0bWC8KnZf2wwcoXitZofa9I_I,
+        ncdc:covid19DailyStatus4W0EJDFW9caU5SD1yF_xFpeOWDdzA7cesO8Cw-jGmeM,
+        ncdc:covid19DailyStatus4iWsQNBGFx0kBXVhc5QOsNtuozzdrvNn8aVvzmzoU8M,
+        ncdc:covid19DailyStatus4qtSN26LFbbiqshPbVh7TQt8zofDgBCdCpHnQzLyzpk,
+        ncdc:covid19DailyStatus4txGkZeBpoNchHOWZABPNN_N4lgrVNWhw_WityHFlqM,
+        ncdc:covid19DailyStatus5Fo7hFn6Uv65JYc50VEdgxKHPECKlKKiiiw7v6Ce5O8,
+        ncdc:covid19DailyStatus5K4AmRM5JjrKHpZHiG_qTgz5b__2rxW4MESwKJtz_cI,
+        ncdc:covid19DailyStatus68Vz8Af60speXFkICH7XpVwqGUgvIGUDTSzpNHicmhw,
+        ncdc:covid19DailyStatus6J1zgVH1ZIzJWGEPNbjbKveCx9E0gjkLWPljHTOAi1s,
+        ncdc:covid19DailyStatus6ZfG7KO8J9bxlyvzNofavjKdjkC_YmY-0AIe2U6Lip4,
+        ncdc:covid19DailyStatus6p-TDn2KXno4lpmDwaU3avsFCjUHLqZ8L7xSIZ-OPms,
+        ncdc:covid19DailyStatus7RkzXLfxPOhUZ2XnTKM-9cDk8rToEjUFURV7uqzPG34,
+        ncdc:covid19DailyStatus7_4YwkquXOBWNXrT1cEKzAJW_5fi4zyP4dqpn5wtgKE,
+        ncdc:covid19DailyStatus7oCRrV8PZlAsXovg6K415unZ2XgPXGdfgCKGs6l7bcI,
+        ncdc:covid19DailyStatus85jgwLOgMeRUeTQUgTIDHS9_Kd_B4fLyH0r4UIQMFt4,
+        ncdc:covid19DailyStatus8BNDSAqg9IxvB09Fcgb7TqDvVV6BNz2uGJoMUWyEdM0,
+        ncdc:covid19DailyStatus8WcpYEfwLvxmDIgGkNL08ODBBHfsIHKlcFrRFAQ_NJA,
+        ncdc:covid19DailyStatus8njcPA4V4AgwkQ-uAEJKR0-8q1H7UvxlcTvI5pGVSDw,
+        ncdc:covid19DailyStatus9KE5QbVxGsHXeeGPODIF-XTKlt_56pWZETiwOlj5Hhs,
+        ncdc:covid19DailyStatus9gydp7iLvd3vLn_vYOJ-NEVf0Aybz-ZJzufMSWI-ljo,
+        ncdc:covid19DailyStatus9kbFQS_X_U7cXuWdLW_jk3VrtpVKSgaUZwUf0iZp9SI,
+        ncdc:covid19DailyStatusAj8TcUFzK8c6p7nsRYOIwsGsq7HmcTD9UyklIk3Ucpc,
+        ncdc:covid19DailyStatusBOYtKlwgX_5eooS70Bo4J5neisadXYMBElgSt4kMa60,
+        ncdc:covid19DailyStatusBhywsi_mapeh-iF2EBcCAvZ0QbB77KEfYUonbjI7fcY,
+        ncdc:covid19DailyStatusBvOYM93XQZGrCoJpyg3ia3ifgkeGFfwZI9o5r-uwTe8,
+        ncdc:covid19DailyStatusBzpGyE9e1HBFsPU2dMqviBQksX7yhHy7jv9z-1RXdVw,
+        ncdc:covid19DailyStatusCuSl3X23BwElQUuIU2r38s0pR0kbASwOjAMd7RulWf8,
+        ncdc:covid19DailyStatusDUUKgnoT5eU9ugx_ZYmQCMiG6tlSV6T1lc5LHPUcklI,
+        ncdc:covid19DailyStatusDj_5v6tcP2fNiMB4UVxsR21lJ_8rgKX6e_KOWsJE8Wo,
+        ncdc:covid19DailyStatusDspse2P53ypaVts6BQSB3JR1CHXapiQHOtQT20R654k,
+        ncdc:covid19DailyStatusEjBUvyiHy4XDRL6ynPjkRPYlqiNX6XKOnsMgwbiCfX4,
+        ncdc:covid19DailyStatusFK_itFbK5DF23hUwqhXBELhEhz3whhjpGG41cKqQIJw,
+        ncdc:covid19DailyStatusFWNXTVP5MXwdR9pK2NkmVDEpGb4GDHsMBox4bcQwmxY,
+        ncdc:covid19DailyStatusFgAgh2TkCDaxx_0ZRYvzBQVr5LKb5kGseDna_eHm7aQ,
+        ncdc:covid19DailyStatusGOJJ3XbG9-mdizPf6i0Qg71zPkzLR7s0YeJHOvIEF9U,
+        ncdc:covid19DailyStatusGOO5K2cOZB3q8IgX6_GBQKUtgI0Ms8XnjjSEdrIv-6k,
+        ncdc:covid19DailyStatusHGMnw8rblPMrBbgM8Iq40hJBglxKXekc0cZyAxgQtTU,
+        ncdc:covid19DailyStatusHMXOjgKKwhLQw4A_bdc8OHeEXvTZstn4ooCiV1njTQU,
+        ncdc:covid19DailyStatusHhOCCv0-hYzCm744jBA_Ec9WnQkzLYxUrsET5ZatbOo,
+        ncdc:covid19DailyStatusHiBBE2ljY6qX4CtxmObpr1sToOpQgWz50AryovWJ1t8,
+        ncdc:covid19DailyStatusHmLWs-D4ruI7Lq9RH8Y-zEnEY8ZRMyKBDgsWcfct5q0,
+        ncdc:covid19DailyStatusI4r_d0wSzqGesxkHnAn9mmJi6FpGHgYPlqY2ISkZl4g,
+        ncdc:covid19DailyStatusJkILNhZSAvgHmaCuLzUwUpxLojAGjT307Y5uHCcURNE,
+        ncdc:covid19DailyStatusKVFO840OpTwJaee4wwh8jQMVMhECg2Ng35aupn-2qtQ,
+        ncdc:covid19DailyStatusKbfH1p7tJYNooq1MEi386PhyNytjn5qI-8ZyvSD7cjE,
+        ncdc:covid19DailyStatusKeA2McjJsHYuj0iz6hs1JWJszjzmpe52pb9vBKbVPHE,
+        ncdc:covid19DailyStatusLDmo0ZnSCfWBTjykwP1nnAPgC6cxSKEo076_6mg8QZo,
+        ncdc:covid19DailyStatusLt3NJ_Dx-6CG34hsdghYa1yHuy6_Yds4UBICD-gYX2E,
+        ncdc:covid19DailyStatusMcx8eM0PW64wEkHurroc5CXIyUN_4N33vpLkEJ28-UA,
+        ncdc:covid19DailyStatusNFfGwkSzusMfenkVuleVxt8PTY7RqpxdbvVezy2eHHE,
+        ncdc:covid19DailyStatusNHC7NK65AevyaeQFCAtLyfo9WLjYvCKcf8mHUA8NS8Y,
+        ncdc:covid19DailyStatusOFJNHJamuer9D2OFq8Ij0oZgp4hJEx29hLgbutRH90g,
+        ncdc:covid19DailyStatusOU8qtRKy9zv9mG1SEZlhVLBGr0B1bHeUVmSrIIGqi6M,
+        ncdc:covid19DailyStatusOlKwGAWK84lhwzlA70bLw26LH93TWDXyMd6cb4mcBOU,
+        ncdc:covid19DailyStatusOoEylI2NXtbYrfhEAJOGXSYLGs9elKUDLb3A0zUY3-A,
+        ncdc:covid19DailyStatusPVsnZg9Gsy-mdIWfe6vHhJ1i8WJRJehVIBGre8wh46A,
+        ncdc:covid19DailyStatusPp_uCqQ72EFiUUptV3rRWrPLd-Ig2bQwxccy1NspJQI,
+        ncdc:covid19DailyStatusPsLe8SWs0Hy931Ix-Wec8F3dDh1Tl1AbFSYb8DeZj5A,
+        ncdc:covid19DailyStatusQ5zsxxFzzmySGQ8vItfcjrj7XjspU7AEiWRkQRbFEKM,
+        ncdc:covid19DailyStatusQ8E1d9lXXIx81CtWn8rbsnJ2fVgLKd1vngEtLJaHJ3s,
+        ncdc:covid19DailyStatusQAA4ZC3hp4E9Sqx3Roa1ekjpKOw3amVWAm6aI1X9GYc,
+        ncdc:covid19DailyStatusQK3nrUBaa_h5y4rf9ICDJHkeB2NwvscUd2X7ZudOyAk,
+        ncdc:covid19DailyStatusRQZWx5rqbWaFHEwHH6d3JOu3uaPgZffXTPJNvVggtLM,
+        ncdc:covid19DailyStatusSJF-cYOAGmMIgDq74CF5sXo6zclV3F1EsEqHwZ0wrto,
+        ncdc:covid19DailyStatusT13WVghyGT3JCZyL-GVBbutFcVWQWiKfotFikVN5EKI,
+        ncdc:covid19DailyStatusT7DOcB0RIUAmkC82dvTMDpkGaxUswc1WUUw9IM2Skfs,
+        ncdc:covid19DailyStatusTLhGoVoYhcxz8ToRgDv9guVzNEmDLSjOcVRreILQeHk,
+        ncdc:covid19DailyStatusTuA-HhtZy30HwKWXbs18XDQrRnrIo2wKn6Y1G3hPe1U,
+        ncdc:covid19DailyStatusU7g9HRsp5K8N_b3vlF_N-HGs_PkKey37dZAGvl7Qp9g,
+        ncdc:covid19DailyStatusU9oSkyq7NNrQm2NvnCggwXRibsZqQbrGK0WdrPCAxt8,
+        ncdc:covid19DailyStatusUa0IIEZ8Ghxj-FmG_lyBa6rfJYbTqE7iteDYEMHI-tA,
+        ncdc:covid19DailyStatusUb68nZl4nahCVnxQsGKS8U8FSelb-7hTkuDRe-iAt1w,
+        ncdc:covid19DailyStatusVDVXTmPJ7bqCTiKe0ReQdz26rjDWB53Td304wcdsZcE,
+        ncdc:covid19DailyStatusWgCHH6688GiIoz-VkuOtKk6OLCxi4NcjOfh3pchkJa0,
+        ncdc:covid19DailyStatusXOlmeOMuVvLm4v4U4g7bXSaWJy4IxUKgFmGg6p_i8Lk,
+        ncdc:covid19DailyStatusY1eg6VcR1jQJxC70hQR5Dmu-6BTlpNmfOiiNlfY-EPo,
+        ncdc:covid19DailyStatusYWH3O5VT-5AogYp7uv7XVcjMK1kCeVBXHiV-v46Eh1Q,
+        ncdc:covid19DailyStatusYajjFfi92HboHO1QIY6_pwz9-JMgtLRJds6yoiRdSj0,
+        ncdc:covid19DailyStatusYhD6nMEgrGni8z79XKCe9byaoUZxsZq4CTOGmKFZGfI,
+        ncdc:covid19DailyStatusYtExKOSpGid72v9KUTPtFBomwNcpn85nSTeNcEqoVQ8,
+        ncdc:covid19DailyStatusZ0AGtprH3bxyBThKCQbPaMPIhel-xXwG1OzD1TXv7WA,
+        ncdc:covid19DailyStatusZ43brxTusmaPtGGc2wc48XPuqC0HTTYTPFLJItfDvN0,
+        ncdc:covid19DailyStatusZ8wdldgd3klQmATATfdsirO70vypp045hCK7WKmzTQw,
+        ncdc:covid19DailyStatusZD-MUfGN3q2LieD90Ffb9nRRk2s1DhAN5N6g44DBZiA,
+        ncdc:covid19DailyStatusZKMWOiuLJSv2OjS0k1ORYntXJyJFbh6gGyKK6RJDjls,
+        ncdc:covid19DailyStatusZrXzoSEjVyLsuhElAG4JlQnLidXDbrZACU4rMV2QxhU,
+        ncdc:covid19DailyStatusZvdMfnfZnzHOn5T6ajuqchlhCCKnGQnpKUX6WiINjXM,
+        ncdc:covid19DailyStatus_LxdtE8SVxgTdtyGBO8vbwLsqtkPWDkU0iUhH8kvhVg,
+        ncdc:covid19DailyStatusb2qrOgE2c3y96vUgsyEcWoQKBo1UDG4bZbt0CJ2fFWg,
+        ncdc:covid19DailyStatusbX6VjrxhS3d6x4WeiDC7zg3LBg3y0489HpBzz6zQWU4,
+        ncdc:covid19DailyStatusd6RsoU943pbYgV5X973k9kdu0qUt-i6PFf89leZBWHI,
+        ncdc:covid19DailyStatusd7ej3UEqrYvAcpo6NVZrvonylRXsDZPbdDCY-19WaZI,
+        ncdc:covid19DailyStatusdZ2gp84p0GNuryk508CfTRsvCSACD0yNEayd7T6IagQ,
+        ncdc:covid19DailyStatusdcpR4mlypa2H-7l5jYSNoT1UPq-Uvqx9eNRpLG8rBYw,
+        ncdc:covid19DailyStatusdmlwa5X1aTJsPGqxmVl8QGDSe3KQDT3IDjNO7cxzIMU,
+        ncdc:covid19DailyStatuseNPxmUKOCZ61GkNBsI51z_NRJJGbHW90FnchVmsO94Y,
+        ncdc:covid19DailyStatuseZzYRtekZCDAvXwnjTChvNrPqPi6fxneatDVq1UFcEQ,
+        ncdc:covid19DailyStatusfEbKC6rqYotnDU5Oomn0JBON84mICFvZNDrlKCrurIw,
+        ncdc:covid19DailyStatusfYGbaWtMtOwjozw7QwZTDhkQHWn9fk9BX6MNA4UGC2k,
+        ncdc:covid19DailyStatusgPvSqaCEv65Lepfe5gmZtD6ybzosf_ZfLGAt9YW__Vo,
+        ncdc:covid19DailyStatushd_mT4u_fQje2xDFhccza_wjRb7kAQtq2dWGYIbxQVo,
+        ncdc:covid19DailyStatushhCBLaRC4wHDSYeo1yKnO5D7uNXdqVkBZBAH7GOxYZA,
+        ncdc:covid19DailyStatusio58jJFxnKlgaPZ1IYmVAgOjN3SVh9BzQz48ELNdtDE,
+        ncdc:covid19DailyStatusj5UQxWRU3uUVsYZOT7QJuSwtJ45rpxmROWLO2TvkqoU,
+        ncdc:covid19DailyStatusjNrR_4NYup2H5oIcJ6gSnFS66ryx8BEoRxbYEFn9Bwo,
+        ncdc:covid19DailyStatuskYuHu7R7QGWeY68sZ4TSgI1XRrfRikgzHMNGUJr4uOk,
+        ncdc:covid19DailyStatusknhpGIEPlbNpCS56g1ju7twMzwBId1rVuVhLSqD_9Oo,
+        ncdc:covid19DailyStatusl-kHk4IlfGix-AsGI2dZPtfoqQxEW9_E87a1B6tu8Qk,
+        ncdc:covid19DailyStatusl2Y3KVxUYVngaAP7CUaD_uAo3syUdAokKaSvtt7jIhM,
+        ncdc:covid19DailyStatusl9OPQEoHgr_EKBtIrDYzkuNc6Lnb87KvgPT5YpnXx9I,
+        ncdc:covid19DailyStatuslTPG6GkA-qv-sqQcCZuSIlZpsyk3PAnq5iVtyNhUbVg,
+        ncdc:covid19DailyStatusl_UnEZECgn3ipkEnLwmxxi0bOW3l0--UbyKxYWCBgH8,
+        ncdc:covid19DailyStatusljndIsVJLvj8nbMQJqSn2Mn7jjotve5WLS3uombS33Q,
+        ncdc:covid19DailyStatusllWAHjDNVoTkHLGd_2Y33AobsmtJ3qbNSkMO6U1I-MM,
+        ncdc:covid19DailyStatusm_3kdLH6tr214FPH_eZ-AKqc1byd1WhScz1yFRrECug,
+        ncdc:covid19DailyStatusnBdNC8--G9FPNuuiwQ4LZNq_MJEvNE-45oll6Oll_bY,
+        ncdc:covid19DailyStatusnM8seYCnjtWyg7UatksIqICSVa_we4L3Sy0bV3czRD0,
+        ncdc:covid19DailyStatusnrgKvGWkii00DbYWiS2jt_K8D6cUu2UXNh1O7jv0DTA,
+        ncdc:covid19DailyStatusnz_ms6EIuwT1GQkbwKrWTyssBlMiXSwfdAQs0i5Uq4Y,
+        ncdc:covid19DailyStatusoU8PLWEt4elRvFAGCFLR9XThY6gQSwpGJT0QHdqokFI,
+        ncdc:covid19DailyStatusoh_odxzQF7GCU8v367p_UdQUa-A036UcVqfyTkTazfo,
+        ncdc:covid19DailyStatusp44KOX6OVRDWwYmFbGq9fGaP7skQpR5OOr0gcLzOT6w,
+        ncdc:covid19DailyStatuspTPBezhhwsR8bE82-EXTqnjHzo2la9j1GTZsnaOZPTw,
+        ncdc:covid19DailyStatuspTZj2uFtH3ay9KSc_S7JnDDOkp6BEwBh8X1VlbXOFd4,
+        ncdc:covid19DailyStatuspqhuk-pDi7MH_IpnTXlDNq-ZK9_uWhYo5_lJi-JVN28,
+        ncdc:covid19DailyStatusqpIA5KFcZKzEHlWrCxRdBU2WM4-H0grQBCNSWYfQgxY,
+        ncdc:covid19DailyStatusr157YR_xurHHlsj8bhhZ6TrSV_1RJq_L9JiyWpisgy0,
+        ncdc:covid19DailyStatusrngXMupb7a0lEktpmlCWdTBXl4iiu6snrflLC4xqrxo,
+        ncdc:covid19DailyStatuss3wQM2K19k_AGNnFXUIuo8AifIPn73TIpALXzLmNYqo,
+        ncdc:covid19DailyStatussK86m9gF-LBiNTYTLQb5O8YEilwBr5kDxKLYU0okMzk,
+        ncdc:covid19DailyStatust9qCtgvpMJsAVLbSIyjSwxxbJjllbNFvx6THv-LWziQ,
+        ncdc:covid19DailyStatustA1QM6j2Yfbcvtq2dlGMaIRAmAN6Yvi06II-kU2_3hY,
+        ncdc:covid19DailyStatustEA4SlBu3RLf5PM6NwSkFu9AQciAC96X_vobb6TTOLg,
+        ncdc:covid19DailyStatustIbqyh5PtzuUFslRUrupQGv0FhjAkAfpqOyIN6kUv64,
+        ncdc:covid19DailyStatusu3GK1gb_W-_svh3JGflAOWESEqgG3lLByEQORv9wmEo,
+        ncdc:covid19DailyStatusudxhC9hv0ptyQcCtuH7KikxMkcxERZMDhTO5kd-6v-I,
+        ncdc:covid19DailyStatusvE6m5IXoqs9ZMNODbZmHscT-ba4skR4-nrSZRKlUmp8,
+        ncdc:covid19DailyStatusvhywvp_5U7Xsrj_j2DIWYIgaeq8TAYHVk6ADSYtLA3A,
+        ncdc:covid19DailyStatuswAEAErSSj8AzR6VO9idoR-Kosb6mNbE-hhcUd5sNONs,
+        ncdc:covid19DailyStatuswT7Ugbg1llKumw-43yCzgOPEr5FJrl0OYXZVqVSqT9A,
+        ncdc:covid19DailyStatusweP4_nz0mK23y44UxRwWLSFH7brNyFPu3dabqMEdhvc,
+        ncdc:covid19DailyStatusxGBbXbdJA2fBIJha37XVfj2HR6aiJF0F7ITcZZIgWOE,
+        ncdc:covid19DailyStatuszS6ZgfesmxDV8T_TpyxM1I8OsJ8sfkrwwYm7et_gyC0,
+        ncdc:covid19DailyStatuszmRCRzXhAjIAENjADPQckqJiVr5CKUvHhQBTTogct0c ;
+    di:hasURL <https://nairametrics.com/2020/07/31/covid-19-update-in-nigeria/> ;
+    rdfs:comment "Nigeria Covid-19 Daily Summary Report" ;
+    rdfs:seeAlso <https://nairametrics.com/2020/07/31/covid-19-update-in-nigeria/> .
+
+ncdc:covid19DailyStatus-S1cQpX54jEzD2dvU32WL4r5QPxCalr1L10BgUJWqI8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 20 April, 2020" ;
+    di:hasConfirmedCases 665 ;
+    di:hasDate "2020-04-20"^^xsd:date ;
+    di:hasDeathCases 23 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 38 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 188 ;
+    di:hasTotalCases 466 ;
+    rdfs:comment "Covid-19 Summary for 20 April, 2020" .
+
+ncdc:covid19DailyStatus-_WpnQZTbaPDdvPAXEGR8kRWJYn7ntapLtNG7ncn9Xw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 17 July, 2020" ;
+    di:hasConfirmedCases 35454 ;
+    di:hasDate "2020-07-17"^^xsd:date ;
+    di:hasDeathCases 772 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 600 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 14633 ;
+    di:hasTotalCases 20049 ;
+    rdfs:comment "Covid-19 Summary for 17 July, 2020" .
+
+ncdc:covid19DailyStatus-lQeiUbqAN5Vaos7HeGNXyLe33g6iUxEjhMMlUCjwFQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 02 June, 2020" ;
+    di:hasConfirmedCases 10819 ;
+    di:hasDate "2020-06-02"^^xsd:date ;
+    di:hasDeathCases 314 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 241 ;
+    di:hasNewDeathCases 15 ;
+    di:hasRecoveredCases 3239 ;
+    di:hasTotalCases 7266 ;
+    rdfs:comment "Covid-19 Summary for 02 June, 2020" .
+
+ncdc:covid19DailyStatus0A2zD2SNhdXkOEYzSChqnwIVovKNecIpuwB3UBAjpUk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 19 June, 2020" ;
+    di:hasConfirmedCases 19147 ;
+    di:hasDate "2020-06-19"^^xsd:date ;
+    di:hasDeathCases 487 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 667 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 6581 ;
+    di:hasTotalCases 12079 ;
+    rdfs:comment "Covid-19 Summary for 19 June, 2020" .
+
+ncdc:covid19DailyStatus1-2UnyITYp9ubbRrYv5dgcfZ2BinXnHdqle7w8qePOk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 16 July, 2020" ;
+    di:hasConfirmedCases 34854 ;
+    di:hasDate "2020-07-16"^^xsd:date ;
+    di:hasDeathCases 769 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 595 ;
+    di:hasNewDeathCases 9 ;
+    di:hasRecoveredCases 14292 ;
+    di:hasTotalCases 19793 ;
+    rdfs:comment "Covid-19 Summary for 16 July, 2020" .
+
+ncdc:covid19DailyStatus1OmwPtFQ55l92cWqyt7Myu3G6O9MuWhb-17Hw5qaps0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 10 April, 2020" ;
+    di:hasConfirmedCases 305 ;
+    di:hasDate "2020-04-10"^^xsd:date ;
+    di:hasDeathCases 7 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 17 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 58 ;
+    di:hasTotalCases 240 ;
+    rdfs:comment "Covid-19 Summary for 10 April, 2020" .
+
+ncdc:covid19DailyStatus1jT4gAvCjgi6q5CcUfllDz1PxzCbWEXBY_xDgZbprKI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 21 June, 2020" ;
+    di:hasConfirmedCases 20242 ;
+    di:hasDate "2020-06-21"^^xsd:date ;
+    di:hasDeathCases 518 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 436 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 6879 ;
+    di:hasTotalCases 12847 ;
+    rdfs:comment "Covid-19 Summary for 21 June, 2020" .
+
+ncdc:covid19DailyStatus3cZHfaiYHvIR5fKq5cKZ4uv8yTwbLrBPkbli0tUYvDw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 20 March, 2020" ;
+    di:hasConfirmedCases 12 ;
+    di:hasDate "2020-03-20"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 4 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 1 ;
+    di:hasTotalCases 11 ;
+    rdfs:comment "Covid-19 Summary for 20 March, 2020" .
+
+ncdc:covid19DailyStatus43Lq_6XT8uXHoY7WTNfke-hM5HwJlSsEpxrDbI1_fUQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 13 April, 2020" ;
+    di:hasConfirmedCases 343 ;
+    di:hasDate "2020-04-13"^^xsd:date ;
+    di:hasDeathCases 10 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 20 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 91 ;
+    di:hasTotalCases 242 ;
+    rdfs:comment "Covid-19 Summary for 13 April, 2020" .
+
+ncdc:covid19DailyStatus43hYLWpTqYOH6WVNAM0bWC8KnZf2wwcoXitZofa9I_I a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 30 April, 2020" ;
+    di:hasConfirmedCases 1932 ;
+    di:hasDate "2020-04-30"^^xsd:date ;
+    di:hasDeathCases 59 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 204 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 317 ;
+    di:hasTotalCases 1556 ;
+    rdfs:comment "Covid-19 Summary for 30 April, 2020" .
+
+ncdc:covid19DailyStatus4W0EJDFW9caU5SD1yF_xFpeOWDdzA7cesO8Cw-jGmeM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 23 June, 2020" ;
+    di:hasConfirmedCases 21371 ;
+    di:hasDate "2020-06-23"^^xsd:date ;
+    di:hasDeathCases 533 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 452 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 7338 ;
+    di:hasTotalCases 13500 ;
+    rdfs:comment "Covid-19 Summary for 23 June, 2020" .
+
+ncdc:covid19DailyStatus4iWsQNBGFx0kBXVhc5QOsNtuozzdrvNn8aVvzmzoU8M a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 14 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-14"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 14 March, 2020" .
+
+ncdc:covid19DailyStatus4qtSN26LFbbiqshPbVh7TQt8zofDgBCdCpHnQzLyzpk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 24 April, 2020" ;
+    di:hasConfirmedCases 1095 ;
+    di:hasDate "2020-04-24"^^xsd:date ;
+    di:hasDeathCases 33 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 114 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 208 ;
+    di:hasTotalCases 855 ;
+    rdfs:comment "Covid-19 Summary for 24 April, 2020" .
+
+ncdc:covid19DailyStatus4txGkZeBpoNchHOWZABPNN_N4lgrVNWhw_WityHFlqM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 14 July, 2020" ;
+    di:hasConfirmedCases 33616 ;
+    di:hasDate "2020-07-14"^^xsd:date ;
+    di:hasDeathCases 754 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 463 ;
+    di:hasNewDeathCases 10 ;
+    di:hasRecoveredCases 13792 ;
+    di:hasTotalCases 19070 ;
+    rdfs:comment "Covid-19 Summary for 14 July, 2020" .
+
+ncdc:covid19DailyStatus5Fo7hFn6Uv65JYc50VEdgxKHPECKlKKiiiw7v6Ce5O8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 06 April, 2020" ;
+    di:hasConfirmedCases 238 ;
+    di:hasDate "2020-04-06"^^xsd:date ;
+    di:hasDeathCases 5 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 6 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 35 ;
+    di:hasTotalCases 198 ;
+    rdfs:comment "Covid-19 Summary for 06 April, 2020" .
+
+ncdc:covid19DailyStatus5K4AmRM5JjrKHpZHiG_qTgz5b__2rxW4MESwKJtz_cI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 06 May, 2020" ;
+    di:hasConfirmedCases 3145 ;
+    di:hasDate "2020-05-06"^^xsd:date ;
+    di:hasDeathCases 104 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 195 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 534 ;
+    di:hasTotalCases 2507 ;
+    rdfs:comment "Covid-19 Summary for 06 May, 2020" .
+
+ncdc:covid19DailyStatus68Vz8Af60speXFkICH7XpVwqGUgvIGUDTSzpNHicmhw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 14 May, 2020" ;
+    di:hasConfirmedCases 5162 ;
+    di:hasDate "2020-05-14"^^xsd:date ;
+    di:hasDeathCases 168 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 193 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 1180 ;
+    di:hasTotalCases 3815 ;
+    rdfs:comment "Covid-19 Summary for 14 May, 2020" .
+
+ncdc:covid19DailyStatus6J1zgVH1ZIzJWGEPNbjbKveCx9E0gjkLWPljHTOAi1s a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 29 June, 2020" ;
+    di:hasConfirmedCases 25133 ;
+    di:hasDate "2020-06-29"^^xsd:date ;
+    di:hasDeathCases 573 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 566 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 9402 ;
+    di:hasTotalCases 15158 ;
+    rdfs:comment "Covid-19 Summary for 29 June, 2020" .
+
+ncdc:covid19DailyStatus6ZfG7KO8J9bxlyvzNofavjKdjkC_YmY-0AIe2U6Lip4 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 04 April, 2020" ;
+    di:hasConfirmedCases 214 ;
+    di:hasDate "2020-04-04"^^xsd:date ;
+    di:hasDeathCases 4 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 5 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 25 ;
+    di:hasTotalCases 185 ;
+    rdfs:comment "Covid-19 Summary for 04 April, 2020" .
+
+ncdc:covid19DailyStatus6p-TDn2KXno4lpmDwaU3avsFCjUHLqZ8L7xSIZ-OPms a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 05 May, 2020" ;
+    di:hasConfirmedCases 2950 ;
+    di:hasDate "2020-05-05"^^xsd:date ;
+    di:hasDeathCases 99 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 148 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 481 ;
+    di:hasTotalCases 2370 ;
+    rdfs:comment "Covid-19 Summary for 05 May, 2020" .
+
+ncdc:covid19DailyStatus7RkzXLfxPOhUZ2XnTKM-9cDk8rToEjUFURV7uqzPG34 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 08 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-08"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 08 March, 2020" .
+
+ncdc:covid19DailyStatus7_4YwkquXOBWNXrT1cEKzAJW_5fi4zyP4dqpn5wtgKE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 16 April, 2020" ;
+    di:hasConfirmedCases 442 ;
+    di:hasDate "2020-04-16"^^xsd:date ;
+    di:hasDeathCases 13 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 35 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 152 ;
+    di:hasTotalCases 277 ;
+    rdfs:comment "Covid-19 Summary for 16 April, 2020" .
+
+ncdc:covid19DailyStatus7oCRrV8PZlAsXovg6K415unZ2XgPXGdfgCKGs6l7bcI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 29 March, 2020" ;
+    di:hasConfirmedCases 111 ;
+    di:hasDate "2020-03-29"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 22 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 3 ;
+    di:hasTotalCases 107 ;
+    rdfs:comment "Covid-19 Summary for 29 March, 2020" .
+
+ncdc:covid19DailyStatus85jgwLOgMeRUeTQUgTIDHS9_Kd_B4fLyH0r4UIQMFt4 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 13 May, 2020" ;
+    di:hasConfirmedCases 4971 ;
+    di:hasDate "2020-05-13"^^xsd:date ;
+    di:hasDeathCases 164 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 184 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 1070 ;
+    di:hasTotalCases 3737 ;
+    rdfs:comment "Covid-19 Summary for 13 May, 2020" .
+
+ncdc:covid19DailyStatus8BNDSAqg9IxvB09Fcgb7TqDvVV6BNz2uGJoMUWyEdM0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 23 April, 2020" ;
+    di:hasConfirmedCases 981 ;
+    di:hasDate "2020-04-23"^^xsd:date ;
+    di:hasDeathCases 32 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 108 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 197 ;
+    di:hasTotalCases 753 ;
+    rdfs:comment "Covid-19 Summary for 23 April, 2020" .
+
+ncdc:covid19DailyStatus8WcpYEfwLvxmDIgGkNL08ODBBHfsIHKlcFrRFAQ_NJA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 04 July, 2020" ;
+    di:hasConfirmedCases 28167 ;
+    di:hasDate "2020-07-04"^^xsd:date ;
+    di:hasDeathCases 634 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 603 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 11462 ;
+    di:hasTotalCases 16071 ;
+    rdfs:comment "Covid-19 Summary for 04 July, 2020" .
+
+ncdc:covid19DailyStatus8njcPA4V4AgwkQ-uAEJKR0-8q1H7UvxlcTvI5pGVSDw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 14 April, 2020" ;
+    di:hasConfirmedCases 373 ;
+    di:hasDate "2020-04-14"^^xsd:date ;
+    di:hasDeathCases 11 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 30 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 99 ;
+    di:hasTotalCases 263 ;
+    rdfs:comment "Covid-19 Summary for 14 April, 2020" .
+
+ncdc:covid19DailyStatus9KE5QbVxGsHXeeGPODIF-XTKlt_56pWZETiwOlj5Hhs a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 31 May, 2020" ;
+    di:hasConfirmedCases 10162 ;
+    di:hasDate "2020-05-31"^^xsd:date ;
+    di:hasDeathCases 287 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 307 ;
+    di:hasNewDeathCases 14 ;
+    di:hasRecoveredCases 3007 ;
+    di:hasTotalCases 6868 ;
+    rdfs:comment "Covid-19 Summary for 31 May, 2020" .
+
+ncdc:covid19DailyStatus9gydp7iLvd3vLn_vYOJ-NEVf0Aybz-ZJzufMSWI-ljo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 25 March, 2020" ;
+    di:hasConfirmedCases 51 ;
+    di:hasDate "2020-03-25"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 7 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 2 ;
+    di:hasTotalCases 48 ;
+    rdfs:comment "Covid-19 Summary for 25 March, 2020" .
+
+ncdc:covid19DailyStatus9kbFQS_X_U7cXuWdLW_jk3VrtpVKSgaUZwUf0iZp9SI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 01 July, 2020" ;
+    di:hasConfirmedCases 26484 ;
+    di:hasDate "2020-07-01"^^xsd:date ;
+    di:hasDeathCases 603 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 790 ;
+    di:hasNewDeathCases 13 ;
+    di:hasRecoveredCases 10152 ;
+    di:hasTotalCases 15729 ;
+    rdfs:comment "Covid-19 Summary for 01 July, 2020" .
+
+ncdc:covid19DailyStatusAj8TcUFzK8c6p7nsRYOIwsGsq7HmcTD9UyklIk3Ucpc a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 10 May, 2020" ;
+    di:hasConfirmedCases 4399 ;
+    di:hasDate "2020-05-10"^^xsd:date ;
+    di:hasDeathCases 142 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 248 ;
+    di:hasNewDeathCases 17 ;
+    di:hasRecoveredCases 778 ;
+    di:hasTotalCases 3479 ;
+    rdfs:comment "Covid-19 Summary for 10 May, 2020" .
+
+ncdc:covid19DailyStatusBOYtKlwgX_5eooS70Bo4J5neisadXYMBElgSt4kMa60 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 03 April, 2020" ;
+    di:hasConfirmedCases 209 ;
+    di:hasDate "2020-04-03"^^xsd:date ;
+    di:hasDeathCases 4 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 25 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 25 ;
+    di:hasTotalCases 180 ;
+    rdfs:comment "Covid-19 Summary for 03 April, 2020" .
+
+ncdc:covid19DailyStatusBhywsi_mapeh-iF2EBcCAvZ0QbB77KEfYUonbjI7fcY a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 21 March, 2020" ;
+    di:hasConfirmedCases 22 ;
+    di:hasDate "2020-03-21"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 10 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 1 ;
+    di:hasTotalCases 21 ;
+    rdfs:comment "Covid-19 Summary for 21 March, 2020" .
+
+ncdc:covid19DailyStatusBvOYM93XQZGrCoJpyg3ia3ifgkeGFfwZI9o5r-uwTe8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 16 May, 2020" ;
+    di:hasConfirmedCases 5621 ;
+    di:hasDate "2020-05-16"^^xsd:date ;
+    di:hasDeathCases 176 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 176 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 1472 ;
+    di:hasTotalCases 3973 ;
+    rdfs:comment "Covid-19 Summary for 16 May, 2020" .
+
+ncdc:covid19DailyStatusBzpGyE9e1HBFsPU2dMqviBQksX7yhHy7jv9z-1RXdVw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 09 July, 2020" ;
+    di:hasConfirmedCases 30748 ;
+    di:hasDate "2020-07-09"^^xsd:date ;
+    di:hasDeathCases 689 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 499 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 12546 ;
+    di:hasTotalCases 17513 ;
+    rdfs:comment "Covid-19 Summary for 09 July, 2020" .
+
+ncdc:covid19DailyStatusCuSl3X23BwElQUuIU2r38s0pR0kbASwOjAMd7RulWf8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 22 June, 2020" ;
+    di:hasConfirmedCases 20919 ;
+    di:hasDate "2020-06-22"^^xsd:date ;
+    di:hasDeathCases 525 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 675 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 7109 ;
+    di:hasTotalCases 13285 ;
+    rdfs:comment "Covid-19 Summary for 22 June, 2020" .
+
+ncdc:covid19DailyStatusDUUKgnoT5eU9ugx_ZYmQCMiG6tlSV6T1lc5LHPUcklI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 01 May, 2020" ;
+    di:hasConfirmedCases 2170 ;
+    di:hasDate "2020-05-01"^^xsd:date ;
+    di:hasDeathCases 69 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 238 ;
+    di:hasNewDeathCases 10 ;
+    di:hasRecoveredCases 351 ;
+    di:hasTotalCases 1751 ;
+    rdfs:comment "Covid-19 Summary for 01 May, 2020" .
+
+ncdc:covid19DailyStatusDj_5v6tcP2fNiMB4UVxsR21lJ_8rgKX6e_KOWsJE8Wo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 29 May, 2020" ;
+    di:hasConfirmedCases 9302 ;
+    di:hasDate "2020-05-29"^^xsd:date ;
+    di:hasDeathCases 261 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 387 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 2697 ;
+    di:hasTotalCases 6344 ;
+    rdfs:comment "Covid-19 Summary for 29 May, 2020" .
+
+ncdc:covid19DailyStatusDspse2P53ypaVts6BQSB3JR1CHXapiQHOtQT20R654k a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 21 May, 2020" ;
+    di:hasConfirmedCases 7016 ;
+    di:hasDate "2020-05-21"^^xsd:date ;
+    di:hasDeathCases 211 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 339 ;
+    di:hasNewDeathCases 11 ;
+    di:hasRecoveredCases 1907 ;
+    di:hasTotalCases 4898 ;
+    rdfs:comment "Covid-19 Summary for 21 May, 2020" .
+
+ncdc:covid19DailyStatusEjBUvyiHy4XDRL6ynPjkRPYlqiNX6XKOnsMgwbiCfX4 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 26 May, 2020" ;
+    di:hasConfirmedCases 8344 ;
+    di:hasDate "2020-05-26"^^xsd:date ;
+    di:hasDeathCases 249 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 276 ;
+    di:hasNewDeathCases 16 ;
+    di:hasRecoveredCases 2385 ;
+    di:hasTotalCases 5710 ;
+    rdfs:comment "Covid-19 Summary for 26 May, 2020" .
+
+ncdc:covid19DailyStatusFK_itFbK5DF23hUwqhXBELhEhz3whhjpGG41cKqQIJw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 08 April, 2020" ;
+    di:hasConfirmedCases 274 ;
+    di:hasDate "2020-04-08"^^xsd:date ;
+    di:hasDeathCases 6 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 22 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 44 ;
+    di:hasTotalCases 226 ;
+    rdfs:comment "Covid-19 Summary for 08 April, 2020" .
+
+ncdc:covid19DailyStatusFWNXTVP5MXwdR9pK2NkmVDEpGb4GDHsMBox4bcQwmxY a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 25 April, 2020" ;
+    di:hasConfirmedCases 1182 ;
+    di:hasDate "2020-04-25"^^xsd:date ;
+    di:hasDeathCases 36 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 87 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 222 ;
+    di:hasTotalCases 925 ;
+    rdfs:comment "Covid-19 Summary for 25 April, 2020" .
+
+ncdc:covid19DailyStatusFgAgh2TkCDaxx_0ZRYvzBQVr5LKb5kGseDna_eHm7aQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 17 March, 2020" ;
+    di:hasConfirmedCases 3 ;
+    di:hasDate "2020-03-17"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 1 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 3 ;
+    rdfs:comment "Covid-19 Summary for 17 March, 2020" .
+
+ncdc:covid19DailyStatusGOJJ3XbG9-mdizPf6i0Qg71zPkzLR7s0YeJHOvIEF9U a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 27 April, 2020" ;
+    di:hasConfirmedCases 1337 ;
+    di:hasDate "2020-04-27"^^xsd:date ;
+    di:hasDeathCases 41 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 64 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 255 ;
+    di:hasTotalCases 994 ;
+    rdfs:comment "Covid-19 Summary for 27 April, 2020" .
+
+ncdc:covid19DailyStatusGOO5K2cOZB3q8IgX6_GBQKUtgI0Ms8XnjjSEdrIv-6k a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 11 May, 2020" ;
+    di:hasConfirmedCases 4641 ;
+    di:hasDate "2020-05-11"^^xsd:date ;
+    di:hasDeathCases 152 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 242 ;
+    di:hasNewDeathCases 10 ;
+    di:hasRecoveredCases 902 ;
+    di:hasTotalCases 3589 ;
+    rdfs:comment "Covid-19 Summary for 11 May, 2020" .
+
+ncdc:covid19DailyStatusHGMnw8rblPMrBbgM8Iq40hJBglxKXekc0cZyAxgQtTU a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 22 March, 2020" ;
+    di:hasConfirmedCases 30 ;
+    di:hasDate "2020-03-22"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 8 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 2 ;
+    di:hasTotalCases 28 ;
+    rdfs:comment "Covid-19 Summary for 22 March, 2020" .
+
+ncdc:covid19DailyStatusHMXOjgKKwhLQw4A_bdc8OHeEXvTZstn4ooCiV1njTQU a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 15 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-15"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 15 March, 2020" .
+
+ncdc:covid19DailyStatusHhOCCv0-hYzCm744jBA_Ec9WnQkzLYxUrsET5ZatbOo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 04 May, 2020" ;
+    di:hasConfirmedCases 2802 ;
+    di:hasDate "2020-05-04"^^xsd:date ;
+    di:hasDeathCases 94 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 245 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 417 ;
+    di:hasTotalCases 2291 ;
+    rdfs:comment "Covid-19 Summary for 04 May, 2020" .
+
+ncdc:covid19DailyStatusHiBBE2ljY6qX4CtxmObpr1sToOpQgWz50AryovWJ1t8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 13 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-13"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 13 March, 2020" .
+
+ncdc:covid19DailyStatusHmLWs-D4ruI7Lq9RH8Y-zEnEY8ZRMyKBDgsWcfct5q0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 10 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-10"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 10 March, 2020" .
+
+ncdc:covid19DailyStatusI4r_d0wSzqGesxkHnAn9mmJi6FpGHgYPlqY2ISkZl4g a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 21 July, 2020" ;
+    di:hasConfirmedCases 37801 ;
+    di:hasDate "2020-07-21"^^xsd:date ;
+    di:hasDeathCases 805 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 576 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 15677 ;
+    di:hasTotalCases 21319 ;
+    rdfs:comment "Covid-19 Summary for 21 July, 2020" .
+
+ncdc:covid19DailyStatusJkILNhZSAvgHmaCuLzUwUpxLojAGjT307Y5uHCcURNE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 24 May, 2020" ;
+    di:hasConfirmedCases 7839 ;
+    di:hasDate "2020-05-24"^^xsd:date ;
+    di:hasDeathCases 226 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 313 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 2263 ;
+    di:hasTotalCases 5360 ;
+    rdfs:comment "Covid-19 Summary for 24 May, 2020" .
+
+ncdc:covid19DailyStatusKVFO840OpTwJaee4wwh8jQMVMhECg2Ng35aupn-2qtQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 06 June, 2020" ;
+    di:hasConfirmedCases 12233 ;
+    di:hasDate "2020-06-06"^^xsd:date ;
+    di:hasDeathCases 342 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 389 ;
+    di:hasNewDeathCases 9 ;
+    di:hasRecoveredCases 3826 ;
+    di:hasTotalCases 8065 ;
+    rdfs:comment "Covid-19 Summary for 06 June, 2020" .
+
+ncdc:covid19DailyStatusKbfH1p7tJYNooq1MEi386PhyNytjn5qI-8ZyvSD7cjE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 13 June, 2020" ;
+    di:hasConfirmedCases 15682 ;
+    di:hasDate "2020-06-13"^^xsd:date ;
+    di:hasDeathCases 407 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 501 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 5101 ;
+    di:hasTotalCases 10174 ;
+    rdfs:comment "Covid-19 Summary for 13 June, 2020" .
+
+ncdc:covid19DailyStatusKeA2McjJsHYuj0iz6hs1JWJszjzmpe52pb9vBKbVPHE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 15 May, 2020" ;
+    di:hasConfirmedCases 5445 ;
+    di:hasDate "2020-05-15"^^xsd:date ;
+    di:hasDeathCases 171 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 288 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 1320 ;
+    di:hasTotalCases 3954 ;
+    rdfs:comment "Covid-19 Summary for 15 May, 2020" .
+
+ncdc:covid19DailyStatusLDmo0ZnSCfWBTjykwP1nnAPgC6cxSKEo076_6mg8QZo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 22 July, 2020" ;
+    di:hasConfirmedCases 38344 ;
+    di:hasDate "2020-07-22"^^xsd:date ;
+    di:hasDeathCases 813 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 543 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 15815 ;
+    di:hasTotalCases 21716 ;
+    rdfs:comment "Covid-19 Summary for 22 July, 2020" .
+
+ncdc:covid19DailyStatusLt3NJ_Dx-6CG34hsdghYa1yHuy6_Yds4UBICD-gYX2E a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 29 April, 2020" ;
+    di:hasConfirmedCases 1728 ;
+    di:hasDate "2020-04-29"^^xsd:date ;
+    di:hasDeathCases 52 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 196 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 307 ;
+    di:hasTotalCases 1369 ;
+    rdfs:comment "Covid-19 Summary for 29 April, 2020" .
+
+ncdc:covid19DailyStatusMcx8eM0PW64wEkHurroc5CXIyUN_4N33vpLkEJ28-UA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 08 May, 2020" ;
+    di:hasConfirmedCases 3912 ;
+    di:hasDate "2020-05-08"^^xsd:date ;
+    di:hasDeathCases 118 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 386 ;
+    di:hasNewDeathCases 10 ;
+    di:hasRecoveredCases 679 ;
+    di:hasTotalCases 3115 ;
+    rdfs:comment "Covid-19 Summary for 08 May, 2020" .
+
+ncdc:covid19DailyStatusNFfGwkSzusMfenkVuleVxt8PTY7RqpxdbvVezy2eHHE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 15 July, 2020" ;
+    di:hasConfirmedCases 34259 ;
+    di:hasDate "2020-07-15"^^xsd:date ;
+    di:hasDeathCases 760 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 643 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 13999 ;
+    di:hasTotalCases 19500 ;
+    rdfs:comment "Covid-19 Summary for 15 July, 2020" .
+
+ncdc:covid19DailyStatusNHC7NK65AevyaeQFCAtLyfo9WLjYvCKcf8mHUA8NS8Y a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 22 May, 2020" ;
+    di:hasConfirmedCases 7261 ;
+    di:hasDate "2020-05-22"^^xsd:date ;
+    di:hasDeathCases 221 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 245 ;
+    di:hasNewDeathCases 10 ;
+    di:hasRecoveredCases 2007 ;
+    di:hasTotalCases 5033 ;
+    rdfs:comment "Covid-19 Summary for 22 May, 2020" .
+
+ncdc:covid19DailyStatusOFJNHJamuer9D2OFq8Ij0oZgp4hJEx29hLgbutRH90g a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 28 July, 2020" ;
+    di:hasConfirmedCases 41804 ;
+    di:hasDate "2020-07-28"^^xsd:date ;
+    di:hasDeathCases 868 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 624 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 18764 ;
+    di:hasTotalCases 22172 ;
+    rdfs:comment "Covid-19 Summary for 28 July, 2020" .
+
+ncdc:covid19DailyStatusOU8qtRKy9zv9mG1SEZlhVLBGr0B1bHeUVmSrIIGqi6M a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 03 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-03"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 03 March, 2020" .
+
+ncdc:covid19DailyStatusOlKwGAWK84lhwzlA70bLw26LH93TWDXyMd6cb4mcBOU a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 24 June, 2020" ;
+    di:hasConfirmedCases 22020 ;
+    di:hasDate "2020-06-24"^^xsd:date ;
+    di:hasDeathCases 542 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 649 ;
+    di:hasNewDeathCases 9 ;
+    di:hasRecoveredCases 7613 ;
+    di:hasTotalCases 13865 ;
+    rdfs:comment "Covid-19 Summary for 24 June, 2020" .
+
+ncdc:covid19DailyStatusOoEylI2NXtbYrfhEAJOGXSYLGs9elKUDLb3A0zUY3-A a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 05 July, 2020" ;
+    di:hasConfirmedCases 28711 ;
+    di:hasDate "2020-07-05"^^xsd:date ;
+    di:hasDeathCases 645 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 544 ;
+    di:hasNewDeathCases 11 ;
+    di:hasRecoveredCases 11665 ;
+    di:hasTotalCases 16401 ;
+    rdfs:comment "Covid-19 Summary for 05 July, 2020" .
+
+ncdc:covid19DailyStatusPVsnZg9Gsy-mdIWfe6vHhJ1i8WJRJehVIBGre8wh46A a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 25 May, 2020" ;
+    di:hasConfirmedCases 8068 ;
+    di:hasDate "2020-05-25"^^xsd:date ;
+    di:hasDeathCases 233 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 229 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 2311 ;
+    di:hasTotalCases 5524 ;
+    rdfs:comment "Covid-19 Summary for 25 May, 2020" .
+
+ncdc:covid19DailyStatusPp_uCqQ72EFiUUptV3rRWrPLd-Ig2bQwxccy1NspJQI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 14 June, 2020" ;
+    di:hasConfirmedCases 16085 ;
+    di:hasDate "2020-06-14"^^xsd:date ;
+    di:hasDeathCases 420 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 403 ;
+    di:hasNewDeathCases 13 ;
+    di:hasRecoveredCases 5220 ;
+    di:hasTotalCases 10445 ;
+    rdfs:comment "Covid-19 Summary for 14 June, 2020" .
+
+ncdc:covid19DailyStatusPsLe8SWs0Hy931Ix-Wec8F3dDh1Tl1AbFSYb8DeZj5A a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 26 March, 2020" ;
+    di:hasConfirmedCases 65 ;
+    di:hasDate "2020-03-26"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 14 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 2 ;
+    di:hasTotalCases 62 ;
+    rdfs:comment "Covid-19 Summary for 26 March, 2020" .
+
+ncdc:covid19DailyStatusQ5zsxxFzzmySGQ8vItfcjrj7XjspU7AEiWRkQRbFEKM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 09 June, 2020" ;
+    di:hasConfirmedCases 13464 ;
+    di:hasDate "2020-06-09"^^xsd:date ;
+    di:hasDeathCases 365 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 663 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 4206 ;
+    di:hasTotalCases 8893 ;
+    rdfs:comment "Covid-19 Summary for 09 June, 2020" .
+
+ncdc:covid19DailyStatusQ8E1d9lXXIx81CtWn8rbsnJ2fVgLKd1vngEtLJaHJ3s a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 11 April, 2020" ;
+    di:hasConfirmedCases 318 ;
+    di:hasDate "2020-04-11"^^xsd:date ;
+    di:hasDeathCases 10 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 13 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 70 ;
+    di:hasTotalCases 238 ;
+    rdfs:comment "Covid-19 Summary for 11 April, 2020" .
+
+ncdc:covid19DailyStatusQAA4ZC3hp4E9Sqx3Roa1ekjpKOw3amVWAm6aI1X9GYc a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 04 June, 2020" ;
+    di:hasConfirmedCases 11516 ;
+    di:hasDate "2020-06-04"^^xsd:date ;
+    di:hasDeathCases 323 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 350 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 3535 ;
+    di:hasTotalCases 7646 ;
+    rdfs:comment "Covid-19 Summary for 04 June, 2020" .
+
+ncdc:covid19DailyStatusQK3nrUBaa_h5y4rf9ICDJHkeB2NwvscUd2X7ZudOyAk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 10 June, 2020" ;
+    di:hasConfirmedCases 13873 ;
+    di:hasDate "2020-06-10"^^xsd:date ;
+    di:hasDeathCases 382 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 409 ;
+    di:hasNewDeathCases 17 ;
+    di:hasRecoveredCases 4351 ;
+    di:hasTotalCases 9140 ;
+    rdfs:comment "Covid-19 Summary for 10 June, 2020" .
+
+ncdc:covid19DailyStatusRQZWx5rqbWaFHEwHH6d3JOu3uaPgZffXTPJNvVggtLM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 17 April, 2020" ;
+    di:hasConfirmedCases 493 ;
+    di:hasDate "2020-04-17"^^xsd:date ;
+    di:hasDeathCases 18 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 51 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 159 ;
+    di:hasTotalCases 317 ;
+    rdfs:comment "Covid-19 Summary for 17 April, 2020" .
+
+ncdc:covid19DailyStatusSJF-cYOAGmMIgDq74CF5sXo6zclV3F1EsEqHwZ0wrto a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 31 March, 2020" ;
+    di:hasConfirmedCases 139 ;
+    di:hasDate "2020-03-31"^^xsd:date ;
+    di:hasDeathCases 2 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 8 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 9 ;
+    di:hasTotalCases 128 ;
+    rdfs:comment "Covid-19 Summary for 31 March, 2020" .
+
+ncdc:covid19DailyStatusT13WVghyGT3JCZyL-GVBbutFcVWQWiKfotFikVN5EKI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 19 May, 2020" ;
+    di:hasConfirmedCases 6401 ;
+    di:hasDate "2020-05-19"^^xsd:date ;
+    di:hasDeathCases 192 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 226 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 1734 ;
+    di:hasTotalCases 4475 ;
+    rdfs:comment "Covid-19 Summary for 19 May, 2020" .
+
+ncdc:covid19DailyStatusT7DOcB0RIUAmkC82dvTMDpkGaxUswc1WUUw9IM2Skfs a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 23 July, 2020" ;
+    di:hasConfirmedCases 38948 ;
+    di:hasDate "2020-07-23"^^xsd:date ;
+    di:hasDeathCases 833 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 604 ;
+    di:hasNewDeathCases 20 ;
+    di:hasRecoveredCases 16061 ;
+    di:hasTotalCases 22054 ;
+    rdfs:comment "Covid-19 Summary for 23 July, 2020" .
+
+ncdc:covid19DailyStatusTLhGoVoYhcxz8ToRgDv9guVzNEmDLSjOcVRreILQeHk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 24 March, 2020" ;
+    di:hasConfirmedCases 44 ;
+    di:hasDate "2020-03-24"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 4 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 2 ;
+    di:hasTotalCases 41 ;
+    rdfs:comment "Covid-19 Summary for 24 March, 2020" .
+
+ncdc:covid19DailyStatusTuA-HhtZy30HwKWXbs18XDQrRnrIo2wKn6Y1G3hPe1U a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 11 June, 2020" ;
+    di:hasConfirmedCases 14554 ;
+    di:hasDate "2020-06-11"^^xsd:date ;
+    di:hasDeathCases 387 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 681 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 4494 ;
+    di:hasTotalCases 9673 ;
+    rdfs:comment "Covid-19 Summary for 11 June, 2020" .
+
+ncdc:covid19DailyStatusU7g9HRsp5K8N_b3vlF_N-HGs_PkKey37dZAGvl7Qp9g a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 18 March, 2020" ;
+    di:hasConfirmedCases 8 ;
+    di:hasDate "2020-03-18"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 5 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 1 ;
+    di:hasTotalCases 7 ;
+    rdfs:comment "Covid-19 Summary for 18 March, 2020" .
+
+ncdc:covid19DailyStatusU9oSkyq7NNrQm2NvnCggwXRibsZqQbrGK0WdrPCAxt8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 07 July, 2020" ;
+    di:hasConfirmedCases 29789 ;
+    di:hasDate "2020-07-07"^^xsd:date ;
+    di:hasDeathCases 669 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 503 ;
+    di:hasNewDeathCases 15 ;
+    di:hasRecoveredCases 12108 ;
+    di:hasTotalCases 17012 ;
+    rdfs:comment "Covid-19 Summary for 07 July, 2020" .
+
+ncdc:covid19DailyStatusUa0IIEZ8Ghxj-FmG_lyBa6rfJYbTqE7iteDYEMHI-tA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 12 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-12"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 12 March, 2020" .
+
+ncdc:covid19DailyStatusUb68nZl4nahCVnxQsGKS8U8FSelb-7hTkuDRe-iAt1w a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 30 June, 2020" ;
+    di:hasConfirmedCases 25694 ;
+    di:hasDate "2020-06-30"^^xsd:date ;
+    di:hasDeathCases 590 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 561 ;
+    di:hasNewDeathCases 17 ;
+    di:hasRecoveredCases 9746 ;
+    di:hasTotalCases 15358 ;
+    rdfs:comment "Covid-19 Summary for 30 June, 2020" .
+
+ncdc:covid19DailyStatusVDVXTmPJ7bqCTiKe0ReQdz26rjDWB53Td304wcdsZcE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 12 April, 2020" ;
+    di:hasConfirmedCases 323 ;
+    di:hasDate "2020-04-12"^^xsd:date ;
+    di:hasDeathCases 10 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 5 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 85 ;
+    di:hasTotalCases 228 ;
+    rdfs:comment "Covid-19 Summary for 12 April, 2020" .
+
+ncdc:covid19DailyStatusWgCHH6688GiIoz-VkuOtKk6OLCxi4NcjOfh3pchkJa0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 12 May, 2020" ;
+    di:hasConfirmedCases 4787 ;
+    di:hasDate "2020-05-12"^^xsd:date ;
+    di:hasDeathCases 158 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 146 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 959 ;
+    di:hasTotalCases 3670 ;
+    rdfs:comment "Covid-19 Summary for 12 May, 2020" .
+
+ncdc:covid19DailyStatusXOlmeOMuVvLm4v4U4g7bXSaWJy4IxUKgFmGg6p_i8Lk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 02 April, 2020" ;
+    di:hasConfirmedCases 184 ;
+    di:hasDate "2020-04-02"^^xsd:date ;
+    di:hasDeathCases 2 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 10 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 20 ;
+    di:hasTotalCases 162 ;
+    rdfs:comment "Covid-19 Summary for 02 April, 2020" .
+
+ncdc:covid19DailyStatusY1eg6VcR1jQJxC70hQR5Dmu-6BTlpNmfOiiNlfY-EPo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 04 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-04"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 04 March, 2020" .
+
+ncdc:covid19DailyStatusYWH3O5VT-5AogYp7uv7XVcjMK1kCeVBXHiV-v46Eh1Q a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 05 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-05"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 05 March, 2020" .
+
+ncdc:covid19DailyStatusYajjFfi92HboHO1QIY6_pwz9-JMgtLRJds6yoiRdSj0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 06 July, 2020" ;
+    di:hasConfirmedCases 29286 ;
+    di:hasDate "2020-07-06"^^xsd:date ;
+    di:hasDeathCases 654 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 575 ;
+    di:hasNewDeathCases 9 ;
+    di:hasRecoveredCases 11828 ;
+    di:hasTotalCases 16804 ;
+    rdfs:comment "Covid-19 Summary for 06 July, 2020" .
+
+ncdc:covid19DailyStatusYhD6nMEgrGni8z79XKCe9byaoUZxsZq4CTOGmKFZGfI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 20 July, 2020" ;
+    di:hasConfirmedCases 37225 ;
+    di:hasDate "2020-07-20"^^xsd:date ;
+    di:hasDeathCases 801 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 562 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 15333 ;
+    di:hasTotalCases 21091 ;
+    rdfs:comment "Covid-19 Summary for 20 July, 2020" .
+
+ncdc:covid19DailyStatusYtExKOSpGid72v9KUTPtFBomwNcpn85nSTeNcEqoVQ8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 09 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-09"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 1 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 09 March, 2020" .
+
+ncdc:covid19DailyStatusZ0AGtprH3bxyBThKCQbPaMPIhel-xXwG1OzD1TXv7WA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 03 June, 2020" ;
+    di:hasConfirmedCases 11166 ;
+    di:hasDate "2020-06-03"^^xsd:date ;
+    di:hasDeathCases 315 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 348 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 3329 ;
+    di:hasTotalCases 7522 ;
+    rdfs:comment "Covid-19 Summary for 03 June, 2020" .
+
+ncdc:covid19DailyStatusZ43brxTusmaPtGGc2wc48XPuqC0HTTYTPFLJItfDvN0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 07 May, 2020" ;
+    di:hasConfirmedCases 3526 ;
+    di:hasDate "2020-05-07"^^xsd:date ;
+    di:hasDeathCases 108 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 381 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 601 ;
+    di:hasTotalCases 2818 ;
+    rdfs:comment "Covid-19 Summary for 07 May, 2020" .
+
+ncdc:covid19DailyStatusZ8wdldgd3klQmATATfdsirO70vypp045hCK7WKmzTQw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 01 April, 2020" ;
+    di:hasConfirmedCases 174 ;
+    di:hasDate "2020-04-01"^^xsd:date ;
+    di:hasDeathCases 2 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 35 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 9 ;
+    di:hasTotalCases 163 ;
+    rdfs:comment "Covid-19 Summary for 01 April, 2020" .
+
+ncdc:covid19DailyStatusZD-MUfGN3q2LieD90Ffb9nRRk2s1DhAN5N6g44DBZiA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 27 July, 2020" ;
+    di:hasConfirmedCases 41180 ;
+    di:hasDate "2020-07-27"^^xsd:date ;
+    di:hasDeathCases 860 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 648 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 18203 ;
+    di:hasTotalCases 22117 ;
+    rdfs:comment "Covid-19 Summary for 27 July, 2020" .
+
+ncdc:covid19DailyStatusZKMWOiuLJSv2OjS0k1ORYntXJyJFbh6gGyKK6RJDjls a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 02 July, 2020" ;
+    di:hasConfirmedCases 27110 ;
+    di:hasDate "2020-07-02"^^xsd:date ;
+    di:hasDeathCases 616 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 626 ;
+    di:hasNewDeathCases 13 ;
+    di:hasRecoveredCases 10801 ;
+    di:hasTotalCases 15693 ;
+    rdfs:comment "Covid-19 Summary for 02 July, 2020" .
+
+ncdc:covid19DailyStatusZrXzoSEjVyLsuhElAG4JlQnLidXDbrZACU4rMV2QxhU a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 29 February, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-02-29"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 29 February, 2020" .
+
+ncdc:covid19DailyStatusZvdMfnfZnzHOn5T6ajuqchlhCCKnGQnpKUX6WiINjXM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 11 July, 2020" ;
+    di:hasConfirmedCases 31987 ;
+    di:hasDate "2020-07-11"^^xsd:date ;
+    di:hasDeathCases 724 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 664 ;
+    di:hasNewDeathCases 15 ;
+    di:hasRecoveredCases 13103 ;
+    di:hasTotalCases 18160 ;
+    rdfs:comment "Covid-19 Summary for 11 July, 2020" .
+
+ncdc:covid19DailyStatus_LxdtE8SVxgTdtyGBO8vbwLsqtkPWDkU0iUhH8kvhVg a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 30 March, 2020" ;
+    di:hasConfirmedCases 131 ;
+    di:hasDate "2020-03-30"^^xsd:date ;
+    di:hasDeathCases 2 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 20 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 8 ;
+    di:hasTotalCases 121 ;
+    rdfs:comment "Covid-19 Summary for 30 March, 2020" .
+
+ncdc:covid19DailyStatusb2qrOgE2c3y96vUgsyEcWoQKBo1UDG4bZbt0CJ2fFWg a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 26 April, 2020" ;
+    di:hasConfirmedCases 1273 ;
+    di:hasDate "2020-04-26"^^xsd:date ;
+    di:hasDeathCases 41 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 91 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 239 ;
+    di:hasTotalCases 994 ;
+    rdfs:comment "Covid-19 Summary for 26 April, 2020" .
+
+ncdc:covid19DailyStatusbX6VjrxhS3d6x4WeiDC7zg3LBg3y0489HpBzz6zQWU4 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 27 June, 2020" ;
+    di:hasConfirmedCases 24077 ;
+    di:hasDate "2020-06-27"^^xsd:date ;
+    di:hasDeathCases 558 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 779 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 8625 ;
+    di:hasTotalCases 14894 ;
+    rdfs:comment "Covid-19 Summary for 27 June, 2020" .
+
+ncdc:covid19DailyStatusd6RsoU943pbYgV5X973k9kdu0qUt-i6PFf89leZBWHI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 25 June, 2020" ;
+    di:hasConfirmedCases 22614 ;
+    di:hasDate "2020-06-25"^^xsd:date ;
+    di:hasDeathCases 549 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 594 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 7822 ;
+    di:hasTotalCases 14243 ;
+    rdfs:comment "Covid-19 Summary for 25 June, 2020" .
+
+ncdc:covid19DailyStatusd7ej3UEqrYvAcpo6NVZrvonylRXsDZPbdDCY-19WaZI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 07 April, 2020" ;
+    di:hasConfirmedCases 254 ;
+    di:hasDate "2020-04-07"^^xsd:date ;
+    di:hasDeathCases 6 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 16 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 44 ;
+    di:hasTotalCases 204 ;
+    rdfs:comment "Covid-19 Summary for 07 April, 2020" .
+
+ncdc:covid19DailyStatusdZ2gp84p0GNuryk508CfTRsvCSACD0yNEayd7T6IagQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 28 June, 2020" ;
+    di:hasConfirmedCases 24867 ;
+    di:hasDate "2020-06-28"^^xsd:date ;
+    di:hasDeathCases 565 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 490 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 9007 ;
+    di:hasTotalCases 14995 ;
+    rdfs:comment "Covid-19 Summary for 28 June, 2020" .
+
+ncdc:covid19DailyStatusdcpR4mlypa2H-7l5jYSNoT1UPq-Uvqx9eNRpLG8rBYw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 09 May, 2020" ;
+    di:hasConfirmedCases 4151 ;
+    di:hasDate "2020-05-09"^^xsd:date ;
+    di:hasDeathCases 127 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 239 ;
+    di:hasNewDeathCases 11 ;
+    di:hasRecoveredCases 745 ;
+    di:hasTotalCases 3278 ;
+    rdfs:comment "Covid-19 Summary for 09 May, 2020" .
+
+ncdc:covid19DailyStatusdmlwa5X1aTJsPGqxmVl8QGDSe3KQDT3IDjNO7cxzIMU a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 16 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-16"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 16 March, 2020" .
+
+ncdc:covid19DailyStatuseNPxmUKOCZ61GkNBsI51z_NRJJGbHW90FnchVmsO94Y a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 28 March, 2020" ;
+    di:hasConfirmedCases 89 ;
+    di:hasDate "2020-03-28"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 19 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 3 ;
+    di:hasTotalCases 85 ;
+    rdfs:comment "Covid-19 Summary for 28 March, 2020" .
+
+ncdc:covid19DailyStatuseZzYRtekZCDAvXwnjTChvNrPqPi6fxneatDVq1UFcEQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 05 June, 2020" ;
+    di:hasConfirmedCases 11844 ;
+    di:hasDate "2020-06-05"^^xsd:date ;
+    di:hasDeathCases 333 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 328 ;
+    di:hasNewDeathCases 10 ;
+    di:hasRecoveredCases 3696 ;
+    di:hasTotalCases 7815 ;
+    rdfs:comment "Covid-19 Summary for 05 June, 2020" .
+
+ncdc:covid19DailyStatusfEbKC6rqYotnDU5Oomn0JBON84mICFvZNDrlKCrurIw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 13 July, 2020" ;
+    di:hasConfirmedCases 33153 ;
+    di:hasDate "2020-07-13"^^xsd:date ;
+    di:hasDeathCases 744 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 595 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 13671 ;
+    di:hasTotalCases 18738 ;
+    rdfs:comment "Covid-19 Summary for 13 July, 2020" .
+
+ncdc:covid19DailyStatusfYGbaWtMtOwjozw7QwZTDhkQHWn9fk9BX6MNA4UGC2k a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 28 May, 2020" ;
+    di:hasConfirmedCases 8915 ;
+    di:hasDate "2020-05-28"^^xsd:date ;
+    di:hasDeathCases 259 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 182 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 2592 ;
+    di:hasTotalCases 6064 ;
+    rdfs:comment "Covid-19 Summary for 28 May, 2020" .
+
+ncdc:covid19DailyStatusgPvSqaCEv65Lepfe5gmZtD6ybzosf_ZfLGAt9YW__Vo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 10 July, 2020" ;
+    di:hasConfirmedCases 31323 ;
+    di:hasDate "2020-07-10"^^xsd:date ;
+    di:hasDeathCases 709 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 575 ;
+    di:hasNewDeathCases 20 ;
+    di:hasRecoveredCases 12795 ;
+    di:hasTotalCases 17819 ;
+    rdfs:comment "Covid-19 Summary for 10 July, 2020" .
+
+ncdc:covid19DailyStatushd_mT4u_fQje2xDFhccza_wjRb7kAQtq2dWGYIbxQVo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 19 March, 2020" ;
+    di:hasConfirmedCases 8 ;
+    di:hasDate "2020-03-19"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 1 ;
+    di:hasTotalCases 7 ;
+    rdfs:comment "Covid-19 Summary for 19 March, 2020" .
+
+ncdc:covid19DailyStatushhCBLaRC4wHDSYeo1yKnO5D7uNXdqVkBZBAH7GOxYZA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 03 May, 2020" ;
+    di:hasConfirmedCases 2558 ;
+    di:hasDate "2020-05-03"^^xsd:date ;
+    di:hasDeathCases 88 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 170 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 400 ;
+    di:hasTotalCases 2070 ;
+    rdfs:comment "Covid-19 Summary for 03 May, 2020" .
+
+ncdc:covid19DailyStatusio58jJFxnKlgaPZ1IYmVAgOjN3SVh9BzQz48ELNdtDE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 25 July, 2020" ;
+    di:hasConfirmedCases 39977 ;
+    di:hasDate "2020-07-25"^^xsd:date ;
+    di:hasDeathCases 856 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 438 ;
+    di:hasNewDeathCases 11 ;
+    di:hasRecoveredCases 16948 ;
+    di:hasTotalCases 22173 ;
+    rdfs:comment "Covid-19 Summary for 25 July, 2020" .
+
+ncdc:covid19DailyStatusj5UQxWRU3uUVsYZOT7QJuSwtJ45rpxmROWLO2TvkqoU a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 09 April, 2020" ;
+    di:hasConfirmedCases 288 ;
+    di:hasDate "2020-04-09"^^xsd:date ;
+    di:hasDeathCases 7 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 14 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 51 ;
+    di:hasTotalCases 230 ;
+    rdfs:comment "Covid-19 Summary for 09 April, 2020" .
+
+ncdc:covid19DailyStatusjNrR_4NYup2H5oIcJ6gSnFS66ryx8BEoRxbYEFn9Bwo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 30 May, 2020" ;
+    di:hasConfirmedCases 9855 ;
+    di:hasDate "2020-05-30"^^xsd:date ;
+    di:hasDeathCases 273 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 553 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 2856 ;
+    di:hasTotalCases 6726 ;
+    rdfs:comment "Covid-19 Summary for 30 May, 2020" .
+
+ncdc:covid19DailyStatuskYuHu7R7QGWeY68sZ4TSgI1XRrfRikgzHMNGUJr4uOk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 28 April, 2020" ;
+    di:hasConfirmedCases 1532 ;
+    di:hasDate "2020-04-28"^^xsd:date ;
+    di:hasDeathCases 45 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 195 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 255 ;
+    di:hasTotalCases 1232 ;
+    rdfs:comment "Covid-19 Summary for 28 April, 2020" .
+
+ncdc:covid19DailyStatusknhpGIEPlbNpCS56g1ju7twMzwBId1rVuVhLSqD_9Oo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 18 April, 2020" ;
+    di:hasConfirmedCases 541 ;
+    di:hasDate "2020-04-18"^^xsd:date ;
+    di:hasDeathCases 20 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 48 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 166 ;
+    di:hasTotalCases 356 ;
+    rdfs:comment "Covid-19 Summary for 18 April, 2020" .
+
+ncdc:covid19DailyStatusl-kHk4IlfGix-AsGI2dZPtfoqQxEW9_E87a1B6tu8Qk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 27 March, 2020" ;
+    di:hasConfirmedCases 70 ;
+    di:hasDate "2020-03-27"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 5 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 3 ;
+    di:hasTotalCases 66 ;
+    rdfs:comment "Covid-19 Summary for 27 March, 2020" .
+
+ncdc:covid19DailyStatusl2Y3KVxUYVngaAP7CUaD_uAo3syUdAokKaSvtt7jIhM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 22 April, 2020" ;
+    di:hasConfirmedCases 873 ;
+    di:hasDate "2020-04-22"^^xsd:date ;
+    di:hasDeathCases 29 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 91 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 197 ;
+    di:hasTotalCases 648 ;
+    rdfs:comment "Covid-19 Summary for 22 April, 2020" .
+
+ncdc:covid19DailyStatusl9OPQEoHgr_EKBtIrDYzkuNc6Lnb87KvgPT5YpnXx9I a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 08 June, 2020" ;
+    di:hasConfirmedCases 12801 ;
+    di:hasDate "2020-06-08"^^xsd:date ;
+    di:hasDeathCases 361 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 315 ;
+    di:hasNewDeathCases 7 ;
+    di:hasRecoveredCases 4040 ;
+    di:hasTotalCases 8400 ;
+    rdfs:comment "Covid-19 Summary for 08 June, 2020" .
+
+ncdc:covid19DailyStatuslTPG6GkA-qv-sqQcCZuSIlZpsyk3PAnq5iVtyNhUbVg a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 16 June, 2020" ;
+    di:hasConfirmedCases 17148 ;
+    di:hasDate "2020-06-16"^^xsd:date ;
+    di:hasDeathCases 455 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 490 ;
+    di:hasNewDeathCases 31 ;
+    di:hasRecoveredCases 5623 ;
+    di:hasTotalCases 11070 ;
+    rdfs:comment "Covid-19 Summary for 16 June, 2020" .
+
+ncdc:covid19DailyStatusl_UnEZECgn3ipkEnLwmxxi0bOW3l0--UbyKxYWCBgH8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 19 July, 2020" ;
+    di:hasConfirmedCases 36663 ;
+    di:hasDate "2020-07-19"^^xsd:date ;
+    di:hasDeathCases 789 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 556 ;
+    di:hasNewDeathCases 11 ;
+    di:hasRecoveredCases 15105 ;
+    di:hasTotalCases 20769 ;
+    rdfs:comment "Covid-19 Summary for 19 July, 2020" .
+
+ncdc:covid19DailyStatusljndIsVJLvj8nbMQJqSn2Mn7jjotve5WLS3uombS33Q a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 26 July, 2020" ;
+    di:hasConfirmedCases 40532 ;
+    di:hasDate "2020-07-26"^^xsd:date ;
+    di:hasDeathCases 858 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 555 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 17374 ;
+    di:hasTotalCases 22300 ;
+    rdfs:comment "Covid-19 Summary for 26 July, 2020" .
+
+ncdc:covid19DailyStatusllWAHjDNVoTkHLGd_2Y33AobsmtJ3qbNSkMO6U1I-MM a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 03 July, 2020" ;
+    di:hasConfirmedCases 27564 ;
+    di:hasDate "2020-07-03"^^xsd:date ;
+    di:hasDeathCases 628 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 454 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 11069 ;
+    di:hasTotalCases 15867 ;
+    rdfs:comment "Covid-19 Summary for 03 July, 2020" .
+
+ncdc:covid19DailyStatusm_3kdLH6tr214FPH_eZ-AKqc1byd1WhScz1yFRrECug a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 18 May, 2020" ;
+    di:hasConfirmedCases 6175 ;
+    di:hasDate "2020-05-18"^^xsd:date ;
+    di:hasDeathCases 191 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 216 ;
+    di:hasNewDeathCases 9 ;
+    di:hasRecoveredCases 1644 ;
+    di:hasTotalCases 4340 ;
+    rdfs:comment "Covid-19 Summary for 18 May, 2020" .
+
+ncdc:covid19DailyStatusnBdNC8--G9FPNuuiwQ4LZNq_MJEvNE-45oll6Oll_bY a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 26 June, 2020" ;
+    di:hasConfirmedCases 23298 ;
+    di:hasDate "2020-06-26"^^xsd:date ;
+    di:hasDeathCases 554 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 684 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 8253 ;
+    di:hasTotalCases 14491 ;
+    rdfs:comment "Covid-19 Summary for 26 June, 2020" .
+
+ncdc:covid19DailyStatusnM8seYCnjtWyg7UatksIqICSVa_we4L3Sy0bV3czRD0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 02 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-02"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 02 March, 2020" .
+
+ncdc:covid19DailyStatusnrgKvGWkii00DbYWiS2jt_K8D6cUu2UXNh1O7jv0DTA a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 27 May, 2020" ;
+    di:hasConfirmedCases 8733 ;
+    di:hasDate "2020-05-27"^^xsd:date ;
+    di:hasDeathCases 254 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 389 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 2501 ;
+    di:hasTotalCases 5978 ;
+    rdfs:comment "Covid-19 Summary for 27 May, 2020" .
+
+ncdc:covid19DailyStatusnz_ms6EIuwT1GQkbwKrWTyssBlMiXSwfdAQs0i5Uq4Y a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 15 June, 2020" ;
+    di:hasConfirmedCases 16658 ;
+    di:hasDate "2020-06-15"^^xsd:date ;
+    di:hasDeathCases 424 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 573 ;
+    di:hasNewDeathCases 4 ;
+    di:hasRecoveredCases 5349 ;
+    di:hasTotalCases 10885 ;
+    rdfs:comment "Covid-19 Summary for 15 June, 2020" .
+
+ncdc:covid19DailyStatusoU8PLWEt4elRvFAGCFLR9XThY6gQSwpGJT0QHdqokFI a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 06 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-06"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 06 March, 2020" .
+
+ncdc:covid19DailyStatusoh_odxzQF7GCU8v367p_UdQUa-A036UcVqfyTkTazfo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 18 June, 2020" ;
+    di:hasConfirmedCases 18480 ;
+    di:hasDate "2020-06-18"^^xsd:date ;
+    di:hasDeathCases 475 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 745 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 6307 ;
+    di:hasTotalCases 11698 ;
+    rdfs:comment "Covid-19 Summary for 18 June, 2020" .
+
+ncdc:covid19DailyStatusp44KOX6OVRDWwYmFbGq9fGaP7skQpR5OOr0gcLzOT6w a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 28 February, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-02-28"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 1 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 28 February, 2020" .
+
+ncdc:covid19DailyStatuspTPBezhhwsR8bE82-EXTqnjHzo2la9j1GTZsnaOZPTw a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 19 April, 2020" ;
+    di:hasConfirmedCases 627 ;
+    di:hasDate "2020-04-19"^^xsd:date ;
+    di:hasDeathCases 22 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 86 ;
+    di:hasNewDeathCases 2 ;
+    di:hasRecoveredCases 170 ;
+    di:hasTotalCases 436 ;
+    rdfs:comment "Covid-19 Summary for 19 April, 2020" .
+
+ncdc:covid19DailyStatuspTZj2uFtH3ay9KSc_S7JnDDOkp6BEwBh8X1VlbXOFd4 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 01 June, 2020" ;
+    di:hasConfirmedCases 10578 ;
+    di:hasDate "2020-06-01"^^xsd:date ;
+    di:hasDeathCases 299 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 416 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 3122 ;
+    di:hasTotalCases 7157 ;
+    rdfs:comment "Covid-19 Summary for 01 June, 2020" .
+
+ncdc:covid19DailyStatuspqhuk-pDi7MH_IpnTXlDNq-ZK9_uWhYo5_lJi-JVN28 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 29 July, 2020" ;
+    di:hasConfirmedCases 42208 ;
+    di:hasDate "2020-07-29"^^xsd:date ;
+    di:hasDeathCases 873 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 404 ;
+    di:hasNewDeathCases 5 ;
+    di:hasRecoveredCases 19004 ;
+    di:hasTotalCases 22331 ;
+    rdfs:comment "Covid-19 Summary for 29 July, 2020" .
+
+ncdc:covid19DailyStatusqpIA5KFcZKzEHlWrCxRdBU2WM4-H0grQBCNSWYfQgxY a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 02 May, 2020" ;
+    di:hasConfirmedCases 2388 ;
+    di:hasDate "2020-05-02"^^xsd:date ;
+    di:hasDeathCases 86 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 220 ;
+    di:hasNewDeathCases 17 ;
+    di:hasRecoveredCases 351 ;
+    di:hasTotalCases 1952 ;
+    rdfs:comment "Covid-19 Summary for 02 May, 2020" .
+
+ncdc:covid19DailyStatusr157YR_xurHHlsj8bhhZ6TrSV_1RJq_L9JiyWpisgy0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 12 June, 2020" ;
+    di:hasConfirmedCases 15181 ;
+    di:hasDate "2020-06-12"^^xsd:date ;
+    di:hasDeathCases 399 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 627 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 4891 ;
+    di:hasTotalCases 9891 ;
+    rdfs:comment "Covid-19 Summary for 12 June, 2020" .
+
+ncdc:covid19DailyStatusrngXMupb7a0lEktpmlCWdTBXl4iiu6snrflLC4xqrxo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 23 May, 2020" ;
+    di:hasConfirmedCases 7526 ;
+    di:hasDate "2020-05-23"^^xsd:date ;
+    di:hasDeathCases 221 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 265 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 2174 ;
+    di:hasTotalCases 5131 ;
+    rdfs:comment "Covid-19 Summary for 23 May, 2020" .
+
+ncdc:covid19DailyStatuss3wQM2K19k_AGNnFXUIuo8AifIPn73TIpALXzLmNYqo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 11 March, 2020" ;
+    di:hasConfirmedCases 2 ;
+    di:hasDate "2020-03-11"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 2 ;
+    rdfs:comment "Covid-19 Summary for 11 March, 2020" .
+
+ncdc:covid19DailyStatussK86m9gF-LBiNTYTLQb5O8YEilwBr5kDxKLYU0okMzk a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 01 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-01"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 01 March, 2020" .
+
+ncdc:covid19DailyStatust9qCtgvpMJsAVLbSIyjSwxxbJjllbNFvx6THv-LWziQ a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 15 April, 2020" ;
+    di:hasConfirmedCases 407 ;
+    di:hasDate "2020-04-15"^^xsd:date ;
+    di:hasDeathCases 12 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 34 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 128 ;
+    di:hasTotalCases 267 ;
+    rdfs:comment "Covid-19 Summary for 15 April, 2020" .
+
+ncdc:covid19DailyStatustA1QM6j2Yfbcvtq2dlGMaIRAmAN6Yvi06II-kU2_3hY a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 18 July, 2020" ;
+    di:hasConfirmedCases 36107 ;
+    di:hasDate "2020-07-18"^^xsd:date ;
+    di:hasDeathCases 778 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 653 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 14938 ;
+    di:hasTotalCases 20391 ;
+    rdfs:comment "Covid-19 Summary for 18 July, 2020" .
+
+ncdc:covid19DailyStatustEA4SlBu3RLf5PM6NwSkFu9AQciAC96X_vobb6TTOLg a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 20 May, 2020" ;
+    di:hasConfirmedCases 6677 ;
+    di:hasDate "2020-05-20"^^xsd:date ;
+    di:hasDeathCases 200 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 284 ;
+    di:hasNewDeathCases 8 ;
+    di:hasRecoveredCases 1840 ;
+    di:hasTotalCases 4637 ;
+    rdfs:comment "Covid-19 Summary for 20 May, 2020" .
+
+ncdc:covid19DailyStatustIbqyh5PtzuUFslRUrupQGv0FhjAkAfpqOyIN6kUv64 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 17 June, 2020" ;
+    di:hasConfirmedCases 17735 ;
+    di:hasDate "2020-06-17"^^xsd:date ;
+    di:hasDeathCases 469 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 587 ;
+    di:hasNewDeathCases 14 ;
+    di:hasRecoveredCases 5967 ;
+    di:hasTotalCases 11299 ;
+    rdfs:comment "Covid-19 Summary for 17 June, 2020" .
+
+ncdc:covid19DailyStatusu3GK1gb_W-_svh3JGflAOWESEqgG3lLByEQORv9wmEo a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 21 April, 2020" ;
+    di:hasConfirmedCases 782 ;
+    di:hasDate "2020-04-21"^^xsd:date ;
+    di:hasDeathCases 26 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 117 ;
+    di:hasNewDeathCases 3 ;
+    di:hasRecoveredCases 197 ;
+    di:hasTotalCases 560 ;
+    rdfs:comment "Covid-19 Summary for 21 April, 2020" .
+
+ncdc:covid19DailyStatusudxhC9hv0ptyQcCtuH7KikxMkcxERZMDhTO5kd-6v-I a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 07 March, 2020" ;
+    di:hasConfirmedCases 1 ;
+    di:hasDate "2020-03-07"^^xsd:date ;
+    di:hasDeathCases 0 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 0 ;
+    di:hasNewDeathCases 0 ;
+    di:hasRecoveredCases 0 ;
+    di:hasTotalCases 1 ;
+    rdfs:comment "Covid-19 Summary for 07 March, 2020" .
+
+ncdc:covid19DailyStatusvE6m5IXoqs9ZMNODbZmHscT-ba4skR4-nrSZRKlUmp8 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 24 July, 2020" ;
+    di:hasConfirmedCases 39539 ;
+    di:hasDate "2020-07-24"^^xsd:date ;
+    di:hasDeathCases 845 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 591 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 16559 ;
+    di:hasTotalCases 22135 ;
+    rdfs:comment "Covid-19 Summary for 24 July, 2020" .
+
+ncdc:covid19DailyStatusvhywvp_5U7Xsrj_j2DIWYIgaeq8TAYHVk6ADSYtLA3A a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 12 July, 2020" ;
+    di:hasConfirmedCases 32558 ;
+    di:hasDate "2020-07-12"^^xsd:date ;
+    di:hasDeathCases 740 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 571 ;
+    di:hasNewDeathCases 16 ;
+    di:hasRecoveredCases 13447 ;
+    di:hasTotalCases 18371 ;
+    rdfs:comment "Covid-19 Summary for 12 July, 2020" .
+
+ncdc:covid19DailyStatuswAEAErSSj8AzR6VO9idoR-Kosb6mNbE-hhcUd5sNONs a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 17 May, 2020" ;
+    di:hasConfirmedCases 5959 ;
+    di:hasDate "2020-05-17"^^xsd:date ;
+    di:hasDeathCases 182 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 388 ;
+    di:hasNewDeathCases 6 ;
+    di:hasRecoveredCases 1594 ;
+    di:hasTotalCases 4183 ;
+    rdfs:comment "Covid-19 Summary for 17 May, 2020" .
+
+ncdc:covid19DailyStatuswT7Ugbg1llKumw-43yCzgOPEr5FJrl0OYXZVqVSqT9A a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 08 July, 2020" ;
+    di:hasConfirmedCases 30249 ;
+    di:hasDate "2020-07-08"^^xsd:date ;
+    di:hasDeathCases 684 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 460 ;
+    di:hasNewDeathCases 15 ;
+    di:hasRecoveredCases 12373 ;
+    di:hasTotalCases 17192 ;
+    rdfs:comment "Covid-19 Summary for 08 July, 2020" .
+
+ncdc:covid19DailyStatusweP4_nz0mK23y44UxRwWLSFH7brNyFPu3dabqMEdhvc a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 20 June, 2020" ;
+    di:hasConfirmedCases 19808 ;
+    di:hasDate "2020-06-20"^^xsd:date ;
+    di:hasDeathCases 506 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 661 ;
+    di:hasNewDeathCases 19 ;
+    di:hasRecoveredCases 6718 ;
+    di:hasTotalCases 12584 ;
+    rdfs:comment "Covid-19 Summary for 20 June, 2020" .
+
+ncdc:covid19DailyStatusxGBbXbdJA2fBIJha37XVfj2HR6aiJF0F7ITcZZIgWOE a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 23 March, 2020" ;
+    di:hasConfirmedCases 40 ;
+    di:hasDate "2020-03-23"^^xsd:date ;
+    di:hasDeathCases 1 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 10 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 2 ;
+    di:hasTotalCases 37 ;
+    rdfs:comment "Covid-19 Summary for 23 March, 2020" .
+
+ncdc:covid19DailyStatuszS6ZgfesmxDV8T_TpyxM1I8OsJ8sfkrwwYm7et_gyC0 a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 05 April, 2020" ;
+    di:hasConfirmedCases 232 ;
+    di:hasDate "2020-04-05"^^xsd:date ;
+    di:hasDeathCases 5 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 18 ;
+    di:hasNewDeathCases 1 ;
+    di:hasRecoveredCases 33 ;
+    di:hasTotalCases 194 ;
+    rdfs:comment "Covid-19 Summary for 05 April, 2020" .
+
+ncdc:covid19DailyStatuszmRCRzXhAjIAENjADPQckqJiVr5CKUvHhQBTTogct0c a di:ItemData ;
+    rdfs:label "Covid-19 Summary for 07 June, 2020" ;
+    di:hasConfirmedCases 12486 ;
+    di:hasDate "2020-06-07"^^xsd:date ;
+    di:hasDeathCases 354 ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasNewConfirmedCases 260 ;
+    di:hasNewDeathCases 12 ;
+    di:hasRecoveredCases 3959 ;
+    di:hasTotalCases 8173 ;
+    rdfs:comment "Covid-19 Summary for 07 June, 2020" .
+
+ncdc:ngrcdc a di:Organization ;
+    rdfs:label "NCDC" ;
+    di:hasGeoLocation ngr:Nigeria ;
+    di:hasName "NCDC" ;
+    di:hasURL <http://ncdc.gov.ng> ;
+    rdfs:comment "Nigeria Centre for Disease Control (NCDC)" ;
+    rdfs:seeAlso <http://ncdc.gov.ng>,
+        <https://www.cdc.gov/globalhealth/countries/nigeria/default.htm> ;
+    skos:altLabel "Nigeria Centre for Disease Control" ;
+    skos:prefLabel "NCDC" .
+

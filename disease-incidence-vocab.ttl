@@ -1,0 +1,193 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> . 
+
+@prefix cv: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence-vocab.ttl#> .
+
+<http://linkedopendatang.com/schemas/disease-incidence/disease-incidence-vocab.ttl>
+	dct:title	"Disease Incidence Thesaurus";
+	dct:description	"The Disease Incidence Thesaurus is a controlled and structured list of terms"@en;
+	rdfs:comment """This is a turtle document that uses Linked Data oriented content to describe a controlled and structured list of terms"""^^xsd:string ;
+	dct:creator <http://emeka.name.ng/data/profile.ttl#identity> ;
+	dct:date "2020-04-05"^^xsd:date ;
+	cc:license <http://creativecommons.org/licenses/by-sa/3.0/> ;
+	skos:definition "Simple Knowledge Organization System for Disease Incidence"@en.
+	
+
+<http://emeka.name.ng/data/profile.ttl#identity> a schema:Person  ;
+  	schema:name "Emeka Azuka Okoye";
+  	owl:sameAs <http://twitter.com/emekaokoye> .
+
+
+#
+# Classes 
+#
+	
+
+cv:DiseaseIncidence rdf:type skos:ConceptScheme;
+	skos:prefLabel "Disease Incidence Thesaurus Concept Scheme"@en;
+	dct:description	"Disease Incidence Thesaurus Concept Scheme"@en .
+
+
+
+cv:PathogenicMicroorganism rdf:type skos:Concept;
+	skos:prefLabel "Pathogenic Microorganism"@en;
+	dct:description	"The type of Pathogenic MicroOrganism causing an Infectious Disease"@en;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+	 
+cv:Status rdf:type skos:Concept;
+	skos:prefLabel "Status"@en;
+	dct:description	"The status of a Person during a disease outbreak"@en;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+	
+cv:Type rdf:type skos:Concept;
+	skos:prefLabel "Movement Type"@en;
+	dct:description	"The type of movement by Infected Person"@en;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+	
+cv:Sympton rdf:type skos:Concept;
+	skos:prefLabel "Sympton"@en;
+	dct:description	"The sympton of an Infected Person a Disease outbreak"@en;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+	
+cv:Transmission rdf:type skos:Concept;
+	skos:prefLabel "Transmission"@en;
+	dct:description	"The sympton of an Infected Person a Disease outbreak"@en;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+	
+
+cv:Symptomatic rdf:type skos:Concept;
+	skos:prefLabel "Symptomatic Person"@en;
+	dct:description	"A Person showing symptoms of the Disease "@en;
+	skos:broader cv:Sympton ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Asymptomatic rdf:type skos:Concept;
+	skos:prefLabel "Asymptomatic Person"@en;
+	dct:description	"A Person not showing symptoms of the Disease "@en;
+	skos:broader cv:Sympton ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+	
+cv:Immunized rdf:type skos:Concept;
+	skos:prefLabel "Immunized Person"@en;
+	dct:description	"A Person that has recieved Immunization against the Disease "@en;
+	skos:broader cv:Status ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Vaccinated rdf:type skos:Concept;
+	skos:prefLabel "Vaccinated Person"@en;
+	dct:description	"A Person that has recieved Vaccination against the Disease "@en;
+	skos:broader cv:Status ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Susceptible rdf:type skos:Concept;
+	skos:prefLabel "Susceptible Person"@en;
+	dct:description	"A Person who may become Infected through contact with an Infected Person"@en;
+	skos:broader cv:Status ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Recovered rdf:type skos:Concept;
+	skos:prefLabel "Recovered Person"@en;
+	dct:description	"A Person who have become Immune or Recovered from the Disease"@en;
+	skos:broader cv:Status ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Quarantined rdf:type skos:Concept;
+	skos:prefLabel "Quarantined Person"@en;
+	dct:description	"A Person who have become Immune or Recovered from the Disease"@en;
+	skos:broader cv:Status ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Exposed rdf:type skos:Concept;
+	skos:prefLabel "Exposed Person"@en;
+	dct:description	"A Person who have been infected from the Disease but not yet infectious"@en;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Infectious rdf:type skos:Concept;
+	skos:prefLabel "Infectious Person"@en;
+	dct:description	"A Person who is capable of transmitting the Disease"@en;
+	skos:broader cv:Status ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:DirectTransmission rdf:type skos:Concept;
+	skos:prefLabel "Direct Transmission"@en;
+	dct:description	"Direct Transmission of Disease"@en;
+	skos:broader cv:Transmission ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:IndirectTransmission rdf:type skos:Concept;
+	skos:prefLabel "Indirect Transmission"@en;
+	dct:description	"Indirect Transmission of Disease"@en;
+	skos:broader cv:Transmission ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+
+cv:Travel rdf:type skos:Concept;
+	skos:prefLabel "Travel"@en;
+	dct:description	"A Travel type of Movement of Infected Person"@en;
+	skos:broader cv:Type ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Local rdf:type skos:Concept;
+	skos:prefLabel "Local"@en;
+	dct:description	"A Local type of Movement of Infected Person"@en;
+	skos:broader cv:Type ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Pending rdf:type skos:Concept;
+	skos:prefLabel "Pending"@en;
+	dct:description	"Pending Movement data of Infected Person"@en;
+	skos:broader cv:Type ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Unknown rdf:type skos:Concept;
+	skos:prefLabel "Unknown"@en;
+	dct:description	"Unknown Movement data of Infected Person"@en;
+	skos:broader cv:Type ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Bacteria rdf:type skos:Concept;
+	skos:prefLabel "Bacteria"@en;
+	dct:description	"Bacteria Micro Organism"@en;
+	skos:broader cv:PathogenicMicroorganism ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Virus rdf:type skos:Concept;
+	skos:prefLabel "Virus"@en;
+	dct:description	"Virus Micro Organism"@en;
+	skos:broader cv:PathogenicMicroorganism ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Fungi rdf:type skos:Concept;
+	skos:prefLabel "Fungi"@en;
+	dct:description	"Fungi Micro Organism"@en;
+	skos:broader cv:PathogenicMicroorganism ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	
+cv:Parasite rdf:type skos:Concept;
+	skos:prefLabel "Parasite"@en;
+	dct:description	"Parasite Micro Organism"@en;
+	skos:broader cv:PathogenicMicroorganism ;
+	skos:inScheme cv:DiseaseIncidence  .	
+	

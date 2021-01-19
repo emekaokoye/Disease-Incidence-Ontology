@@ -1,0 +1,675 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> . 
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix p: <http://dbpedia.org/resource/> .
+@prefix kb:<http://kbpedia.org/kko/rc/> .
+@prefix sio: <http://semanticscience.org/resource/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix biotop: <http://purl.org/biotop/biotop.owl#> .
+@prefix bio: <http://purl.org/vocab/bio/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>  .
+
+@prefix cv: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence-vocab.ttl#> .
+@prefix di: <http://linkedopendatang.com/schemas/disease-incidence/disease-incidence.ttl#> .
+
+
+
+<http://linkedopendatang.com/schemas/disease-incidence/disease-incidence.ttl>
+  cc:license <http://creativecommons.org/licenses/by-sa/3.0/> ;
+  rdf:type owl:Ontology ;
+  dc:date "2020-08-11"^^xsd:date ;
+  rdfs:comment "This is a document that uses Linked Data oriented content to describe an Ontology for Disease Incidences or outbreaks. This is an evolving spec." ;
+  rdfs:label "An Ontology for Disease Incidence" ;
+  owl:versionInfo "0.1.1" ;
+  foaf:maker <http://twitter.com/emekaokoye#this> .
+
+
+
+# ---------------------------------------------------------------------------
+# Disease Incidence Classes
+#
+
+
+di:Object
+    a owl:Class;
+	dc:identifier "Object" ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "DiseaseIncidence" ;
+    rdfs:comment "A base class representing all Disease Incidence objects" .
+
+
+di:Person
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Person;
+    rdfs:subClassOf foaf:Person;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "Person" ;
+    rdfs:comment "A class representing a Person" .
+    
+    
+di:UnknownSource
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "UnknownSource" ;
+    rdfs:comment "A class representing an Unknown source of Infection" .
+    
+    
+    
+    
+di:ContactEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Event;
+    rdfs:subClassOf obo:OBI_1110114;
+    rdfs:subClassOf sio:SIO_000494;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "ContactEvent" ;
+    rdfs:comment "A class representing a Contact Event on a Person" .
+    
+
+di:InfectingEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Event;
+    rdfs:subClassOf obo:IDO_0000586;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "InfectingEvent" ;
+    rdfs:comment "A class representing an Infecting Event on a Person" .
+    
+    
+di:SymptomEvent    
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Event;
+    rdfs:subClassOf schema:MedicalSymptom;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "SymptomEvent" ;
+    rdfs:comment "A class representing a Sign and Symptom Event on a Person" .
+    
+    
+di:TestingEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Event;
+    rdfs:subClassOf sio:SIO_001023 ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "TestingEvent" ;
+    rdfs:comment "A class representing a Testing Event or Screening on a Person" .
+    
+    
+di:DiagnosisEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Event;
+    rdfs:subClassOf sio:SIO_001331 ;
+	rdfs:subClassOf schema:MedicalTest ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "DisgnosisEvent" ;
+    rdfs:comment "A class representing a Diagnosis Test Event" .
+    
+
+di:DeathEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    owl:equivalentClass dbo:Death;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "DeathEvent" ;
+    rdfs:comment "A class representing a Death Event on a Person" .
+    
+    
+di:HospitalizationEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Event;
+	rdfs:subClassOf schema:PhysicalExam;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "HospitalizationEvent" ;
+    rdfs:comment "A class representing a Hospitalization Event on a Person" .
+    
+    
+di:MovementEvent
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:MoveAction;
+	rdfs:subClassOf sio:SIO_000719 ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "MovementEvent" ;
+    rdfs:comment "A class representing the movement of a Person" .
+    
+    
+di:IndexPatient
+    a owl:Class ;
+    rdfs:subClassOf di:Person;
+	rdfs:subClassOf schema:Patient ;
+	rdfs:subClassOf sio:SIO_000393 ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "IndexPatient" ;
+    rdfs:comment "A class representing an Index Patient of the Disease" .
+    
+    
+di:Organization
+    a owl:Class;
+    rdfs:isDefinedBy di: ;
+    rdfs:subClassOf schema:MedicalOrganization ;
+    rdfs:subClassOf foaf:Organization ;
+    rdfs:label "Organization" ;
+    rdfs:comment "A class representing an Organization in the Health sector" .
+	
+    
+di:TestingFacility
+    a owl:Class;
+    rdfs:isDefinedBy di: ;
+    rdfs:subClassOf di:Organization ;
+    rdfs:subClassOf schema:CovidTestingFacility ;
+    rdfs:label "TestingFacility" ;
+    rdfs:comment "A class representing a Testing Facility" .
+	
+    
+    
+di:InfectiousDisease
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:MedicalCondition;
+    rdfs:subClassOf obo:DOID_0050117;
+    rdfs:subClassOf kb:InfectiousDisease;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "InfectiousDisease" ;
+    rdfs:comment "A class representing an infectious disease" .
+
+
+di:MicroOrganism
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    owl:equivalentClass biotop:Microorganism ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "MicroOrganism" ;
+    rdfs:comment "A class representing a Micro Organism" .
+
+
+di:Individual
+    a owl:Class ;
+    rdfs:subClassOf di:Person;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "Individual" ;
+    rdfs:comment "A class representing an individual" .
+    
+    
+di:SituationReport
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:Report;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "SituationReport" ;
+    rdfs:comment "Situation or Statistical Report" .
+
+
+di:ItemData
+    a owl:Class ;
+    rdfs:subClassOf di:Object ;
+    rdfs:subClassOf schema:DataFeed ;
+    rdfs:isDefinedBy di: ;
+    rdfs:label "ItemData" ;
+    rdfs:comment "Item Data" .
+
+
+    
+    
+    
+
+# ---------------------------------------------------------------------------
+# Disease Infection Properties
+#
+
+
+di:hasID
+	rdf:type owl:DatatypeProperty, owl:InverseFunctionalProperty ;
+	owl:equivalentProperty schema:identifier ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasID" ;
+  	rdfs:comment "This property associates an instance of a Person with an Identity code" ;
+  	rdfs:domain di:Individual, di:IndexPatient, di:MovementEvent, di:TestingEvent, di:ContactEvent, di:InfectingEvent, di:SymptomEvent, di:DeathEvent, di:HospitalizationEvent ;
+	rdfs:range xsd:string .
+
+
+di:hasRef
+	rdf:type owl:DatatypeProperty, owl:InverseFunctionalProperty ;
+	owl:equivalentProperty schema:identifier ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasRef" ;
+  	rdfs:comment "This property associates an instance of an Object with a Reference code" ;
+	rdfs:range xsd:string .
+
+
+di:hasName
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:name ;
+	rdfs:subPropertyOf dbo:name ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasName" ;
+  	rdfs:comment "This property associates an instance of an Object with a Name" ;
+	rdfs:range xsd:string .
+
+
+di:hasURL
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:subPropertyOf vcard:url ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasURL" ;
+  	rdfs:comment "This property associates an instance of an Object with a URL" ;
+	rdfs:range xsd:anyURI .
+
+
+di:hasPopulationAtRisk
+	  rdf:type owl:DatatypeProperty ;
+	  rdfs:subPropertyOf schema:targetPopulation;
+	  rdfs:subPropertyOf dbo:population;
+	  rdfs:label "hasPopulationAtRisk" ;
+	  rdfs:isDefinedBy di: ;
+	  rdfs:comment "The population who are capable of developing the disease" ;
+	  rdfs:domain di:InfectiousDisease ;
+	  rdfs:range xsd:integer .
+  
+
+di:hasGeoLocation
+	  rdf:type owl:ObjectProperty ;
+	  rdfs:subPropertyOf dbo:populationPlace ;
+	  rdfs:label "hasGeoLocation" ;
+	  rdfs:comment "The geographic area where the Disease Incidence happened" ;
+	  rdfs:isDefinedBy di: ;
+	  rdfs:domain di:InfectiousDisease ;
+	  rdfs:range xsd:anyURI .
+  
+
+
+di:hasPerson
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf dbo:person ;
+  	rdfs:label "hasPerson" ;
+  	rdfs:comment "This property associates an instance of an Infection Event with a Person" ;
+    rdfs:isDefinedBy di: ;
+    rdfs:range di:Person ;
+  	rdfs:domain di:InfectingEvent .
+  	
+  	
+di:hasDisease
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:infectiousAgentClass ;
+  	rdfs:label "hasDisease" ;
+  	rdfs:comment "This property associates an instance of an Infection Event with a Disease" ;
+    rdfs:isDefinedBy di: ;
+    rdfs:domain di:Person, di:StatusReport ;
+  	rdfs:range di:InfectiousDisease .
+  	
+  	
+
+# Subject hasInfected Exposed
+di:hasInfected
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasInfected" ;
+  	rdfs:comment "This property associates an instance of Person who is Infected with another Person who is Susceptible during an Infection Event" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:range di:InfectingEvent .
+  	
+  	
+
+# Subject infectedby Infected Person
+di:infectedBy
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "InfectedBy" ;
+  	rdfs:comment "This property associates an instance of Infection Event with a Person" ;
+    rdfs:isDefinedBy di: ;
+    owl:inverseOf di:hasInfected ; 
+  	rdfs:domain di:InfectingEvent, di:UnknownSource ;
+  	rdfs:range di:InfectingEvent .
+
+
+# animal-to-human, human-to-human
+di:hasTransmissionRoute
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasTransmissionRoute" ;
+  	rdfs:comment "This property associates an instance of an Infected Person with a Transmission Route" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:InfectiousDisease ;
+  	rdfs:range cv:Transmission .
+
+
+di:hasStatus
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasStatus" ;
+  	rdfs:comment "This property associates an instance of a Person with a Status" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:Person, di:IndexPatient ;
+  	rdfs:range cv:Status .
+
+
+di:hasMovementType
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasMovementType" ;
+  	rdfs:comment "This property associates an instance of a Movement Event with a Type" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:MovementEvent ;
+  	rdfs:range cv:Type .
+
+
+di:hasDate
+	rdf:type owl:DatatypeProperty ;
+	owl:equivalentProperty dbo:eventDate ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasDate" ;
+	rdfs:comment "This property associates an instance of an Event with a Date" ;
+	rdfs:range xsd:date .
+
+di:hasTime
+	rdf:type owl:DatatypeProperty ;
+	owl:equivalentProperty dbo:time ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasTime" ;
+	rdfs:comment "This property associates an instance of an Event with a Time" ;
+	rdfs:range xsd:time .
+
+
+di:eventNumber
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy di: ;
+	rdfs:subPropertyOf schema:serialNumber ;
+	rdfs:subPropertyOf dbo:number ;
+	rdfs:label "Number" ;
+	rdfs:comment "This property associates an instance of an Event with a number" ;
+	rdfs:range xsd:double .
+
+
+di:hasIndividuals
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasIndividuals" ;
+  	rdfs:comment "This property associates an instance of an Event with the number of Individuals involved" ;
+  	rdfs:domain di:TestingEvent, di:ContactEvent, di:InfectingEvent, di:SymptomEvent, di:DeathEvent, di:HospitalizationEvent ;
+	rdfs:range xsd:double .
+
+
+di:hasSource
+	rdf:type owl:DatatypeProperty ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasSource" ;
+  	rdfs:comment "This property associates an instance of an Index Patient to a Source" ;
+  	rdfs:domain di:IndexPatient ;
+	rdfs:range xsd:anyURI .
+
+
+di:recoveredDate
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf dbo:eventDate ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "recoveredDate" ;
+	rdfs:comment "This property associates an instance of Person with a Date" ;
+  	rdfs:domain di:IndexPatient, di:Individual ;
+	rdfs:range xsd:date .
+
+
+di:hasDied
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf bio:death ;
+  	rdfs:label "hasDied" ;
+  	rdfs:comment "This property associates an instance of Person who is Infected with Death Event" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:IndexPatient, di:Individual ;
+  	rdfs:range di:DeathEvent .
+  	
+  	
+di:hasAge
+	rdf:type owl:DatatypeProperty ;
+  	rdfs:label "hasAge" ;
+	rdfs:subPropertyOf foaf:age ;
+  	rdfs:comment "This property associates an instance of Person with an Age" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:IndexPatient, di:Individual ;
+  	rdfs:range xsd:integer .
+  	
+  	
+di:hasGender
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:gender ;
+  	rdfs:label "hasGender" ;
+  	rdfs:comment "This property associates an instance of Person with an Age" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:IndexPatient, di:Individual ;
+  	rdfs:range xsd:integer .
+  	
+  	
+
+di:screenedBy
+	rdf:type owl:ObjectProperty ;
+	owl:equivalentProperty schema:recognizingAuthority ;
+  	rdfs:label "Screened By" ;
+  	rdfs:comment "Screened By" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:ScreeningEvent ;
+  	rdfs:range di:Organization .
+
+
+di:testedBy
+	rdf:type owl:ObjectProperty ;
+	owl:equivalentProperty schema:recognizingAuthority ;
+  	rdfs:label "Tested By" ;
+  	rdfs:comment "tested By" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:TestingEvent ;
+  	rdfs:range di:Organization .
+
+
+
+di:hasConfirmedCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+  	rdfs:label "hasConfirmedCases" ;
+  	rdfs:comment "Persons who has been Infected by the Disease" ;
+    rdfs:isDefinedBy di: ;
+	rdfs:domain di:ItemData ;
+  	rdfs:range xsd:integer .
+
+
+di:hasRecoveredCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+	rdfs:label "hasRecoveredCases" ;
+	rdfs:comment "Persons recovered from the Disease" ;
+	rdfs:domain di:ItemData ;
+	rdfs:range xsd:integer .
+
+
+di:hasDeathCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+	rdfs:label "hasDeathCases" ;
+	rdfs:comment "Persons who died of the Disease" ;
+	rdfs:domain di:ItemData ;
+	rdfs:range xsd:integer .
+  
+
+
+di:hasTotalCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+	rdfs:label "hasTotalCases" ;
+	rdfs:comment "Total cases" ;
+	rdfs:domain di:ItemData ;
+	rdfs:range xsd:integer .
+  
+
+
+di:hasSuspectedCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+	rdfs:label "hasSuspectedCases" ;
+	rdfs:comment "Persons exposed to an Infected Person's environment or personal items" ;
+	rdfs:domain di:ItemData ;
+	rdfs:range xsd:integer .
+  
+
+di:hasSympton
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:signOrSymptom ;
+  	rdfs:label "hasSympton" ;
+  	rdfs:comment "This property associates an instance of Person with a Symptom" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:IndexPatient, di:Individual ;
+  	rdfs:range xsd:string .
+  	
+
+
+di:isCausedBy
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "isCausedBy" ;
+	rdfs:subPropertyOf schema:causeOf ;
+  	rdfs:comment "This property associates an instance of Infectious Disease with a Micro Organism" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:InfectiousDisease ;
+  	rdfs:range xsd:anyURI .
+  	
+
+di:hasMicroOrganism
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasMicroOrganism" ;
+  	rdfs:comment "This property associates an instance of a Micro Organism with a Pathogenic Micro Organism type" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:MicroOrganism ;
+  	rdfs:range cv:PathogenicMicroorganism .
+
+
+
+di:hasAuthority
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasAuthority" ;
+	owl:equivalentProperty schema:recognizingAuthority ;
+  	rdfs:comment "This property associates an instance of a Infectious Disease with a Disease Control Organization" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:InfectiousDisease ;
+  	rdfs:range di:Organization .
+
+
+
+di:hasRowItem
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "hasRowItem" ;
+	rdfs:subPropertyOf rdfs:member ;
+  	rdfs:comment "This property associates an instance of a Report with a Data Item" ;
+    rdfs:isDefinedBy di: ;
+  	rdfs:domain di:SituationReport ;
+  	rdfs:range di:ItemData .
+
+
+di:isRowItemOf
+	rdf:type owl:ObjectProperty ;
+  	rdfs:label "isRowItemOf" ;
+  	rdfs:comment "This property associates an instance of a Data Item with a Report" ;
+    rdfs:isDefinedBy di: ;
+    owl:inverseOf di:hasRowItem ; 
+  	rdfs:range di:SituationReport .
+  	
+
+
+di:hasNewConfirmedCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+  	rdfs:label "hasNewConfirmedCases" ;
+  	rdfs:comment "New Cases on Persons who has been Infected by the Disease" ;
+    rdfs:isDefinedBy di: ;
+	rdfs:domain di:ItemData ;
+  	rdfs:range xsd:integer .
+
+
+di:hasNewRecoveredCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+	rdfs:label "hasNewRecoveredCases" ;
+	rdfs:comment "New Cases on Persons recovered from the Disease" ;
+	rdfs:domain di:ItemData ;
+	rdfs:range xsd:integer .
+
+
+di:hasNewDeathCases
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:value ;
+	rdfs:subPropertyOf schema:dataFeedElement ;
+	rdfs:label "hasNewDeathCases" ;
+	rdfs:comment "New Cases of Persons who died of the Disease" ;
+	rdfs:domain di:ItemData ;
+	rdfs:range xsd:integer .
+  
+
+di:isMentioned
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:subPropertyOf rdfs:seeAlso ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "isMentioned" ;
+  	rdfs:comment "This property associates an instance of an Infectious Disease or Micro Organism with a URI that mentions about it like news, blog post" ;
+	rdfs:domain di:InfectiousDisease, di:MicroOrganism;
+	rdfs:range xsd:anyURI .
+
+
+
+di:hasAnalysisReport
+	rdf:type owl:ObjectProperty ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:isDefinedBy di: ;
+	rdfs:label "hasAnalysisReport" ;
+  	rdfs:comment "This property associates an instance of an Infectious Disease or Micro Organism with a URI about analytics or report (Knowledge Graph)" ;
+	rdfs:domain di:InfectiousDisease, di:MicroOrganism;
+	rdfs:range xsd:anyURI .
+
+	
+di:hasTotalBeds
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:cvdNumTotBeds ;
+	rdfs:label "hasTotalBeds" ;
+	rdfs:comment "Total Beds in a hospital, hospitals or in a locality" ;
+	rdfs:domain di:Organization, di:InfectiousDisease ;
+	rdfs:range xsd:integer .
+
+
+di:hasOccupiedBeds
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:cvdNumBedsOcc ;
+	rdfs:label "hasOccupiedBeds" ;
+	rdfs:comment "Total Occupied Beds in a hospital, hospitals or in a locality" ;
+	rdfs:domain di:Organization, di:InfectiousDisease ;
+	rdfs:range xsd:integer .
+
+
+di:hasTotalICUBeds
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:cvdNumICUBeds ;
+	rdfs:label "hasTotalICUBeds" ;
+	rdfs:comment "Total ICU Beds in a hospital, hospitals or in a locality" ;
+	rdfs:domain di:Organization, di:InfectiousDisease ;
+	rdfs:range xsd:integer .
+
+
+di:hasOccupiedICUBeds
+	rdf:type owl:DatatypeProperty ;
+	rdfs:subPropertyOf schema:cvdNumICUBedsOcc ;
+	rdfs:label "hasOccupiedICUBeds" ;
+	rdfs:comment "Total Occupied ICU Beds in a hospital, hospitals or in a locality" ;
+	rdfs:domain di:Organization, di:InfectiousDisease ;
+	rdfs:range xsd:integer .
+
+
